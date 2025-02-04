@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Vibrate",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Vibrate",
+  "parent":{
+    "name":"Vibration",
+    "path":"folders/Libs/Vibration.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

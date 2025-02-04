@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__textbox_constants",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__textbox_constants",
+  "parent":{
+    "name":"Private",
+    "path":"folders/Libs/TextBox/Private.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

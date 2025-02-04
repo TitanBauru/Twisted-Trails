@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"",
+  "%Name":"PPFX_License",
+  "name":"PPFX_License",
+  "parent":{
+    "name":"License",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/License.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

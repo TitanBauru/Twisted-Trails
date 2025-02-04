@@ -1,0 +1,40 @@
+
+main dialogue object
+
+triggers pro diálogo
+sequencia de eventos
+eventos de
+	diálogo
+	delay
+	acao entre os diálogos
+	camera
+
+text box
+	sprite 9slice
+	espressoes
+	sons
+	animacoes
+	botao pra pular
+	botao pra acelerar
+
+texto
+	scribble
+	animacao ao aparecer
+	outline
+	sons das letras
+	
+criacao dos diálogos
+	script pra servir de histórias do jogo
+	compatibilidade pra traducao
+	armazena as informacoes de diálogo em struct ou ds_map
+	cada diálogo é uma sequencia de eventos
+	eventos incluem caixa de texto, delay, som, ou outras acoes por script (screenshake...)
+	
+animacao da texbox
+	crescendo do centro
+	crescendo da lateral
+parametros de velocidade e tamanho
+config de escala e resolucao
+
+
+	

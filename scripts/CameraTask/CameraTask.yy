@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"CameraTask",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"CameraTask",
+  "parent":{
+    "name":"xCamera",
+    "path":"folders/Objects/Camera/Module/xCamera.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

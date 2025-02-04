@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_tile_shadow",
+  "name":"shd_tile_shadow",
+  "parent":{
+    "name":"Objects",
+    "path":"folders/Objects.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

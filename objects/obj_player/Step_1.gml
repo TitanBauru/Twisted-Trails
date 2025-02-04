@@ -1,0 +1,1 @@
+if (velh != 0) lado = sign(velh)

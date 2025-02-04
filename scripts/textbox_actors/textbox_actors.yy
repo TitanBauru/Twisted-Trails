@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"textbox_actors",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"textbox_actors",
+  "parent":{
+    "name":"Public",
+    "path":"folders/Libs/TextBox/Public.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

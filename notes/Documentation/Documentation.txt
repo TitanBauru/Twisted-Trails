@@ -1,0 +1,14 @@
+
+
+/////////////////////////////////////////////////
+
+	TextBox Dialog System
+	Made by Krug && Titan.
+
+/////////////////////////////////////////////////
+
+
+Sistema de diálogo baseado em atores e conversas.
+Atores participam dos diálogos
+Diálogos sao compostos de eventos
+Evendos podem trocar o texto, mudar uma sprite ou chamar uma funcao
