@@ -23,3 +23,4 @@ draw_sprite_ext(
 	image_alpha
 );
 
+draw_text(x, y - sprite_height * 1.2, string("{0} / {1}", vida, vida_max));

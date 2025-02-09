@@ -78,3 +78,28 @@ function get_attack_direction(){
 	return _dir;
 }
 
+// Use essa função para causar dano no player
+function deal_damage_to_player(_dmg, _knockback_strenght, _knockback_dir){
+	if (instance_exists(obj_player))
+	{
+		with (obj_player)
+		{
+			// rodar SFX DE DANO
+			vida -= _dmg;
+			if (vida <= 0)
+			{
+				show_message("Morreu")
+				room_restart();
+			}
+			else
+			{
+				on_knockback = true;
+				knockback_strenght = _knockback_strenght;
+				knockback_dir = _knockback_dir;
+				
+				obj_camera.camera.shake(4, .25);
+			}
+		}
+	}
+}
+

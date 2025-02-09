@@ -35,9 +35,53 @@ mana_regen = 0.05;
 
 // Configurações de dash
 can_dash = true;
+dash_qty = 0; // quantidade de dash disponivel sem gastar mana
+upgrade_velocidade_dash = 1; // multiplicador pra velocidade do dash
+upgrade_distancia_dash = 1; // multiplicador pra distancia do dash
+velocidade_dash = 8;
+distancia_dash = 64;
+posicao_inicial_dash = {x : 0, y : 0}; // Posição da onde o dash partiu pra começar a contar a distancia
 dash_timer = 10;
-dash_coldown = 0;
+dash_cooldown = 0;
 on_dash = false;
+dash_dir = 0;
+
+
+// Configurações Knockback
+on_knockback = false;
+knockback_dir = 0;
+knoback_strenght = 0;
+
+/// @description Executa o dash com parametros dos upgrades
+function executar_dash(){
+	var _mana_necessaria = 20;
+	var _posso_executar_dash = false;
+	
+	if (keyboard_check_pressed(vk_space) && !on_dash && dash_cooldown <= 0)
+	{
+		if (dash_qty >= 1){ // caso eu possa dar o dash sem gastar mana
+			_posso_executar_dash = true;
+			dash_qty -= 1;
+		}
+		else // gasto mana pra dar o dash
+		{
+			if (mana - _mana_necessaria >= 0){
+				mana -= _mana_necessaria;
+				_posso_executar_dash = true;
+			}
+		}
+	}
+	
+	if (_posso_executar_dash)
+	{
+		// rodar SFX DE DASH
+		on_dash = true;
+		dash_dir = point_direction(0, 0, movimento_horizontal, movimento_vertical);
+		posicao_inicial_dash = {x : x, y : y};
+	}
+}
+
+
 // Status de combate
 tempo_sem_bater_em_inimigos = 0;
 fora_de_combate = true;
@@ -70,14 +114,14 @@ function mover_player(_velh, _velv) {
 
 /// @description Ajusta escala e verifica hit flash.
 function ajustar_estado_visual() {
-		if (tempo_flash > 0) {
-		    xscale = 1.2;
-		    yscale = 0.8;
-		    tempo_flash--;
-		} else {
-		    xscale = lerp(xscale, 1, 0.15);
-		    yscale = lerp(yscale, 1, 0.15);
-		}
+	if (tempo_flash > 0) {
+		xscale = 1.2;
+		yscale = 0.8;
+		tempo_flash--;
+	} else {
+		xscale = lerp(xscale, 1, 0.15);
+		yscale = lerp(yscale, 1, 0.15);
+	}
 }
 
 ///// @description Regenera mana e clampa vida/mana.
@@ -106,9 +150,9 @@ function ajustar_estado_visual() {
 //    verificar_combate();
 //}
 take_knockback = function(force, dir){
-		velh = lengthdir_x(force,dir);
-        velv = lengthdir_y(force,dir);	
-	}
+	velh = lengthdir_x(force,dir);
+    velv = lengthdir_y(force,dir);	
+}
 ///// @description Efeitos de poeira e áudio de passos.
 function executar_dustwalk() {
     if (random(4) < 1) {
