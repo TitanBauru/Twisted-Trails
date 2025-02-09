@@ -1,9 +1,14 @@
+//Armas
+arma_atual = "Pistola"
+instance_create_layer(x,y,"vacuo",obj_weapon)
+bullet_number = 0;
 //Velocidade
-vel = 1.5;
+vel = 1.8;
 velh = 0;    
 velv = 0;    
 dir = 0;    
-aceleracao = 0.1;  
+aceleracao = .3;  
+desaceleracao = .2;
 pode_mover = true;
 estou_movendo = true;
 movimento_horizontal = 0
@@ -100,13 +105,16 @@ function ajustar_estado_visual() {
 //    regenerar_mana();
 //    verificar_combate();
 //}
-
+take_knockback = function(force, dir){
+		velh = lengthdir_x(force,dir);
+        velv = lengthdir_y(force,dir);	
+	}
 ///// @description Efeitos de poeira e áudio de passos.
-//function executar_dustwalk() {
-//    if (random(4) < 1) {
-//        repeat (irandom(estado = "Correndo" ? 3 : 1)) instance_create_layer(x, y + 5, "Camera", obj_dustwalk);
-//    }
-//}
+function executar_dustwalk() {
+    if (random(4) < 1) {
+        repeat (irandom(estou_movendo ? 3 : 1)) instance_create_layer(x, y + 5, "chao", obj_dustwalk);
+    }
+}
 //function executar_audio_passos() {
 //    audio_step--;
 //    if (audio_step <= 0) {

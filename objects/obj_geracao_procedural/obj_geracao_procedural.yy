@@ -8,8 +8,8 @@
   "name":"obj_geracao_procedural",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Procedural Generation - Titan Stuff",
+    "path":"folders/Objects/Procedural Generation - Titan Stuff.yy",
   },
   "parentObjectId":null,
   "persistent":false,
