@@ -15,6 +15,7 @@ fade_rt = 0;
 fade_lb = 0;
 fade_rb = 0;
 
+
 alarm_set(2, 10);
 
 alarm_set(1, 1);

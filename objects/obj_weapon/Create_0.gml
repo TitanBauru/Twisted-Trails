@@ -27,46 +27,229 @@ function weapon(_nome, _desc, _damage, _atkspd, _sprite, _knock, _municao, _temp
     perfuracao = _perfuracao; // Define quantos alvos o projétil pode perfurar
 	dist = _length;
 	sound = undefined;
-	raridade = -1;
+	raridade = "";
 	
 }
 
 // Instanciando diferentes armas com os novos parâmetros
 //espada = new weapon("Espada Afiada", "sheesh", 30, 30, [spr_sword], 4, -1, 0, 0, 3, 1, false, 0, noone, 0,8); // Arma corpo-a-corpo sem projétil
 
+#region Pistolas
 
-
-dreifach = new weapon("Dreifach Unheil", "piu piu", 8, 45, [spr_pistol_dreifach,spr_pistol_dreifach,spr_pistol_dreifach], 2, 8, 120, 2, 15, 3, false, 10, obj_bullet,1,0); // Arma automática, perfura 2 alvos
-dreifach.sound = sfx_pistol;
+dreifach = new weapon("Triple Trouble", "piu piu", 10, 45, [spr_pistol_dreifach,spr_pistol_dreifach,spr_pistol_dreifach], 2, 8, 120, 2, 15, 3, false, 10, obj_bullet,1,0); // Arma automática, perfura 2 alvos
+dreifach.sound = sfx_pistol_2;
 dreifach.bullet_sprite = spr_pistol_bullet
-dreifach.raridade = "Raro"
+dreifach.raridade = "Rara"
 
-malenkiy = new weapon("Malenkiy", "piu piu", 4, 24, [spr_malenkiy,spr_malenkiy,spr_malenkiy], 1, 12, 90, 2, 10, 1, true, 15, obj_bullet,0,-6); // Arma automática, perfura 2 alvos
-malenkiy.sound = sfx_pistol;
+malenkiy = new weapon("MiniPistol", "piu piu", 5, 28, [spr_malenkiy,spr_malenkiy,spr_malenkiy], 1, 16, 90, 2, 10, 1, true, 15, obj_bullet,0,-6); // Arma automática, perfura 2 alvos
+malenkiy.sound = sfx_pistol_2;
 malenkiy.bullet_sprite = spr_pistol_bullet
 malenkiy.raridade = "Comum"
 
-flinten = new weapon("Flinten", "piu piu", 30, 1, [spr_flintlock,spr_flintlock,spr_flintlock], 10, 1, 200, 15, 0, 1, false, 40, obj_bullet,3,0); // Arma automática, perfura 2 alvos
-flinten.sound = sfx_pistol;
+flinten = new weapon("Flintlock", "piu piu", 75, 1, [spr_flintlock,spr_flintlock,spr_flintlock], 10, 1, 200, 15, 0, 1, false, 40, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+flinten.sound = sfx_pistol_2;
 flinten.bullet_sprite = spr_pistol_bullet
 flinten.raridade = "Épica"
 
-arma_ativa = flinten;
+#endregion
+
+#region Subs
+flugelmann = new weapon("Wingman", "piu piu", 10, 12, [spr_wingman,spr_wingman,spr_wingman], 0.5, 48, 100, 3, 20, 2, true, 15, obj_bullet,0,0); // Arma automática, perfura 2 alvos
+flugelmann.sound = Rifle_Shot;
+flugelmann.bullet_sprite = spr_pistol_bullet
+flugelmann.raridade = "Lendária"
+
+seifenblock = new weapon("Soap", "piu piu", 10, 16, [spr_seifenblock,spr_seifenblock,spr_seifenblock], 1, 30, 80, 2, 15, 1, true, 12, obj_bullet,0,0); // Arma automática, perfura 2 alvos
+seifenblock.sound = Rifle_Shot;
+seifenblock.bullet_sprite = spr_pistol_bullet
+seifenblock.raridade = "Épica"
+
+beinahe = new weapon("Almost UZI", "piu piu", 5, 10, [spr_beinahe,spr_beinahe,spr_beinahe], 1, 20, 100, 1, 20, 1, true, 10, obj_bullet,0,0); // Arma automática, perfura 2 alvos
+beinahe.sound = Rifle_Shot;
+beinahe.bullet_sprite = spr_pistol_bullet
+beinahe.raridade = "Rara"
+
+okaopuh = new weapon("OkaoOpuh", "piu piu", 15, 15, [spr_OkaOpuh,spr_OkaOpuh,spr_OkaOpuh], 1, 16, 90, 1, 17, 1, true, 6, obj_bullet,0,0); // Arma automática, perfura 2 alvos
+okaopuh.sound = Rifle_Shot;
+okaopuh.bullet_sprite = spr_pistol_bullet
+okaopuh.raridade = "Comum"
+
+lichtgewehr = new weapon("Light Rifle", "piu piu", 10, 15, [spr_lichtgewehr,spr_lichtgewehr,spr_lichtgewehr], 1, 15, 100, 1, 17, 1, true, 14, obj_bullet,1,0); // Arma automática, perfura 2 alvos
+lichtgewehr.sound = Rifle_Shot;
+lichtgewehr.bullet_sprite = spr_pistol_bullet
+lichtgewehr.raridade = "Comum"
+
+#endregion
+
+#region Fuzil
+
+malchik = new weapon("Lil Tommy", "piu piu", 15, 12, [spr_malchik,spr_malchik,spr_malchik], 0.4, 50, 85, 2, 10, 1, true, 14, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+malchik.sound = Rifle_Shot;
+malchik.bullet_sprite = spr_rifle_bullet;
+malchik.raridade = "Lendária";
+
+x78 = new weapon("X-78", "piu piu", 25, 20, [spr_x78,spr_x78,spr_x78], 0.6, 24, 90, 1.7, 16, 1, true, 24, obj_bullet,4,0); // Arma automática, perfura 2 alvos
+x78.sound = Rifle_Shot;
+x78.bullet_sprite = spr_rifle_bullet;
+x78.raridade = "Épica";	
+
+midov = new weapon("Midas", "piu piu", 25, 26, [spr_midov,spr_midov,spr_midov], 0.8, 30, 160, 1.25, 8, 1, true, 36, obj_bullet,2,0); // Arma automática, perfura 2 alvos
+midov.sound = Rifle_Shot;
+midov.bullet_sprite = spr_rifle_bullet;
+midov.raridade = "Rara";
+
+anglergewehr = new weapon("Anglers", "piupiu", 16, 30, [spr_anglergewehr,spr_anglergewehr,spr_anglergewehr], 0.8, 32, 180, 1.25, 11, 1, true, 30, obj_bullet,2,0); // Arma automática, perfura 2 alvos
+anglergewehr.sound = Rifle_Shot;
+anglergewehr.bullet_sprite = spr_rifle_bullet;
+anglergewehr.raridade = "Rara";
+
+makita = new weapon("Makita", "piu piu", 5, 9, [spr_makita,spr_makita,spr_makita], 0.2, 70, 140, 1, 6, 1, true, 30, obj_bullet,1,0); // Arma automática, perfura 2 alvos
+makita.sound = Rifle_Shot;
+makita.bullet_sprite = spr_rifle_bullet;
+makita.raridade = "Comum";
+
+sturmer = new weapon("Baguga", "piu piu", 12, 30, [spr_sturmer,spr_sturmer,spr_sturmer], 0.8, 16, 100, 1.25, 16, 1, true, 20, obj_bullet,2,0); // Arma automática, perfura 2 alvos
+sturmer.sound = Rifle_Shot;
+sturmer.bullet_sprite = spr_rifle_bullet;
+sturmer.raridade = "Comum";
+
+okogewehr = new weapon("Ecofriendly", "piu piu", 75, 55, [spr_okogewehr,spr_okogewehr,spr_okogewehr], 0.8, 6, 110, 1.25, 15, 1, true, 20, obj_bullet,2,0); // Arma automática, perfura 2 alvos
+okogewehr.sound = Rifle_Shot;
+okogewehr.bullet_sprite = spr_rifle_bullet;
+okogewehr.raridade = "Comum";
+			
+#endregion
+
+#region Shotguns
+
+vanderlei = new weapon("Vanderlei Tambores", "piu piu", 30, 40, [spr_vanderlei,spr_vanderlei,spr_vanderlei], 2, 1, 60, 2, 3, 3, true, 7, obj_bullet,6,0); // Arma automática, perfura 2 alvos
+vanderlei.sound = Rifle_Shot;
+vanderlei.bullet_sprite = spr_rifle_bullet;
+vanderlei.raridade = "Lendária";
+
+kinder = new weapon("Kinder", "piu piu", 10, 12, [spr_kinder,spr_kinder,spr_kinder], 0.4, 30, 70, 2, 10, 1, false, 14, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+kinder.sound = Rifle_Shot;
+kinder.bullet_sprite = spr_rifle_bullet;
+kinder.raridade = "Comum";
+
+verbum = new weapon("Recruiter's Buckshot", "piu piu", 15, 50, [spr_verbum,spr_verbum,spr_verbum], 0.4, 5, 85, 2, 10, 3, false, 14, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+verbum.sound = Rifle_Shot;
+verbum.bullet_sprite = spr_rifle_bullet;
+verbum.raridade = "Comum";
+
+adler = new weapon("Adler", "piu piu", 5, 25, [spr_addler,spr_addler,spr_addler], 0.4, 7, 70, 2, 15, 5, false, 14, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+adler.sound = Rifle_Shot;
+adler.bullet_sprite = spr_rifle_bullet;
+adler.raridade = "Comum";
+
+sonnen = new weapon("Sun Revenge", "piu piu", 30, 50, [spr_sonnen,spr_sonnen,spr_sonnen], 0.4, 6, 70, 2, 10, 2, false, 5, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+sonnen.sound = Rifle_Shot;
+sonnen.bullet_sprite = spr_rifle_bullet;
+sonnen.raridade = "Épica";
+
+six_shots = new weapon("Six Shots", "piu piu", 10, 6, [spr_sixshots,spr_sixshots,spr_sixshots], 0.4, 6, 70, 2, 10, 3, true, 14, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+six_shots.sound = Rifle_Shot;
+six_shots.bullet_sprite = spr_rifle_bullet;
+six_shots.raridade = "Épica";
+
+#endregion
+
+#region Snipers
+
+strelok = new weapon("Toxic Waste", "piu piu", 70, 80, [spr_strelok,spr_strelok,spr_strelok], 0.4, 4, 70, 2, 0, 1, false, 40, obj_bullet,30,0); // Arma automática, perfura 2 alvos
+strelok.sound = Rifle_Shot;
+strelok.bullet_sprite = spr_rifle_bullet;
+strelok.raridade = "Lendária";
+
+
+schnarcher = new weapon("Snoiper ", "piu piu", 60, 90, [spr_schnarcher,spr_schnarcher,spr_schnarcher], 0.4, 10, 70, 2, 10, 1, true, 14, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+schnarcher.sound = Rifle_Shot;
+schnarcher.bullet_sprite = spr_rifle_bullet;
+schnarcher.raridade = "Rara";
+
+
+elitaren = new weapon("Elite Beschutzer", "piu piu", 100, 110, [spr_elitaren,spr_elitaren,spr_elitaren], 0.4, 8, 120, 2, 10, 1, true, 14, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+elitaren.sound = Rifle_Shot;
+elitaren.bullet_sprite = spr_rifle_bullet;
+elitaren.raridade = "Épica";
+
+#endregion
+
+#region Heavy
+kraseukolv = new weapon("Kraseukolv", "piu piu", 18, 9, [spr_kraseukolv,spr_kraseukolv,spr_kraseukolv], 0.4, 32, 70, 2, 10, 1, true, 14, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+kraseukolv.sound = Rifle_Shot;
+kraseukolv.bullet_sprite = spr_rifle_bullet;
+kraseukolv.raridade = "Lendária";
+
+titan = new weapon("Titanische", "piu piu", 5, 5, [spr_titan,spr_titan,spr_titan], 0.1, 130, 400, 0.5, 30, 3, true, 10, obj_bullet,1,0); // Arma automática, perfura 2 alvos
+titan.sound = Rifle_Shot;
+titan.bullet_sprite = spr_rifle_bullet;
+titan.raridade = "Titan";
+
+aleo = new weapon("ALEO Stormer", "piu piu", 30, 9, [spr_aleo,spr_aleo,spr_aleo], 0.4, 12, 50, 2, 2, 1, true, 12, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+aleo.sound = Rifle_Shot;
+aleo.bullet_sprite = spr_rifle_bullet;
+aleo.raridade = "Titan";
+
+dokrl = new weapon("Dokrl.mp4 - SixShooter", "piu piu", 70, 60, [spr_dokrl,spr_dokrl,spr_dokrl], 0.4, 6, 45, 2, 0, 1, true, 21, obj_bullet,3,0); // Arma automática, perfura 2 alvos
+dokrl.sound = Rifle_Shot;
+dokrl.bullet_sprite = spr_rifle_bullet;
+dokrl.raridade = "Titan";
+#endregion
+
+arma_ativa = dreifach;
 
 weapon_name = {
-	"Flinten" : "flinten",
-	"Dreifach Unheil" : "dreifach",
-	"Malenkiy" : "malenkiy",
-	"Espada Afiada" : "espada",
-	"Pistolão" : "pistola",
-	"Fuzil"  : "fuzil"
-}
+    // Pistolas
+    "Triple Trouble": "dreifach",
+    "MiniPistol": "malenkiy",
+    "Flintlock": "flinten",
 
+    // Subs
+    "Wingman": "flugelmann",
+    "Soap": "seifenblock",
+    "Almost UZI": "beinahe",
+    "OkaoOpuh": "okaopuh",
+    "Light Rifle": "lichtgewehr",
+
+    // Fuzis
+    "Lil Tommy": "malchik",
+    "X-78": "x78",
+    "Midas": "midov",
+    "Anglers": "anglergewehr",
+    "Makita": "makita",
+    "Baguga": "sturmer",
+    "Ecofriendly": "okogewehr",
+
+    // Shotguns
+    "Vanderlei Tambores": "vanderlei",
+    "Kinder": "kinder",
+    "Recruiter's Buckshot": "verbum",
+    "Adler": "adler",
+    "Sun Revenge": "sonnen",
+    "Six Shots": "six_shots",
+
+    // Snipers
+    "Toxic Waste": "strelok",
+    "Snoiper ": "schnarcher",
+    "Elite Beschutzer": "elitaren",
+
+    // Heavy
+    "Kraseukolv": "kraseukolv",
+    "Titanische": "titan",
+    "ALEO Stormer": "aleo",
+    "Dokrl.mp4 - SixShooter": "dokrl"
+};
+
+// Pegamos todas as chaves da struct
+weapon_list = variable_struct_get_names(weapon_name);
+// Índice da arma atual
+current_weapon_index = 0;
 
 
 cooldown = 0;
 
-amp = 2
+amp = random_range(.7,1.2)
 
 precisao_inicial = 0
 precisao_incremento = 5

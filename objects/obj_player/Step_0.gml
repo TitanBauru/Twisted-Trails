@@ -50,3 +50,4 @@ if (on_knockback)
 		on_knockback = false;
 	}
 }
+depth = -bbox_bottom

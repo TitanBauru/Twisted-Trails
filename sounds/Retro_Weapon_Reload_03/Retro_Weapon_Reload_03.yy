@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"Retro_Weapon_Reload_03",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.369977,
+  "name":"Retro_Weapon_Reload_03",
+  "parent":{
+    "name":"reload",
+    "path":"folders/Sounds/Weapon/reload.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"Retro_Weapon_Reload_03.wav",
+  "type":0,
+  "volume":1.0,
+}

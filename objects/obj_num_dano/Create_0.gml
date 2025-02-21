@@ -6,6 +6,6 @@ meu_y = 0
 direction = random(360)
 speed = 0
 alarm[0] = 80
-
+preset = ""
 image_xscale = 0
 image_yscale = 0

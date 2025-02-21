@@ -1,6 +1,8 @@
 //Armas
 arma_atual = "Pistola"
+instance_create_layer(x,y,"vacuo",obj_shadow_tile_controller)
 instance_create_layer(x,y,"vacuo",obj_weapon)
+
 bullet_number = 0;
 //Velocidade
 vel = 1.8;
@@ -29,8 +31,8 @@ tempo_flash = 0;
 // Configurações de vida e mana
 vida = 100;
 vida_max = 100;
-mana = 100;
-mana_max = 100;
+mana = 10000;
+mana_max = 10000;
 mana_regen = 0.05;
 
 // Configurações de dash
@@ -46,6 +48,8 @@ dash_cooldown = 0;
 on_dash = false;
 dash_dir = 0;
 
+//Camera
+zoom_punch = 1
 
 // Configurações Knockback
 on_knockback = false;
@@ -59,6 +63,7 @@ function executar_dash(){
 	
 	if (keyboard_check_pressed(vk_space) && !on_dash && dash_cooldown <= 0)
 	{
+		repeat(10) {instance_create_layer(x,y,"Trail",obj_particle_dash)}
 		if (dash_qty >= 1){ // caso eu possa dar o dash sem gastar mana
 			_posso_executar_dash = true;
 			dash_qty -= 1;
@@ -75,6 +80,7 @@ function executar_dash(){
 	if (_posso_executar_dash)
 	{
 		// rodar SFX DE DASH
+		shockwave_instance_create(obj_player.x,obj_player.y,layer_get_id("Trail"),,.75)	
 		on_dash = true;
 		dash_dir = point_direction(0, 0, movimento_horizontal, movimento_vertical);
 		posicao_inicial_dash = {x : x, y : y};

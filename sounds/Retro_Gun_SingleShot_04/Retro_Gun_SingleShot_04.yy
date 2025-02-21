@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"Retro_Gun_SingleShot_04",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":1.146916,
+  "name":"Retro_Gun_SingleShot_04",
+  "parent":{
+    "name":"Weapon",
+    "path":"folders/Sounds/Weapon.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"Retro_Gun_SingleShot_04.wav",
+  "type":0,
+  "volume":1.0,
+}

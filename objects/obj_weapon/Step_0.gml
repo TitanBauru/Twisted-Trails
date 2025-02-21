@@ -7,6 +7,40 @@ if (arma_ativa.ammo < 0) { // Verifica se a arma tem munição infinita
     xscale = (_lado_da_espada == 1) ? -1 : 1;
 }
 
+
+var current_index = array_index_of(weapon_list, arma_ativa.nome);
+
+if (mouse_wheel_up())
+{
+    current_index++;
+    current_index = wrap_index(current_index, 0, array_length(weapon_list));
+    var new_weapon_visible_name = weapon_list[current_index];
+    var new_weapon_internal_name = variable_struct_get(weapon_name, new_weapon_visible_name);
+    if (variable_instance_exists(self, new_weapon_internal_name))
+    {
+        arma_ativa = self[$ new_weapon_internal_name];
+    }
+}
+
+if (mouse_wheel_down())
+{
+    current_index--;
+    current_index = wrap_index(current_index, 0, array_length(weapon_list));
+    var new_weapon_visible_name = weapon_list[current_index];
+    var new_weapon_internal_name = variable_struct_get(weapon_name, new_weapon_visible_name);
+    if (variable_instance_exists(self, new_weapon_internal_name))
+    {
+        arma_ativa = self[$ new_weapon_internal_name];
+    }
+}
+
+
+
+
+
+
+
+
 var _posicao_da_espada, _atraso_da_espada;
 _atraso_da_espada = 0.2; // Define o atraso na posição da espada
 _posicao_da_espada = obj_player.x - 6 * _lado_da_espada; // Calcula a posição inicial da espada
@@ -68,17 +102,20 @@ if (arma_ativa.ammo >= 0) { // Verifica se a arma ainda tem munição
     if (shot_key && cooldown <= 0 && arma_ativa.ammo > 0 && !recarregando) { // Verifica se pode atirar
         alarm[3] = 10; // Ativa um alarme para algum efeito
         randomize(); // Randomiza para garantir variação nos efeitos
+		var _projX = lengthdir_x(arma_ativa.dist, dir);  
+		var _projY = lengthdir_y(arma_ativa.dist, dir);  
+		spark(x + _projX,y + _projY,random(6),dir,80,12,.95,c_white,c_white,1,0)
+		
 		estado_da_arma = 1
 		obj_camera.camera.shake(1,.1);
-		amp = random_range(.8, 1.2);
-					
+		amp = random_range(.6, .9);
 		var _weapon_name = weapon_name[$ arma_ativa.nome];
 		var _weapon = self[$ _weapon_name];		
 		audio_play_sound(_weapon.sound, 1, 0,,,amp);        
         recoil = arma_ativa.recoil_amount; // Aplica o recuo da arma
 		precisao_inicial += precisao_incremento
 		if precisao_inicial > arma_ativa.precisao precisao_inicial = arma_ativa.precisao					
-		angle += 45*yscale
+		angle += 10*yscale*recoil
 		// Aplica uma deformação no player (squish effect)
         with (target) {
             xscale = 1.7 * other.lado;
@@ -180,4 +217,45 @@ recoil *= target.xscale
 recoil = lerp(recoil,0,0.2)
 x-=lengthdir_x(recoil,dir)
 y-=lengthdir_y(recoil,dir)
-
+ scribble( "Dano: [c_red]"+string(arma_ativa.dano)).draw(20,35)
+   scribble( "Atk Speed: [c_red]"+string(arma_ativa.atk_speed)).draw(20,50) 
+	scribble("Ammo: [c_red]"+string(arma_ativa.ammo_max)).draw(20,65) 
+   scribble( "Reload: [c_red]"+string(arma_ativa.cd_reload)).draw(20,80)
+   scribble( "Precisao: [c_red]"+string(arma_ativa.precisao)).draw(20,95) 
+   scribble( "Num Projetil: [c_red]"+string(arma_ativa.num_projectiles)).draw(20,110)
+   scribble( "Proj Speed: [c_red]"+string(arma_ativa.projetil_speed)).draw(20,125) 
+//Debug 
+if (keyboard_check_pressed(vk_f2))
+{
+	arma_ativa.dano = get_integer("Dano",0)
+}
+//Debug 
+if (keyboard_check_pressed(vk_f3))
+{
+	arma_ativa.atk_speed = get_integer("Atk Speed",0)
+}
+//Debug 
+if (keyboard_check_pressed(vk_f4))
+{
+	arma_ativa.ammo_max = get_integer("Ammo max",0)	
+}
+//Debug 
+if (keyboard_check_pressed(vk_f5))
+{
+	arma_ativa.cd_reload = get_integer("Cd Reload",0)	
+}
+//Debug 
+if (keyboard_check_pressed(vk_f6))
+{
+	arma_ativa.precisao	= get_integer("Precisao",0)
+}
+//Debug 
+if (keyboard_check_pressed(vk_f7))
+{
+	arma_ativa.num_projectiles	= get_integer("Num Projeteis",0)
+}
+//Debug 
+if (keyboard_check_pressed(vk_f8))
+{
+	arma_ativa.projetil_speed	= get_integer("Projetil Speed",0)
+}

@@ -26,9 +26,9 @@ switch (os_type) {
         surface_resize(application_surface, 1920, 1080); // Redimensiona a surface da aplicação para 1920x1080.
         
         window_set_size(960, 540); // Define o tamanho da janela para 960x540.
-        
+        window_center();
         // Define o tamanho da interface gráfica (GUI) como dois terços da largura e altura da janela.
-        display_set_gui_size(_w, _h);
+        display_set_gui_size(_w/2, _h/2);
         
         // Define o tamanho da porta de visão (view port) como metade da largura e altura da janela.
         view_wport[0] = _w / 2;
