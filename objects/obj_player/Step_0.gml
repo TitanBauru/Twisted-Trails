@@ -11,7 +11,6 @@ mover_player(_velh, _velv); // Aplica movimento com as novas velocidade
 if (estou_movendo)
 {
 	sprite_index = spr_player_azul_walk;
-	executar_dash();
 	executar_dustwalk();
 }
 else
@@ -20,6 +19,8 @@ else
     velv = abs(velv) <= 0.2 ? 0 : lerp(velv, 0, desaceleracao);
 	sprite_index = spr_player_azul_idle	
 }
+
+executar_dash();
 ajustar_estado_visual()
 
 if (on_dash)

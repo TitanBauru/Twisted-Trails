@@ -36,11 +36,6 @@ if (mouse_wheel_down())
 
 
 
-
-
-
-
-
 var _posicao_da_espada, _atraso_da_espada;
 _atraso_da_espada = 0.2; // Define o atraso na posição da espada
 _posicao_da_espada = obj_player.x - 6 * _lado_da_espada; // Calcula a posição inicial da espada

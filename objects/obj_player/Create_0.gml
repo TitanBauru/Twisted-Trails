@@ -61,7 +61,7 @@ function executar_dash(){
 	var _mana_necessaria = 20;
 	var _posso_executar_dash = false;
 	
-	if (keyboard_check_pressed(vk_space) && !on_dash && dash_cooldown <= 0)
+	if (keyboard_check_pressed(vk_space) && !on_dash && dash_cooldown <= 0 && can_dash)
 	{
 		repeat(10) {instance_create_layer(x,y,"Trail",obj_particle_dash)}
 		if (dash_qty >= 1){ // caso eu possa dar o dash sem gastar mana
@@ -79,10 +79,21 @@ function executar_dash(){
 	
 	if (_posso_executar_dash)
 	{
+		can_dash = false;
+		
 		// rodar SFX DE DASH
 		shockwave_instance_create(obj_player.x,obj_player.y,layer_get_id("Trail"),,.75)	
+		
 		on_dash = true;
-		dash_dir = point_direction(0, 0, movimento_horizontal, movimento_vertical);
+		
+		if (abs(velh + velv) > 0)
+		{
+			dash_dir = point_direction(0, 0, movimento_horizontal, movimento_vertical);
+		}
+		else
+		{
+			dash_dir = point_direction(x, y, mouse_x, mouse_y);	
+		}
 		posicao_inicial_dash = {x : x, y : y};
 	}
 }
