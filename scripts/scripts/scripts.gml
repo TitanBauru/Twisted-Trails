@@ -53,12 +53,13 @@ function Drunken_Walk_Improved(steps, walker_count, dir_repeats)
     // Cria os walkers e faz eles "escavarem" o mapa
     for(var w = 0; w < walker_count; w += 1)
     {
-        var _wx = irandom_range(3 * _size, (_x - 6) * _size);
-        var _wy = irandom_range(3 * _size, (_y - 6) * _size);
+        var _wx = irandom_range(5 * _size, (_x - 8) * _size);
+        var _wy = irandom_range(5 * _size, (_y - 8) * _size);
         instance_create_layer(_wx, _wy, "vacuo", obj_walker);
     }
     
-    repeat(steps)
+    // Aumenta o número de passos para garantir mais áreas abertas
+    repeat(steps) // Aumentei em 50% os passos para mais escavação
     {
         with(obj_walker)
         {
@@ -66,30 +67,49 @@ function Drunken_Walk_Improved(steps, walker_count, dir_repeats)
             {
                 direction = irandom(3) * 90;
             }
-            x += lengthdir_x(32, direction);
-            y += lengthdir_y(32, direction);
+            x += lengthdir_x(_size, direction);
+            y += lengthdir_y(_size, direction);
             var col = instance_place(x, y, obj_vacuo);
             if(col) { instance_destroy(col); }
-            x = clamp(x, 3 * 32, (_x - 6) * 32);
-            y = clamp(y, 3 * 32, (_y - 6) * 32);
+            x = clamp(x, 5 * _size, (_x - 8) * _size);
+            y = clamp(y, 5 * _size, (_y - 8) * _size);
         }
     }
     
     
-    // Encontra uma posição válida para o player
+    // Spawn do player com verificação mais robusta
     var player_spawned = false;
-    while (!player_spawned)
+    var attempts = 0;
+    var max_attempts = 200; // Limite para evitar loop infinito
+    
+    while (!player_spawned && attempts < max_attempts)
     {
-        var _px = irandom_range(8 * _size, (_x - 16) * _size);
-        var _py = irandom_range(8 * _size, (_y - 16) * _size);
-        if (!instance_position(_px, _py, obj_vacuo)) // Verifica se não há parede
+        var _px = irandom_range(16 * _size, (_x - 32) * _size); // Offset grande como você testou
+        var _py = irandom_range(16 * _size, (_y - 32) * _size);
+        
+        // Verifica se a posição está livre de paredes
+        if (!instance_position(_px, _py, obj_vacuo)) // Usando place_meeting para checar colisão
         {
             instance_create_layer(_px, _py, "chao", obj_player);
             player_spawned = true;
+            show_debug_message("Player spawned at: " + string(_px) + ", " + string(_py));
         }
+        else
+        {
+            show_debug_message("Tentativa " + string(attempts) + ": Posição " + string(_px) + ", " + string(_py) + " tem parede");
+        }
+        attempts += 1;
     }
     
+    // Se não conseguir spawnar, avisa
+    if (!player_spawned)
+    {
+        show_debug_message("Erro: Não foi possível encontrar posição livre para o player após " + string(max_attempts) + " tentativas!");
+        // Spawn de emergência no centro como fallback
+        instance_create_layer(room_width / 2, room_height / 2, "chao", obj_player);
+    }
     
+   
 }
 
 function get_attack_direction(){
@@ -168,7 +188,7 @@ function tomar_dano_inimigo(dano, chance_critico, multiplicador_critico, fonte,_
         // Definir tempo de flash e marcar que o inimigo tomou um hit
         if tempo_flash != 5
 		{
-			global.aberracao_cromatica = 10
+			//global.aberracao_cromatica = 10
 			//var _somataque = choose(Hit_1,Hit_2,Hit_3,Hit_4)
 			//audio_sound_pitch(_somataque,random_range(.6,1.4))
 			//saudio_sound_play_at(obj_audio_control.effect_group,_somataque , x,y,0);
@@ -188,7 +208,7 @@ function tomar_dano_inimigo(dano, chance_critico, multiplicador_critico, fonte,_
         if (critico) {
 			
 			obj_player.alarm[1] = 30;
-			global.aberracao_cromatica = 30
+			global.aberracao_cromatica = 10
 			obj_camera.camera.zoom(obj_player.zoom_punch, .1);
 			obj_player.zoom_punch += .01;
 			sleep(20)	
@@ -320,4 +340,138 @@ function collision(obj)
 function sleep(ms){
 	var t = current_time + ms;
 	while (current_time < t) {};
+}
+
+function generate_tiles(_x, _y, _buffer)
+{
+    // Tamanhos dos tilesets
+    var cell_size_general = 16; // Tamanho do Tileset 1 (Baixa Resolução Geral)
+    var cell_size_solid = 32;   // Tamanho do Tileset 2 (Alta Resolução para Paredes)
+    var cell_size_walls = 48;   // Tamanho do Tileset 3 (Paredes Normais)
+    
+    // Áreas de geração para cada tileset, ajustadas pelo tamanho da célula
+    var _xx_general = round((_x - _buffer) / cell_size_general);
+    var _yy_general = round((_y - _buffer) / cell_size_general);
+    var _xx2_general = round((_x + global.cmw + _buffer) / cell_size_general);
+    var _yy2_general = round((_y + global.cmh + _buffer) / cell_size_general);
+
+    var _xx_solid = round((_x - _buffer) / cell_size_solid);
+    var _yy_solid = round((_y - _buffer) / cell_size_solid);
+    var _xx2_solid = round((_x + global.cmw + _buffer) / cell_size_solid);
+    var _yy2_solid = round((_y + global.cmh + _buffer) / cell_size_solid);
+
+    var _xx_walls = round((_x - _buffer) / cell_size_walls);
+    var _yy_walls = round((_y - _buffer) / cell_size_walls);
+    var _xx2_walls = round((_x + global.cmw + _buffer) / cell_size_walls);
+    var _yy2_walls = round((_y + global.cmh + _buffer) / cell_size_walls);
+
+    // Limita ao tamanho da room para cada tileset
+    _xx_general = clamp(_xx_general, 0, room_width / cell_size_general);
+    _yy_general = clamp(_yy_general, 0, room_height / cell_size_general);
+    _xx2_general = clamp(_xx2_general, 0, room_width / cell_size_general);
+    _yy2_general = clamp(_yy2_general, 0, room_height / cell_size_general);
+
+    _xx_solid = clamp(_xx_solid, 0, room_width / cell_size_solid);
+    _yy_solid = clamp(_yy_solid, 0, room_height / cell_size_solid);
+    _xx2_solid = clamp(_xx2_solid, 0, room_width / cell_size_solid);
+    _yy2_solid = clamp(_yy2_solid, 0, room_height / cell_size_solid);
+
+    _xx_walls = clamp(_xx_walls, 0, room_width / cell_size_walls);
+    _yy_walls = clamp(_yy_walls, 0, room_height / cell_size_walls);
+    _xx2_walls = clamp(_xx2_walls, 0, room_width / cell_size_walls);
+    _yy2_walls = clamp(_yy2_walls, 0, room_height / cell_size_walls);
+
+    // IDs dos tilemaps
+    var tile_id_general = tile_id; // Tileset 1: Baixa Resolução Geral ("Tiles_1")
+    var layer_id_solid = layer_get_id("Tiles_Solid"); // Tileset 2: Alta Resolução para Paredes
+    var tile_id_solid = layer_tilemap_get_id(layer_id_solid);
+    var layer_id_walls = layer_get_id("Tiles_Walls"); // Tileset 3: Paredes Normais
+    var tile_id_walls = layer_tilemap_get_id(layer_id_walls);
+
+    for (var i_general = _xx_general; i_general < _xx2_general; i_general++)
+    {
+        for (var j_general = _yy_general; j_general < _yy2_general; j_general++)
+        {
+            // Converte posição do grid para coordenadas do mundo (Tileset 1)
+            var world_x = i_general * cell_size_general;
+            var world_y = j_general * cell_size_general;
+
+            // Verifica se há tile em qualquer um dos tilemaps antes de aplicar
+            if (tilemap_get(tile_id_general, i_general, j_general) == 0 && 
+                tilemap_get(tile_id_solid, round(i_general * cell_size_general / cell_size_solid), round(j_general * cell_size_general / cell_size_solid)) == 0 && 
+                tilemap_get(tile_id_walls, round(i_general * cell_size_general / cell_size_walls), round(j_general * cell_size_general / cell_size_walls)) == 0)
+            {
+                var noise = abs(sin(i_general * 0.1) + cos(j_general * 0.1)); // Ruído para padrões
+                var tile_value = 0; // Padrão é vazio
+
+                // Decoração do chão (Tileset 1: Baixa Resolução Geral, apenas)
+                if (instance_position(world_x, world_y, obj_floor) && !instance_position(world_x, world_y, obj_vacuo))
+                {
+                    var chance = irandom(100); // Chance de 0 a 100
+                    if (chance < 10) // 40% de chance de colocar decoração no chão
+                    {
+                        if (noise < 0.3) // 30% - decoração rara no chão
+                        {
+                            tile_value = irandom_range(21, 43); // Tiles 21-43 (Tileset 1)
+                        }
+                        else // 70% - decoração comum no chão
+                        {
+                            tile_value = irandom_range(1, 20); // Tiles 1-20 (Tileset 1)
+                        }
+                    }
+                    else
+                    {
+                        tile_value = 44; // Tile padrão (base ou vazio) no Tileset 1
+                    }
+                    tilemap_set(tile_id_general, tile_value, i_general, j_general);
+                }
+                // Decoração das paredes (normais, com choose entre Tileset 2 e 3, apenas para obj_vacuo)
+                else if (instance_position(world_x, world_y, obj_vacuo)) // Grama
+                {
+                    // Escolhe aleatoriamente entre Tileset 2 e 3 para todas as paredes
+                    var chosen_tileset = choose(tile_id_solid, tile_id_walls); // 50% para cada
+                    
+                    var i_adjusted, j_adjusted;
+                    if (chosen_tileset == tile_id_solid)
+                    {
+                        i_adjusted = round(i_general * cell_size_general / cell_size_solid);
+                        j_adjusted = round(j_general * cell_size_general / cell_size_solid);
+                    }
+                    else // tile_id_walls
+                    {
+                        i_adjusted = round(i_general * cell_size_general / cell_size_walls);
+                        j_adjusted = round(j_general * cell_size_general / cell_size_walls);
+                    }
+
+                    var chance = irandom(100); // Chance de 0 a 100
+                    if (chance < 5) // 10% de chance de colocar decoração na parede
+                    {
+                        if (noise < 0.2) // 20% - decoração rara
+                        {
+                            if (chosen_tileset == tile_id_solid) tile_value = choose(8,9,10); // Tiles 8,9,10 (Tileset 2)
+                            if (chosen_tileset == tile_id_walls) tile_value = choose(6,7); // Tiles 6,7 (Tileset 3)
+                        }
+                        else // 80% - decoração comum
+                        {
+                            if (chosen_tileset == tile_id_solid) tile_value = irandom(5); // Tiles 1-5 (Tileset 2)
+                            if (chosen_tileset == tile_id_walls) tile_value = choose(2,3); // Tiles 2,3 (Tileset 3)
+                        }
+                    }
+                    else
+                    {
+                        if (chosen_tileset == tile_id_solid) tile_value = 11; // Tile padrão (base ou vazio) no Tileset 2
+                        if (chosen_tileset == tile_id_walls) tile_value = 0; // Tile padrão (base ou vazio) no Tileset 3
+                    }
+                    if (chosen_tileset == tile_id_solid)
+                    {
+                        tilemap_set(tile_id_solid, tile_value, i_adjusted, j_adjusted);
+                    }
+                    else
+                    {
+                        tilemap_set(tile_id_walls, tile_value, i_adjusted, j_adjusted);
+                    }
+                }
+            }
+        }
+    }
 }

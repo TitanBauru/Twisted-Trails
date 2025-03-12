@@ -10,5 +10,5 @@ draw_sprite_ext(sprite_index, image_index, x, y, xscale, yscale, image_angle, c_
 
 gpu_set_fog(false, c_white, 0, 1);
 
-//scribble("[fa_center][scale,.5]DPS:[c_yellow]"+string(dummy_dps)).draw(x,y-44)
-//scribble("[fa_center][scale,.5]Total:[c_yellow]"+string(dummy_total_damage)).draw(x,y-32)
+scribble("[fa_center][scale,.5]DPS:[c_yellow]"+string(dummy_dps)).draw(x,y-44)
+scribble("[fa_center][scale,.5]Total:[c_yellow]"+string(dummy_total_damage)).draw(x,y-32)

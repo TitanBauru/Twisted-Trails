@@ -5,7 +5,7 @@ borda = false;
 
 image_index = irandom(image_number - 1);
 
-depth = -bbox_bottom;
+//depth = -bbox_bottom;
 
 top = false;
 bottom = false;

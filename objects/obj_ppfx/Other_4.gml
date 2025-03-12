@@ -19,7 +19,7 @@ layer_effects_id_bloom = new PPFX_System();
 // Create a profile with effects, for the system
 var _layer_profile = new PPFX_Profile("Cool Effect", [
     new FX_Bloom(true,8,.4,1.25),
-	new FX_Pixelize(true,0.4,10,30)
+	//new FX_Pixelize(true,0.4,10,30)
 ]);
 
 // Load profile

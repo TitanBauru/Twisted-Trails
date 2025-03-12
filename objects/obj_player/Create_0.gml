@@ -2,14 +2,14 @@
 arma_atual = "Pistola"
 instance_create_layer(x,y,"vacuo",obj_shadow_tile_controller)
 instance_create_layer(x,y,"vacuo",obj_weapon)
-
+alarm[0] = 10
 bullet_number = 0;
 //Velocidade
-vel = 1.8;
+vel = 2.4;
 velh = 0;    
 velv = 0;    
 dir = 0;    
-aceleracao = .3;  
+aceleracao = .6;  
 desaceleracao = .2;
 pode_mover = true;
 estou_movendo = true;
@@ -103,6 +103,25 @@ function executar_dash(){
 tempo_sem_bater_em_inimigos = 0;
 fora_de_combate = true;
 
+
+/// @desc Create Event do obj_player
+// Alinha a posição ao grid (opcional, para ficar mais "bonito")
+x = round(x / 32) * 32;
+y = round(y / 32) * 32;
+
+// Limpa uma área 3x3 ao redor do player
+for (var i = -1; i <= 1; i += 1)
+{
+    for (var j = -1; j <= 1; j += 1)
+    {
+        var vacuo = instance_position(x + (i * 32), y + (j * 32), obj_vacuo);
+        if (vacuo != noone)
+        {
+            instance_destroy(vacuo);
+            instance_create_layer(x + (i * 32), y + (j * 32), "chao", obj_floor); // Adiciona chão no lugar
+        }
+    }
+}
 
 /// @description Movimenta o player com lógica de animação e efeitos.
 function mover_player(_velh, _velv) {
