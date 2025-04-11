@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Trail System",
-    "path":"folders/Libs/Trail System.yy",
+    "path":"folders/Trail System.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
