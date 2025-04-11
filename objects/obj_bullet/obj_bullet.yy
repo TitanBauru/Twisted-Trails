@@ -10,12 +10,18 @@
   ],
   "managed":true,
   "name":"obj_bullet",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"__cle_objPointLight","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"propertyId":{"name":"levels","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"__cle_objPointLight","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"propertyId":{"name":"intensity","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0.2",},
+  ],
   "parent":{
     "name":"Objects",
     "path":"folders/Objects.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"__cle_objPointLight",
+    "path":"objects/__cle_objPointLight/__cle_objPointLight.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

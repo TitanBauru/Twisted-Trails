@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__cle_shLeffectNormalGrayscale",
+  "name":"__cle_shLeffectNormalGrayscale",
+  "parent":{
+    "name":"LayerEffects",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/LayerEffects.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

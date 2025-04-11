@@ -1,7 +1,7 @@
 visible = true
 // Define o lado da espada com base na posição do player
 var _lado_da_espada = obj_player.lado;
-
+depth = obj_player.depth - 20000;
 if (arma_ativa.ammo < 0) { // Verifica se a arma tem munição infinita
     // Ajusta a escala horizontal do sprite com base no lado da espada
     xscale = (_lado_da_espada == 1) ? -1 : 1;
@@ -117,14 +117,14 @@ if (arma_ativa.ammo >= 0) { // Verifica se a arma ainda tem munição
             yscale = 0.6; 
         }		
 		// Aplica knockback no player ao disparar        
-		obj_player.take_knockback(arma_ativa.knockback, dir-180);
+		obj_player.aplicar_recuo_arma(arma_ativa.knockback, dir);
 		cooldown = arma_ativa.atk_speed;
         weapon_shoot();			
         // Reseta o cooldown para o tempo de ataque da arma
         
     }
 
-    depth = obj_player.depth - 1; // Ajusta a profundidade do objeto
+    depth = obj_player.depth - 2000; // Ajusta a profundidade do objeto
 
 } else { // Caso a arma esteja sem munição
     // Lógica de ataque com espada ou arma sem munição

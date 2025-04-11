@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+event_inherited()
 life = 300
 image_angle = direction;
 //bullet_speed = 8

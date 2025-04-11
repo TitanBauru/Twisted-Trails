@@ -1,40 +1,62 @@
-/// @description Insert description here
-// You can write your code in this editor
+/// END STEP EVENT - Colisões e ajuste final da posição
 
-var _velh = sign(velh);
-var _velv = sign(velv);
-
-var _reset_dash = function(){
-	if (on_dash){
-		on_dash = false;
-		dash_cooldown = dash_timer;
-	}
-	
-	show_debug_message("Preso na parede " + string(current_time));
+// Função para resetar o dash ao colidir
+var reset_dash = function() {
+    if (on_dash) {
+        on_dash = false;
+        dash_cooldown = dash_timer;
+    }
 }
 
-//Colisão Horizontal
-repeat(abs(velh)){
-	if (!place_meeting(x + _velh, y, obj_colisor)){
-		x += _velh;
-	}else{
-		velh = 0;
-		_reset_dash();
-	}
+// Colisão Horizontal
+if (velh != 0) {
+    if (place_meeting(x + velh, y, obj_colisor)) {
+        // Ajusta a posição para colar na parede
+        while (!place_meeting(x + sign(velh), y, obj_colisor) && abs(velh) > 0) {
+            x += sign(velh);
+        }
+        velh = 0; // Para o movimento horizontal
+        reset_dash(); // Reseta o dash se colidir
+        
+        // Reduz knockback ao colidir com parede
+        if (on_knockback) {
+            knockback_strenght *= 0.5; // Reduz a força do knockback pela metade
+        }
+    } else {
+        x += velh; // Move normalmente
+    }
 }
 
-//Colisão Vertical
-repeat(abs(velv)){
-	if (!place_meeting(x, y + _velv, obj_colisor)){
-		y += _velv;
-	}else{
-		velv = 0;
-		_reset_dash();
-	}
+// Colisão Vertical
+if (velv != 0) {
+    if (place_meeting(x, y + velv, obj_colisor)) {
+        // Ajusta a posição para colar na parede
+        while (!place_meeting(x, y + sign(velv), obj_colisor) && abs(velv) > 0) {
+            y += sign(velv);
+        }
+        velv = 0; // Para o movimento vertical
+        reset_dash(); // Reseta o dash se colidir
+        
+        // Reduz knockback ao colidir com parede
+        if (on_knockback) {
+            knockback_strenght *= 0.5; // Reduz a força do knockback pela metade
+        }
+    } else {
+        y += velv; // Move normalmente
+    }
 }
 
-
-// Testando dano
-if (keyboard_check_released(ord("L"))){
-	deal_damage_to_player(5, 3, point_direction(mouse_x, mouse_y, x, y));
+// Verificação de colisão diagonal (deslizamento ao longo da parede)
+if (velh != 0 && velv != 0) {
+    // Se colidiu em ambas as direções (canto), tenta deslizar
+    if (place_meeting(x + velh, y + velv, obj_colisor)) {
+        // Tenta mover apenas horizontalmente
+        if (!place_meeting(x + velh, y, obj_colisor)) {
+            x += velh;
+        }
+        // Tenta mover apenas verticalmente
+        else if (!place_meeting(x, y + velv, obj_colisor)) {
+            y += velv;
+        }
+    }
 }

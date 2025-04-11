@@ -3,7 +3,8 @@
 if (cooldown_hit > 0) cooldown_hit--;
 resetar_escala();
 
-
+shadow.x = x;
+shadow.y = y;
 var current_t = current_time;
 var window = 1000;
 var damage_sum = 0;

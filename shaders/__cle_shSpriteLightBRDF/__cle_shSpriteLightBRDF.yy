@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__cle_shSpriteLightBRDF",
+  "name":"__cle_shSpriteLightBRDF",
+  "parent":{
+    "name":"BRDF",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/BRDF.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

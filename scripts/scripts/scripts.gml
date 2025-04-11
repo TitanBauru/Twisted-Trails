@@ -49,7 +49,7 @@ function Drunken_Walk_Improved(steps, walker_count, dir_repeats)
             instance_create_layer(_size * i, _size * j, "vacuo", obj_vacuo);
         }
     }
-    
+   
     // Cria os walkers e faz eles "escavarem" o mapa
     for(var w = 0; w < walker_count; w += 1)
     {

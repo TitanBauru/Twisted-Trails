@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__cle_shPointLightPhong",
+  "name":"__cle_shPointLightPhong",
+  "parent":{
+    "name":"Phong",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/Phong.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

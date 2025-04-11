@@ -1,0 +1,11 @@
+{
+  "$GMNotes":"",
+  "%Name":"Crystal_License",
+  "name":"Crystal_License",
+  "parent":{
+    "name":"License",
+    "path":"folders/KazanGames/CrystalLightingEngine/License.yy",
+  },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
+}

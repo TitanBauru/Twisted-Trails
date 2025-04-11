@@ -5,7 +5,7 @@ alarm[0] = 6;
 pode_rodar = true
 alarm[1] = 60
 image_speed = 0;
-image_index = 0
+image_index = random(12)
 
 
 inimigo_qtd_max = 30;

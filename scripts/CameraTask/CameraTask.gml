@@ -109,10 +109,25 @@ function CameraFollowTask() : CameraTask(10) constructor {
 		// Posição do mouse na view (converte para a posição no mundo)
 		var _mouseX = device_mouse_x_to_gui(0);
 		var _mouseY = device_mouse_y_to_gui(0);
+		var _cam_x = camera_get_view_x(view_camera[0]);
+		var _cam_y = camera_get_view_y(view_camera[0]);
+        var _mouse_x_world = _cam_x + (_mouseX / window_get_width()) * camera_get_view_width(view_camera[0]);
+        var _mouse_y_world = _cam_y + (_mouseY / window_get_height()) * camera_get_view_height(view_camera[0]);
 		
-		// Calcular o ponto médio entre o alvo e a posição do mouse (para o efeito de pan)
-		var _targetX = lerp(_avgX, _mouseX, global.aim_multiplier) ;
-		var _targetY = lerp(_avgY, _mouseY, global.aim_multiplier) ;
+		//Distancia
+		var _dist_x = _mouse_x_world - _avgX;
+        var _dist_y = _mouse_y_world - _avgY;
+        var _distance = point_distance(0, 0, _dist_x, _dist_y);
+		var max_mouse_distance = 100
+		if (_distance > max_mouse_distance) {
+            _dist_x = (_dist_x / _distance) * max_mouse_distance;
+            _dist_y = (_dist_y / _distance) * max_mouse_distance;
+            _mouse_x_world = _avgX + _dist_x;
+            _mouse_y_world = _avgY + _dist_y;
+        }
+		// Calcula o ponto alvo com peso maior para a instância
+        var _targetX = lerp(_avgX, _mouse_x_world, global.aim_mult);
+        var _targetY = lerp(_avgY, _mouse_y_world, global.aim_mult);
 		
 		// Set the target point of the camera
 		var _target = _camera.target;

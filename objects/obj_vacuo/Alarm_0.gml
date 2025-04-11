@@ -20,6 +20,7 @@ if (!l && !r && !t && !b) {
     instance_destroy();
 }
 
+
 // Verifica várias combinações de tiles vizinhos para determinar onde criar colisor (parede)
 // O comando CRIA_PAREDE (definido em outro lugar) adiciona colisão nas bordas conforme a necessidade
 if (!l && r && t && b)         CRIA_PAREDE; // Sem tile à esquerda
@@ -101,6 +102,7 @@ else if (l && !r && t && !b) {
 else if (l && r && t && b)  { 
     a = 20; // Tile completamente cercado por outros tiles (não é borda)
     borda = false; 
+	
 }
 
 // Realiza uma segunda verificação, mas agora com um offset maior (8 pixels)

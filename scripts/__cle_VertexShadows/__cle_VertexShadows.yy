@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__cle_VertexShadows",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__cle_VertexShadows",
+  "parent":{
+    "name":"Essential",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Essential.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

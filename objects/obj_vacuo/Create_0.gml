@@ -1,10 +1,13 @@
-image_speed = 0;
-alarm[0] = 2;
 
+image_speed = 0;
+
+alarm[0] = 2;
+is_processed = false; // Indica se o bloco foi processado
+//visible = false; // Impede o desenho automático (desenhado pela superfície)
 borda = false;
 
 image_index = irandom(image_number - 1);
-
+alarm[3] = 30
 //depth = -bbox_bottom;
 
 top = false;

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__cle_Debug",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__cle_Debug",
+  "parent":{
+    "name":"Resources",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/Debug/Resources.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

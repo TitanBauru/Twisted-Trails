@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__cle_shVertShadowSmooth",
+  "name":"__cle_shVertShadowSmooth",
+  "parent":{
+    "name":"Smooth",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Shadows/VertexBased/Smooth.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

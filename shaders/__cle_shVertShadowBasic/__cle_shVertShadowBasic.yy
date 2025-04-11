@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__cle_shVertShadowBasic",
+  "name":"__cle_shVertShadowBasic",
+  "parent":{
+    "name":"Basic",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Shadows/VertexBased/Basic.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

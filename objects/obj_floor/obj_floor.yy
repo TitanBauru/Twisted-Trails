@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_floor_2",
-    "path":"sprites/spr_floor_2/spr_floor_2.yy",
+    "name":"spr_chao_a1",
+    "path":"sprites/spr_chao_a1/spr_chao_a1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

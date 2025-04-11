@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__cle_NormalsInverter",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__cle_NormalsInverter",
+  "parent":{
+    "name":"NormalsInverter",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/NormalsInverter.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

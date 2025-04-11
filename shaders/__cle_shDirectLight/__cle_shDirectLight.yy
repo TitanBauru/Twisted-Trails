@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__cle_shDirectLight",
+  "name":"__cle_shDirectLight",
+  "parent":{
+    "name":"Basic",
+    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/Basic.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

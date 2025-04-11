@@ -29,6 +29,10 @@ dummy_is_active = false
 
 damage_events = ds_list_create();
 
+shadow = new Crystal_Shadow(id, CRYSTAL_SHADOW.DYNAMIC);
+shadow.AddMesh(new Crystal_ShadowMesh().FromSpriteBBoxEllipse(spr_dummy_idle));
+shadow.shadowLength = 3
+shadow.Apply();
 
 function apply_damage(amount) {
     ds_list_add(damage_events, [amount, current_time]);

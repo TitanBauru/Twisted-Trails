@@ -41,8 +41,8 @@
     "path":"sprites/spr_player_azul_idle/spr_player_azul_idle.yy",
   },
   "spriteMaskId":{
-    "name":"spr_player_azul_idle",
-    "path":"sprites/spr_player_azul_idle/spr_player_azul_idle.yy",
+    "name":"spr_player_hitbox",
+    "path":"sprites/spr_player_hitbox/spr_player_hitbox.yy",
   },
   "visible":true,
 }

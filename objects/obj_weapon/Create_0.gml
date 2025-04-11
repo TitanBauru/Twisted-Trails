@@ -37,17 +37,17 @@ function weapon(_nome, _desc, _damage, _atkspd, _sprite, _knock, _municao, _temp
 #region Pistolas
 
 dreifach = new weapon("Triple Trouble", "piu piu", 25, 45, [spr_pistol_dreifach,spr_pistol_dreifach,spr_pistol_dreifach], 2, 8, 120, 2, 15, 3, false, 10, obj_bullet,1,0); // Arma automática, perfura 2 alvos
-dreifach.sound = sfx_pistol_2;
+dreifach.sound = Rifle_Shot;
 dreifach.bullet_sprite = spr_pistol_bullet
 dreifach.raridade = "Rara"
 
 malenkiy = new weapon("MiniPistol", "piu piu", 5, 28, [spr_malenkiy,spr_malenkiy,spr_malenkiy], 1, 16, 90, 2, 10, 1, true, 15, obj_bullet,0,-6); // Arma automática, perfura 2 alvos
-malenkiy.sound = sfx_pistol_2;
+malenkiy.sound = Rifle_Shot;
 malenkiy.bullet_sprite = spr_pistol_bullet
 malenkiy.raridade = "Comum"
 
 flinten = new weapon("Flintlock", "piu piu", 180, 1, [spr_flintlock,spr_flintlock,spr_flintlock], 10, 1, 200, 15, 0, 1, false, 40, obj_bullet,3,0); // Arma automática, perfura 2 alvos
-flinten.sound = sfx_pistol_2;
+flinten.sound = Rifle_Shot;
 flinten.bullet_sprite = spr_pistol_bullet
 flinten.raridade = "Épica"
 

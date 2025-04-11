@@ -26,8 +26,9 @@ if tempo_max = true
 
 if (distance_to_object(obj_player) < 10 && tempo_max_player)
 {
+	
 	instance_destroy(trail_dash);
 	instance_destroy();
 	
-	obj_player.can_dash = true;
+	obj_player.pode_dash_player += 1
 }
