@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Passes",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Sprites/Passes.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Sprites/Passes.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

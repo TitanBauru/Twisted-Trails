@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Debug",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/Debug.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/Debug.yy",
   },
   "parentObjectId":null,
   "persistent":false,

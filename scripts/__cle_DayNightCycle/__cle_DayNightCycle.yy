@@ -6,7 +6,7 @@
   "name":"__cle_DayNightCycle",
   "parent":{
     "name":"DayNightCycle",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/DayNightCycle.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/DayNightCycle.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

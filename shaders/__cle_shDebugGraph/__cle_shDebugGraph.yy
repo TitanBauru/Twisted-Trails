@@ -4,7 +4,7 @@
   "name":"__cle_shDebugGraph",
   "parent":{
     "name":"Resources",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/Debug/Resources.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/Debug/Resources.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

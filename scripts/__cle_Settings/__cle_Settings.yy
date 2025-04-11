@@ -6,7 +6,7 @@
   "name":"__cle_Settings",
   "parent":{
     "name":"CrystalLightingEngine",
-    "path":"folders/KazanGames/CrystalLightingEngine.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

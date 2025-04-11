@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Shadows (Placeholder)",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Objects/zUnused/Shadows (Placeholder).yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Objects/zUnused/Shadows (Placeholder).yy",
   },
   "parentObjectId":null,
   "persistent":false,

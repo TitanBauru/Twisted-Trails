@@ -4,7 +4,7 @@
   "name":"__cle_shSpriteLightPhong",
   "parent":{
     "name":"Phong",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/Phong.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/Phong.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

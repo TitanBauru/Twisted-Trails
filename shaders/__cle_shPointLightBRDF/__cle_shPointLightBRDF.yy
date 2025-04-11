@@ -4,7 +4,7 @@
   "name":"__cle_shPointLightBRDF",
   "parent":{
     "name":"BRDF",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/BRDF.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/BRDF.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

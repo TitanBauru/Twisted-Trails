@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Sprites",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Sprites.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -4,7 +4,7 @@
   "name":"__cle_shWriteToAlpha",
   "parent":{
     "name":"Misc",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Misc.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Shaders/Misc.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

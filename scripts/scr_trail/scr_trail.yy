@@ -6,7 +6,7 @@
   "name":"scr_trail",
   "parent":{
     "name":"Trail System",
-    "path":"folders/Trail System.yy",
+    "path":"folders/Libs/Trail System.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

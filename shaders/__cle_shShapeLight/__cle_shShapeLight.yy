@@ -4,7 +4,7 @@
   "name":"__cle_shShapeLight",
   "parent":{
     "name":"Basic",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/Basic.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Shaders/Lighting/Basic.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

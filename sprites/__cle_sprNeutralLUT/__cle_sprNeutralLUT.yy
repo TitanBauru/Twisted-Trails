@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"LUTs",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Sprites/LUTs.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Sprites/LUTs.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

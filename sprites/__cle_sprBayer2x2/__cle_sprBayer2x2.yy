@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Dithering",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Sprites/Dithering.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Sprites/Dithering.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

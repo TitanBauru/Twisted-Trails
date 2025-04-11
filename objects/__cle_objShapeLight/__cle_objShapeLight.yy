@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Lights (Parents)",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Objects/Lights (Parents).yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Objects/Lights (Parents).yy",
   },
   "parentObjectId":{
     "name":"__cle_objLightDynamic",

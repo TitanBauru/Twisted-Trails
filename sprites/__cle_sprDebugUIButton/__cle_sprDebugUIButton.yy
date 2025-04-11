@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Resources",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/Debug/Resources.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/Debug/Resources.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

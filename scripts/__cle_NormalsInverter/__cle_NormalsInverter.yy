@@ -6,7 +6,7 @@
   "name":"__cle_NormalsInverter",
   "parent":{
     "name":"NormalsInverter",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/NormalsInverter.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/NormalsInverter.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

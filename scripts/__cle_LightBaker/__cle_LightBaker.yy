@@ -6,7 +6,7 @@
   "name":"__cle_LightBaker",
   "parent":{
     "name":"LightBaker (to-do)",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/LightBaker (to-do).yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/LightBaker (to-do).yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

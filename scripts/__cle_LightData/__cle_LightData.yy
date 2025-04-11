@@ -6,7 +6,7 @@
   "name":"__cle_LightData",
   "parent":{
     "name":"LightData",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/LightData.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/LightData.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

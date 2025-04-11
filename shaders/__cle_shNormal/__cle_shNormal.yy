@@ -4,7 +4,7 @@
   "name":"__cle_shNormal",
   "parent":{
     "name":"Materials",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Render/Materials.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Shaders/Render/Materials.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

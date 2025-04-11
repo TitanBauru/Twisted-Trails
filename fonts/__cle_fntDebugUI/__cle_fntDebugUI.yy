@@ -165,7 +165,7 @@
   "name":"__cle_fntDebugUI",
   "parent":{
     "name":"Resources",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/Debug/Resources.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/Debug/Resources.yy",
   },
   "pointRounding":0,
   "ranges":[

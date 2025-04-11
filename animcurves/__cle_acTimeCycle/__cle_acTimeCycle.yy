@@ -17,7 +17,7 @@
   "name":"__cle_acTimeCycle",
   "parent":{
     "name":"Curves",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Curves.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Curves.yy",
   },
   "resourceType":"GMAnimCurve",
   "resourceVersion":"2.0",

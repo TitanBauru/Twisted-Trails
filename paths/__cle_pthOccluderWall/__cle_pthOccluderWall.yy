@@ -6,7 +6,7 @@
   "name":"__cle_pthOccluderWall",
   "parent":{
     "name":"Paths",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Paths.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Paths.yy",
   },
   "points":[
     {"speed":100.0,"x":0.0,"y":0.0,},

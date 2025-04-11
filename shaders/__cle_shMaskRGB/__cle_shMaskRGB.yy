@@ -4,7 +4,7 @@
   "name":"__cle_shMaskRGB",
   "parent":{
     "name":"Render",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Render.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Shaders/Render.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

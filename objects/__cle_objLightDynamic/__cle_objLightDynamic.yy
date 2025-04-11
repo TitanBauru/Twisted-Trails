@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"zUnused",
-    "path":"folders/KazanGames/CrystalLightingEngine/Assets/Objects/zUnused.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Assets/Objects/zUnused.yy",
   },
   "parentObjectId":null,
   "persistent":false,

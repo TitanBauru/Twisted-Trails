@@ -4,7 +4,7 @@
   "name":"__cle_shInvertNormal",
   "parent":{
     "name":"NormalsInverter",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/NormalsInverter.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/NormalsInverter.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

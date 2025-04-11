@@ -4,7 +4,7 @@
   "name":"__cle_shVertShadowBasic",
   "parent":{
     "name":"Basic",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Shaders/Shadows/VertexBased/Basic.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Shaders/Shadows/VertexBased/Basic.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

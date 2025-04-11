@@ -6,7 +6,7 @@
   "name":"__cle_AlphaBaker",
   "parent":{
     "name":"AlphaBaker",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/AlphaBaker.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/AlphaBaker.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

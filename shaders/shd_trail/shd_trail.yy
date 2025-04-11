@@ -4,7 +4,7 @@
   "name":"shd_trail",
   "parent":{
     "name":"Trail System",
-    "path":"folders/Trail System.yy",
+    "path":"folders/Libs/Trail System.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",

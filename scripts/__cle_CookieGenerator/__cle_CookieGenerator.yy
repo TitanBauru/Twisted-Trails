@@ -6,7 +6,7 @@
   "name":"__cle_CookieGenerator",
   "parent":{
     "name":"CookieGenerator",
-    "path":"folders/KazanGames/CrystalLightingEngine/Core/Modules/CookieGenerator.yy",
+    "path":"folders/Libs/KazanGames/CrystalLightingEngine/Core/Modules/CookieGenerator.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
