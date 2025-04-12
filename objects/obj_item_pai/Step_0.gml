@@ -12,6 +12,10 @@ if (shop_base == noone) {
     y = shop_base.y - 32;
 }
 
+if (distance_to_object(obj_player) < 30 && keyboard_check_pressed(ord("E")))
+{
+	collect_item();	
+}
 
 // Verificar proximidade do jogador (se não estiver em uma loja)
 if (shop_base == noone) {

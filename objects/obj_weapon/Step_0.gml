@@ -19,6 +19,7 @@ if (mouse_wheel_up())
     if (variable_instance_exists(self, new_weapon_internal_name))
     {
         arma_ativa = self[$ new_weapon_internal_name];
+		arma_ativa.dano = arma_ativa.dano_base*obj_player.dano_armas
     }
 }
 
@@ -31,6 +32,7 @@ if (mouse_wheel_down())
     if (variable_instance_exists(self, new_weapon_internal_name))
     {
         arma_ativa = self[$ new_weapon_internal_name];
+		arma_ativa.dano = arma_ativa.dano_base*obj_player.dano_armas
     }
 }
 

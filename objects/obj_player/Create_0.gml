@@ -1,12 +1,14 @@
 //Armas
 arma_atual = "Pistola"
 pode_dash_player = 0
+dano_armas = 1
 //instance_create_layer(x,y,"vacuo",obj_shadow_tile_controller)
 instance_create_layer(x,y,"vacuo",obj_weapon)
 if !(instance_exists(obj_camera)) instance_create_layer(x,y,layer,obj_camera)
 light = instance_create_layer(x,y,"vacuo",obj_player_luz)
 alarm[0] = 10
 bullet_number = 0;
+
 //Velocidade
 vel = 2.4;
 velh = 0;    

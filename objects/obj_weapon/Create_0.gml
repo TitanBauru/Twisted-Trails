@@ -10,7 +10,8 @@ atacando = 0;
 function weapon(_nome, _desc, _damage, _atkspd, _sprite, _knock, _municao, _tempo_reload, _recoil, _precisao, _num_projectiles, _automatico, _projetil_speed, _projetil, _perfuracao,_length) constructor {
     nome = _nome;
     descricao = _desc;
-    dano = _damage;
+    dano = _damage ;
+	dano_base = dano
     atk_speed = _atkspd;
     sprite = _sprite; 
     knockback = _knock;

@@ -87,12 +87,8 @@ function setup_item(_item_id) {
 
 // Função para ser chamada quando o jogador coleta o item
 function collect_item() {
-    if (collected) return false;
-    
-    collected = true;
     
     // Tocar som
-    audio_play_sound(snd_item_pickup, 5, false);
     
     // Aplicar efeitos ao jogador
     if (instance_exists(obj_player) && instance_exists(obj_player_inventory)) {
@@ -104,6 +100,4 @@ function collect_item() {
     
     // Destruir após um delay (se necessário)
     alarm[0] = room_speed * 0.5;
-    
-    return true;
 }
