@@ -10,7 +10,7 @@ for(var i = 0; i < _x; i++)
 {
 	for(var j = 0; j < _y; j++)
 	{	
-		instance_create_layer(0 + (_size * i), 0 + (_size * j), "vacuo", obj_floor);
+		instance_create_layer(0 + (_size * i), 0 + (_size * j), "chao", obj_floor);
 		
 	}
 }
