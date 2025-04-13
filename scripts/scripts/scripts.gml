@@ -294,6 +294,7 @@ function spark(_x, _y, spd, dir, spread, amount, _decay, color1, color2, width_r
 	}
 }
 
+//TODO transforma isso em um vertex buffer pelo amor de Deus
 function hollow_circle(_x, _y, r1, r2, sn, istart = 0){
     var i; i = istart;
     draw_primitive_begin(pr_trianglestrip);

@@ -3,6 +3,7 @@
 var cam_x = camera_get_view_x(view_camera[0]);
 var cam_y = camera_get_view_y(view_camera[0]);
 
+//TODO usar scribble aqui nao é necessário lol só desenha normal
 scribble(preset+string(round(numero))).transform(image_xscale,image_yscale).blend(cor,image_alpha).draw(x - cam_x,y - cam_y)
 
 

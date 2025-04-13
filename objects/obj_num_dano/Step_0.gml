@@ -14,4 +14,6 @@ else
 
 if (image_alpha <= .05) instance_destroy();
 
-depth = -9999999999999
+
+//TODO COMO ESSE NUMERO QUEBRA O SANGUE?????????? WTF TITAN
+depth = -99999
