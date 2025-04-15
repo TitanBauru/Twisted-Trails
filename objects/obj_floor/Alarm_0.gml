@@ -8,9 +8,9 @@ spawna = false
 
 // Krug: Floor Prop Creation
 var _prop_ids		= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-var _prop_chance	= 0.3
+var _prop_chance	= 0.25
 
-if (random(1) < _prop_chance) {
+if (random(1) <= _prop_chance) {
 	var _tilemap_id = layer_tilemap_get_id(layer_get_id("tile_props_floor"))
 	var _tile_w = tilemap_get_tile_width(_tilemap_id)
 	var _tile_h = tilemap_get_tile_height(_tilemap_id)

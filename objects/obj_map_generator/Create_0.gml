@@ -17,5 +17,8 @@ py = real_py;
 layer_id = layer_get_id("Tiles_1");
 tile_id = layer_tilemap_get_id(layer_id);
 
-// Geração inicial
-//generate_tiles(obj_player.x, obj_player.y, buffer);
+
+
+
+
+

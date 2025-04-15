@@ -1,11 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"obj_poste_1",
+  "%Name":"obj_prop_general",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_poste_1",
+  "name":"obj_prop_general",
   "overriddenProperties":[],
   "parent":{
     "name":"Procedural Generation - Titan Stuff",
@@ -29,10 +29,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_poste_1",
-    "path":"sprites/spr_poste_1/spr_poste_1.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

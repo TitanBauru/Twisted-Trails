@@ -126,10 +126,10 @@ image_index = a;
 var _wall_frames	= [0, 1, 2, 12, 15, 16, 17]	// frames onde mostra a parede
 var _prop_wall_ids	= [1, 2, 4, 5]
 var _prop_misc_ids	= [1, 2]
-var _prop_chance	= 0.3
+var _prop_chance	= 0.25
 
 if (array_contains(_wall_frames, image_index)) {
-	if (random(1) < _prop_chance) {
+	if (random(1) <= _prop_chance) {
 		var _map_wall = layer_tilemap_get_id(layer_get_id("tile_props_wall"))
 		var _map_misc = layer_tilemap_get_id(layer_get_id("tile_props_misc"))
 		

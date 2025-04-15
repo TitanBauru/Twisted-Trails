@@ -7,6 +7,8 @@ alarm[1] = 60
 image_speed = 0;
 image_index = random(12)
 
+create_prop = true
+
 //TODO mano pq caralhos tem OITO INSTÂNCIAS DISSO SENDO CRIADAS NO MESMO LUGAR
 if (place_meeting(x, y, object_index)) {
 	instance_destroy()
