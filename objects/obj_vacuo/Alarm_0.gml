@@ -122,11 +122,11 @@ if (!borda && (!l2 || !r2 || !t2 || !b2)) {
 // Aplica o índice do frame definido à sprite do tile, atualizando sua aparência
 image_index = a;
 
-// Krug: tile prop creation
+// Krug: Tile Prop Creation
 var _wall_frames	= [0, 1, 2, 12, 15, 16, 17]	// frames onde mostra a parede
 var _prop_wall_ids	= [1, 2, 4, 5]
 var _prop_misc_ids	= [1, 2]
-var _prop_chance	= 0.5
+var _prop_chance	= 0.3
 
 if (array_contains(_wall_frames, image_index)) {
 	if (random(1) < _prop_chance) {

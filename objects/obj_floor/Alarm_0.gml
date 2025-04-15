@@ -6,9 +6,9 @@ if(place_meeting(x, y, obj_vacuo))
 
 spawna = false
 
-// Krug: floor prop creation
-var _prop_ids		= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-var _prop_chance	= 0.2
+// Krug: Floor Prop Creation
+var _prop_ids		= [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+var _prop_chance	= 0.3
 
 if (random(1) < _prop_chance) {
 	var _tilemap_id = layer_tilemap_get_id(layer_get_id("tile_props_floor"))

@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"spr_tileset_deco_chao_1",
   "bboxMode":0,
-  "bbox_bottom":46,
+  "bbox_bottom":59,
   "bbox_left":1,
   "bbox_right":62,
   "bbox_top":4,
