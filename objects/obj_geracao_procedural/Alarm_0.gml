@@ -4,8 +4,8 @@ var _prop_chance = 0.1		// chançe daquele chao criar um prop
 var _prop_data = [			// struct contendo informações sobre cada prop. Se for adicionar muitas, compensa criar um constructor
 	{
 		spr : spr_poste_1,	// sprite pra ser usada
-		wid : 32,			// largura da caixa de colisao
-		hei : 32,			// altura da caixa de colisao
+		wid : 32,			// largura mínima necessária pro objeto aparecer
+		hei : 32,			// altura mínima necessária pro objeto aparecer
 		xx	: 0,			// offset do x
 		yy	: 0,			// offset do y
 		r	: 12,			// valor máximo de random pra aplicar na posição
