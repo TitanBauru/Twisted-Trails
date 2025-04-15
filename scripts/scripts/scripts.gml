@@ -478,3 +478,32 @@ function generate_tiles(_x, _y, _buffer)
 }
 
 
+///@func choose_weighted(item1, weight1, item2, weight2, ...)
+function choose_weighted(_item1, _weight1, _item2, _weight2) {
+    if (argument_count mod 2 != 0 || argument_count == 0) {
+        show_error("Expected an even number of arguments greater than 0, got " + string(argument_count) + ".", true);
+    }
+    
+    var _item_index        = 0
+    var _item_count        = argument_count >> 1
+    var _item_array        = array_create(_item_count)
+    var _cumul_weights    = array_create(_item_count)
+    var _total_weight    = 0    
+    
+    var i = 0;
+    repeat (_item_count) {
+        _item_array[_item_index] = argument[i++];
+        _total_weight += argument[i++];
+        _cumul_weights[_item_index] = _total_weight;
+        _item_index++;
+    }    
+
+    var _rand = random(_total_weight);
+    for (var j = 0; j < _item_count; j++) {
+        if (_rand < _cumul_weights[j]) {
+            return _item_array[j];
+        }
+    }
+    
+    return _item_array[_item_count-1];
+}

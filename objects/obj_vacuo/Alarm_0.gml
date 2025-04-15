@@ -123,19 +123,38 @@ if (!borda && (!l2 || !r2 || !t2 || !b2)) {
 image_index = a;
 
 // Krug: tile prop creation
-var _wall_frames	= [0, 1, 2, 12, 15, 16, 17]
-var _prop_ids		= [1, 2, 4, 5]
+var _wall_frames	= [0, 1, 2, 12, 15, 16, 17]	// frames onde mostra a parede
+var _prop_wall_ids	= [1, 2, 4, 5]
+var _prop_misc_ids	= [1, 2]
 var _prop_chance	= 0.5
 
 if (array_contains(_wall_frames, image_index)) {
 	if (random(1) < _prop_chance) {
-		var _tilemap_id = layer_tilemap_get_id(layer_get_id("tile_props_wall"))
-		var _tile_w = tilemap_get_tile_width(_tilemap_id)
-		var _tile_h = tilemap_get_tile_height(_tilemap_id)
-		var _tile_id = _prop_ids[irandom(array_length(_prop_ids)-1)]
-		var _x = x div _tile_w
-		var _y = y div _tile_h
-		tilemap_set(_tilemap_id, _tile_id, _x, _y)
+		var _map_wall = layer_tilemap_get_id(layer_get_id("tile_props_wall"))
+		var _map_misc = layer_tilemap_get_id(layer_get_id("tile_props_misc"))
+		
+		// garante chance igual pra todos os tiles
+		var _map = choose_weighted(_map_wall, array_length(_prop_wall_ids), _map_misc, array_length(_prop_misc_ids))
+		var _tile_w = tilemap_get_tile_width(_map)
+		var _tile_h = tilemap_get_tile_height(_map)
+		var _tile_id, _x, _y
+		
+		switch (_map) {
+			case _map_wall: {
+				_tile_id = _prop_wall_ids[irandom(array_length(_prop_wall_ids)-1)]
+				_x = x div _tile_w
+				_y = y div _tile_h
+				
+			} break;
+			
+			case _map_misc: {
+				_tile_id = _prop_misc_ids[irandom(array_length(_prop_misc_ids)-1)]
+				_x = x div _tile_w - irandom(1)
+				_y = y div _tile_h
+			} break;
+		}	
+		
+		tilemap_set(_map, _tile_id, _x, _y)
 	}
 }
 
