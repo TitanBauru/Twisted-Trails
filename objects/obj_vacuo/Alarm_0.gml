@@ -121,3 +121,31 @@ if (!borda && (!l2 || !r2 || !t2 || !b2)) {
 
 // Aplica o índice do frame definido à sprite do tile, atualizando sua aparência
 image_index = a;
+
+// Krug: tile prop creation
+var _wall_frames = [0, 1, 2, 12, 15, 16, 17]
+var _prop_ids = [1, 2, 4, 5]
+if (array_contains(_wall_frames, image_index)) {
+	var _chance = 0.5
+	if (random(1) < _chance) {
+		show_debug_message("tile created")
+		var _tilemap_id = layer_tilemap_get_id(layer_get_id("tile_props_wall"))
+		var _tile_w = tilemap_get_tile_width(_tilemap_id)
+		var _tile_h = tilemap_get_tile_height(_tilemap_id)
+		var _tile_id = _prop_ids[irandom(array_length(_prop_ids)-1)]
+		var _x = x div _tile_w
+		var _y = y div _tile_h
+		tilemap_set(_tilemap_id, _tile_id, _x, _y)
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+

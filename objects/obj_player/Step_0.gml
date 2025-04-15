@@ -27,7 +27,9 @@ if (!on_dash && !on_knockback) {
     // Passa as velocidades desejadas para a função de movimento
     mover_player(move_h, move_v);
 }
-show_debug_message(dano_armas)
+// Krug: comentei nao sei se vc tava usando
+//show_debug_message(dano_armas)
+
 // Atualiza estado de movimento e animações
 if (estou_movendo) {
    // Ajusta o image_speed com base na direção do movimento e do lado
