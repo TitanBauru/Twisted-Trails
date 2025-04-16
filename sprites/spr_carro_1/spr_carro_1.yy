@@ -1,9 +1,9 @@
 {
   "$GMSprite":"",
   "%Name":"spr_carro_1",
-  "bboxMode":0,
+  "bboxMode":2,
   "bbox_bottom":29,
-  "bbox_left":3,
+  "bbox_left":2,
   "bbox_right":61,
   "bbox_top":2,
   "collisionKind":1,

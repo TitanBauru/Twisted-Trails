@@ -1,39 +1,87 @@
 // Krug: Object Prop Creation
 
-var _prop_chance = 0.1		// chançe daquele chao criar um prop
+var _prop_chance = 0.4		// chançe daquele chao criar um prop
 var _prop_data = [			// struct contendo informações sobre cada prop. Se for adicionar muitas, compensa criar um constructor
-	{
-		spr : spr_poste_1,	// sprite pra ser usada
-		wid : 32,			// largura mínima necessária pro objeto aparecer
-		hei : 32,			// altura mínima necessária pro objeto aparecer
-		xx	: 0,			// offset do x
-		yy	: 0,			// offset do y
-		r	: 12,			// valor máximo de random pra aplicar na posição
-	},
-	{
-		spr : spr_arcade_1,
-		wid : 32,
-		hei : 32,
-		xx	: 0,
-		yy	: 4,
-		r	: 6,
-	},
-	{
-		spr : spr_carro_1,
-		wid : 64,
-		hei : 32,
-		xx	: 16,
-		yy	: 14,
-		r	: 0,
-	},
-	{
-		spr : spr_carro_2,
-		wid : 64,
-		hei : 32,
-		xx	: 16,
-		yy	: 14,
-		r	: 0,
-	},
+	new PropObject([spr_poste_1, spr_poste_2], 16, 16, 0, 0, 12, 12, false),
+	new PropObject(spr_arcade_1, 32, 32, 0, 4, 6, 6, false),
+	new PropObject([spr_carro_1, spr_carro_2], 64, 32, 16, 14, 0, 0, true, {
+		create : function() {			
+			// evita do carro criar em cima do player
+			if (place_meeting(x, y, obj_player)) {
+				instance_destroy(id, false)
+			}
+			xscale = 1
+			yscale = 1
+			ang = 0
+			flash_white = 0
+			life = 200
+		},
+		step : function() {
+			// colisao com a bala
+			var _bullet = instance_place(x, y, obj_bullet)
+			if (_bullet) {				
+				// squash
+				xscale = 0.8
+				xscale = 1.2
+				flash_white = 1
+				ang += random_range(-3, 3)
+				
+				// Criar instância do número de dano
+		        var numero_dano = instance_create_layer(x, y, "chao", obj_num_dano);
+		        numero_dano.x = x + random_range(-20,20);
+		        numero_dano.y = y + random_range(-10,10) - 16;
+				numero_dano.cor = c_white;
+		        numero_dano.numero = _bullet.damage;
+				
+				// vfx
+				repeat(8) instance_create_layer(x+random_range(-12,12), y+random_range(-12,12), "Bloom", obj_pop, { width: irandom_range(2, 12), lerpval : .9 });
+				repeat(irandom(16)) spark(x, y, random(10), random(360), 120, 8, .9, c_white, c_white,2, 0);
+				repeat(random_range(10,20)) 
+				{
+					var poeira = instance_create_layer(x,y-8,"Instances",obj_dustwalk)
+					 poeira.speed = random(1);
+					 poeira.direction = random(360);
+				}
+				repeat(irandom(3)) instance_create_layer(x+random_range(-12,12), y+random_range(-12,12),"Bloom",obj_vfx_1);
+	            instance_create_layer(x, y,"Bloom",obj_vfx_2);
+				
+				life -= _bullet.damage
+				if (life <= 0) {
+					instance_destroy()
+				}
+				
+				instance_destroy(_bullet)
+			}
+			
+			xscale	= lerp(xscale, 1, 0.1)
+			yscale	= lerp(yscale, 1, 0.1)
+			ang		= lerp(ang, 0, 0.1)			
+			flash_white = max(0, flash_white - 0.05)
+		},
+		draw : function() {
+			draw_sprite_ext(sprite_index,image_index,x,y,xscale,yscale,ang,image_blend,image_alpha)
+			
+			gpu_set_fog(true, c_white, 1, 0);
+			draw_sprite_ext(sprite_index, image_index, x, y, xscale, yscale, ang, c_white, flash_white);
+			gpu_set_fog(false, c_white, 0, 1);
+		},
+		destroy : function() {
+			instance_destroy(id)
+		},
+	}),
+	new PropObject(spr_lanterna_1, 16, 16, 0, 4, 6, 6, false),
+	new PropObject(spr_lixo, 16, 16, 0, 4, 12, 12, false),
+	new PropObject(spr_lixo_2, 16, 16, 0, 4, 12, 12, false),
+	new PropObject(spr_lata_de_lixo, 16, 16, 0, 4, 12, 12, false),
+	new PropObject(spr_caixa_1, 16, 16, 0, 4, 12, 12, false),
+	new PropObject(spr_garrafas_1, 16, 16, 0, 4, 12, 12, false),
+	new PropObject(spr_garrafas_2, 16, 16, 0, 4, 12, 12, false),
+	new PropObject(spr_hidrante, 16, 16, 0, 4, 12, 12, false),
+	new PropObject(spr_boeiro, 16, 16, 0, 4, 4, 4, false, {
+		create : function() {
+			depth = layer_get_depth(layer)	// remove o depthsort
+		},
+	}),
 ]
 
 // loop por todos os floor, e avalia quais props ele consegue portar
@@ -74,12 +122,26 @@ for (var i = array_length(_floor_data)-1; i >= 0 ; i--) {
 				var _prop_selected = _floor_list[irandom(_list_len-1)]
 				var _prop = _prop_data[_prop_selected]
 				
-				var _x = _floor_id.x + _prop.xx + irandom_range(-_prop.r, _prop.r)
-				var _y = _floor_id.y + _prop.yy + irandom_range(-_prop.r, _prop.r)
+				// starts from floor center
+				var _x = _floor_id.x + _prop.xoff + irandom_range(-_prop.xr, _prop.yr)
+				var _y = _floor_id.y + _prop.yoff + irandom_range(-_prop.xr, _prop.yr)
 			
-				with (instance_create_layer(_x, _y, "inst_props", obj_prop_general)) {
-					sprite_index = _prop.spr
+				// create desired prop
+				var _inst = instance_create_layer(_x, _y, "inst_props", _prop.solid ? obj_prop_solid : obj_prop_general)
+				with (_inst) {
+					sprite_index = is_array(_prop.spr) ? _prop.spr[irandom(array_length(_prop.spr)-1)] : _prop.spr
 					image_xscale = choose(-1, 1) // Krug: deixei aqui opcional mas se precisar dps é só tirar
+					
+					// copia os eventos do prop pra instancia criada
+					var _keys = struct_get_names(_prop.events)
+					var _len = array_length(_keys)
+					for (var j = 0; j < _len; j++) {
+						var _key = _keys[j]
+						self[$ _key] = method(self, _prop.events[$ _key])
+					}
+
+					// faz ele rodar o create custom
+					create()
 				}
 			
 				// make floors under this prop as unnable to create more props
