@@ -9,4 +9,4 @@ scribble_font_delete("fnt_temp1")
 scribble_anim_wave(.5,50,.2)
 scribble_anim_shake(1,.1)
 
-global.quantidade_de_inimigos = instance_number(obj_dummy);	
+alarm[0] = 2
