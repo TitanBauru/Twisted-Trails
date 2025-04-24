@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__ppf_effects",
+  "%Name":"__ppf_Effects",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__ppf_effects",
+  "name":"__ppf_Effects",
   "parent":{
     "name":"Essential",
     "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Essential.yy",

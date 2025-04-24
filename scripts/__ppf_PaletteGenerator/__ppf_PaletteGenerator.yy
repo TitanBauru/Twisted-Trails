@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__ppf_PaletteGenerator",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__ppf_PaletteGenerator",
+  "parent":{
+    "name":"PaletteGenerator",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/PaletteGenerator.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

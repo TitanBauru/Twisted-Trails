@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shHistogram",
+  "name":"__ppf_shHistogram",
+  "parent":{
+    "name":"Resources",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/Debug/Resources.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

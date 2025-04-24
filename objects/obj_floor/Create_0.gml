@@ -5,7 +5,7 @@ alarm[0] = 6;
 pode_rodar = true
 alarm[1] = 60
 image_speed = 0;
-image_index = random(12)
+image_index = random(9)
 
 create_prop = true
 

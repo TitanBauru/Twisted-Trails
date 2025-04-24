@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shLUTMaker",
+  "name":"__ppf_shLUTMaker",
+  "parent":{
+    "name":"LUTGenerator",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/LUTGenerator.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

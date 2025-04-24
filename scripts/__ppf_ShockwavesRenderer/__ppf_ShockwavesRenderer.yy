@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__ppf_ShockwavesRenderer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__ppf_ShockwavesRenderer",
+  "parent":{
+    "name":"Shockwaves",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/Shockwaves.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

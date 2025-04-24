@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shRenderASCII",
+  "name":"__ppf_shRenderASCII",
+  "parent":{
+    "name":"Individual",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Shaders/Render/Individual.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

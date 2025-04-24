@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shRenderPaletteSwap",
+  "name":"__ppf_shRenderPaletteSwap",
+  "parent":{
+    "name":"Individual",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Shaders/Render/Individual.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

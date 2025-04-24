@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shBlendNormals",
+  "name":"__ppf_shBlendNormals",
+  "parent":{
+    "name":"Misc",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Shaders/Misc.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

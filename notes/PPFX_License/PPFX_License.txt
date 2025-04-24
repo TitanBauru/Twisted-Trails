@@ -1,6 +1,6 @@
 
 =============================================================================================
-Kazan Games Limited (TM)                              [Last edit: 21/08/2023 (BR) (DD/MM/YY)]
+Kazan Games Limited (TM)                              [Last edit: 20/02/2025 (BR) (DD/MM/YY)]
 Post-Processing FX - End User License Agreement
 =============================================================================================
 
@@ -20,7 +20,12 @@ Brief explanation:
 
 For this licensed work, you may create commercial games and/or software using the compiled
 source code, provided this license is included (in the source code). You must NOT redistribute
-the original or even modified source code (this includes any files).
+the original or even modified source code (including, but not limited, the creation of competing
+products). This project is protected by copyright and its unauthorized redistribution constitutes
+a crime under applicable laws. Kazan Games still owns the copyright of this software. This license
+only covers the use in your product. You have permission to modify it, as long as you
+do not redistribute the source.
+
 
 
 =[ SUMMARY ]=
@@ -51,8 +56,8 @@ work provided by Kazan Games Limited.
 
 1.2.1. Any Work, purchased from the original website will ONLY be refunded if one of the items mentioned
 below is true:
+- You are within the refund period (7 days);
 - Did not receive the product;
-- You are within the refund period (if applied);
 - You have received a damaged or defective product (does not include bugs but something totally
 non-functional);
 - You have received a different product from advertised;
@@ -74,11 +79,13 @@ was made by Kazan Games. The rights to intellectual properties used in derivativ
 stay with their intellectual property rights holders. You must NOT redistribute the project source
 (and any part of it, including, but NOT limited: shaders, code and sprites), as it will be considered
 copyright infringement. Only distribution of binary executables created by GameMaker are accepted.
-From the moment that someone has access to the source code, even if temporary, the person can copy the
-files, which means there must be a non-distribution agreement between you and the parties. When obtaining
-the product, the purchase is valid for a single commercial project. For every new published commercial
-project, you must obtain a new copy of the Work (this requirement is valid only for purchases made through
-Itch.io website). For lifetime license, contact Kazan Games.
+You agree that you will not create a competing product using parts (or all) of the source code.
+From the moment that someone has access to the source code, even if temporary, the person may copy the
+files, which means there must be a non-distribution agreement between you and the parties.
+When obtaining the product, the purchase is valid for a single commercial project. For every new published
+commercial project, you must obtain a new copy of the Work (this requirement is valid only for purchases made
+through Itch.io website). For lifetime license, contact Kazan Games. If there is no capital gain in the project,
+you can use it in as many projects as you want.
 
 
 3. PROPRIETARY REQUIREMENTS
@@ -132,7 +139,7 @@ performance of the Licensed Work, or any systems you design using the Licensed W
 
 8.1. You agree that in serious cases of copyright infringement and breach of this License Agreement,
 caused by you (including, but not limited to, after distributing source code), you are subject to
-indemnify Kazan Games for such damages (both financial and moral).
+indemnify Kazan Games for such damages under applicable laws.
 
 8.2. Licensed Work (collectively referred to as "items") is subject to the export control laws of
 the United States and other countries that may lawfully control the export of the Licensed Work.

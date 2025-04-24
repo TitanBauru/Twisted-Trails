@@ -272,7 +272,7 @@ function Camera(_x, _y, _view, _autoload) constructor {
 	
 	/// @function setModeDamped([amount=25])
 	/// @description Sets camera to smoothly damped movement.
-	/// @param {real} [amount=25] The amount of movement to be applied each step (higher == smooth)
+	/// @param {real} [obj_playeramount=25] The amount of movement to be applied each step (higher == smooth)
 	static setModeDamped = function(_amount) {
 		
 		static dampedFunc = function(_from, _to, _amount) {

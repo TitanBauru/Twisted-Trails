@@ -3,5 +3,5 @@
 
 //Aberração Cromática
 global.aberracao_cromatica = lerp(global.aberracao_cromatica,0,.01)
-ppfx_id.SetEffectParameter(FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_INTENSITY, global.aberracao_cromatica);
+renderer.SetEffectParameter(FF_CHROMATIC_ABERRATION, PP_CHROMABER_INTENSITY, global.aberracao_cromatica);
 

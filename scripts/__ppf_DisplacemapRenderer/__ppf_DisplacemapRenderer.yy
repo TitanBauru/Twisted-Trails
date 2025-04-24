@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__ppf_DisplacemapRenderer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__ppf_DisplacemapRenderer",
+  "parent":{
+    "name":"DisplaceMaps",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/DisplaceMaps.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

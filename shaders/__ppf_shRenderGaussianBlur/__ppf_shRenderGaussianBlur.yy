@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shRenderGaussianBlur",
+  "name":"__ppf_shRenderGaussianBlur",
+  "parent":{
+    "name":"Individual",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Shaders/Render/Individual.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

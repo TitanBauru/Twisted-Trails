@@ -3,7 +3,7 @@
 	These functions are independent, so if you delete them from the asset, nothing will happen.
 -------------------------------------------------------------------------------------------------*/
 
-/// Feather ignore all
+// Feather ignore all
 
 #region UI INSPECTORS
 
@@ -97,83 +97,84 @@ function __PPFX_DebugInspectorGenerator() constructor {
 		#endregion
 	}
 	
-	static __PPFX_System = function() {
+	static __PPFX_Renderer = function() {
 		#region UI
 		// Help:
-		// __inspected_class   >>  PPFX_System
+		// __inspected_class   >>  PPFX_Renderer
 		// inspector_struct  >>  __PPF_UIInspector
 		// This function is binded to PPFX_DebugUI instance, so I can use it's variables and methods
 		
 		// Built-in effects
 		#region Helper variables
 		gui_preset_profiles = new __PPFX_PresetProfile();
+		guiLutGeneratorBaking = new PPFX_LUTGenerator();
 		
 		gui_ef_set_param_simple = function(value, effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) exit;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) exit;
 			__inspected_class.SetEffectParameter(effect_enum, param, value);
 		}
 		gui_ef_set_param_enable = function(checked, effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) exit;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) exit;
 			var _check = !checked;
 			__inspected_class.SetEffectParameter(effect_enum, param, _check);
 			return _check;
 		}
 		gui_ef_set_enabled = function(checked, effect_enum) {
-			//if (!__inspected_class.__effect_exists(effect_enum)) exit;
+			//if (!__inspected_class.__effectExists(effect_enum)) exit;
 			var _check = !checked;
 			__inspected_class.SetEffectEnable(effect_enum, _check);
 			return _check;
 		}
 		gui_ef_set_param_color_red = function(value, effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) exit;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) exit;
 			__inspected_class.SetEffectParameter(effect_enum, param,
 			make_color_rgb_ppfx(value, __inspected_class.GetEffectParameter(effect_enum, param)[1]*255, __inspected_class.GetEffectParameter(effect_enum, param)[2]*255));
 		}
 		gui_ef_set_param_color_green = function(value, effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) exit;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) exit;
 			__inspected_class.SetEffectParameter(effect_enum, param,
 			make_color_rgb_ppfx(__inspected_class.GetEffectParameter(effect_enum, param)[0]*255, value, __inspected_class.GetEffectParameter(effect_enum, param)[2]*255));	
 		}
 		gui_ef_set_param_color_blue = function(value, effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) exit;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) exit;
 			__inspected_class.SetEffectParameter(effect_enum, param,
 			make_color_rgb_ppfx(__inspected_class.GetEffectParameter(effect_enum, param)[0]*255, __inspected_class.GetEffectParameter(effect_enum, param)[1]*255, value));
 		}
 		gui_ef_set_param_vec2_x = function(value, effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) exit;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) exit;
 			__inspected_class.SetEffectParameter(effect_enum, param, [value, __inspected_class.GetEffectParameter(effect_enum, param)[1]]);
 		}
 		gui_ef_set_param_vec2_y = function(value, effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) exit;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) exit;
 			__inspected_class.SetEffectParameter(effect_enum, param, [__inspected_class.GetEffectParameter(effect_enum, param)[0], value]);
 		}
 		
 		gui_ef_get_param_simple = function(effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) return 0;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) return 0;
 			return __inspected_class.GetEffectParameter(effect_enum, param);
 		}
 		gui_ef_get_enabled = function(effect_enum) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) return false;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) return false;
 			return __inspected_class.IsEffectEnabled(effect_enum);
 		}
 		gui_ef_get_param_color_red = function(effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) return 0;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) return 0;
 			return __inspected_class.GetEffectParameter(effect_enum, param)[0]*255;
 		}
 		gui_ef_get_param_color_green = function(effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) return 0;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) return 0;
 			return __inspected_class.GetEffectParameter(effect_enum, param)[1]*255;
 		}
 		gui_ef_get_param_color_blue = function(effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) return 0;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) return 0;
 			return __inspected_class.GetEffectParameter(effect_enum, param)[2]*255;
 		}
 		gui_ef_get_param_vec2_x = function(effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) return 0;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) return 0;
 			return __inspected_class.GetEffectParameter(effect_enum, param)[0];
 		}
 		gui_ef_get_param_vec2_y = function(effect_enum, param) {
-			if (__inspected_class.__effects_array_len == 0 || !__inspected_class.__effect_exists(effect_enum)) return 0;
+			if (__inspected_class.__effectsOrderedAmount == 0 || !__inspected_class.__effectExists(effect_enum)) return 0;
 			return __inspected_class.GetEffectParameter(effect_enum, param)[1];
 		}
 		
@@ -182,81 +183,83 @@ function __PPFX_DebugInspectorGenerator() constructor {
 		gui_ppfx_info_type = 0;
 		gui_yrgb_curve_sprite_id = -1;
 		gui_lut_texture_id = -1;
+		gui_ascii_texture_id = -1;
 		gui_palette_texture_id = -1;
 		gui_motion_blur_texture_id = -1;
 		gui_textureoverlay_spritetex_id = -1;
 		gui_displacemap_texture_id = -1;
-		gui_chromaber_prisma_tex_list = [__spr_ppf_prism_lut_rb, __spr_ppf_prism_lut_gp, __spr_ppf_prism_lut_cp, __spr_ppf_prism_lut_cr, __spr_ppf_prism_lut_bw];
+		gui_chromaber_prisma_tex_list = [__ppf_sprPrismLutRB, __ppf_sprPrismLutGP, __ppf_sprPrismLutCP, __ppf_sprPrismLutCR, __ppf_sprPrismLutBW];
 		gui_chromaber_prisma_type = 0;
-		gui_noisegrain_noise_tex_list = [__spr_ppf_noise_point, __spr_ppf_noise_blue, __spr_ppf_noise_perlin, __spr_ppf_noise_simplex];
+		gui_noisegrain_noise_tex_list = [__ppf_sprNoisePoint, __ppf_sprNoiseBlue, __ppf_sprNoisePerlin, __ppf_sprNoiseSimplex];
 		gui_noisegrain_noise_type = 0;
 		gui_colorblind_cur_mode = 0;
 		gui_dithering_mode = 0;
-		gui_speedlines_noise_tex_list = [__spr_ppf_noise_point, __spr_ppf_noise_blue, __spr_ppf_noise_perlin, __spr_ppf_noise_simplex];
+		gui_speedlines_noise_tex_list = [__ppf_sprNoisePoint, __ppf_sprNoiseBlue, __ppf_sprNoisePerlin, __ppf_sprNoiseSimplex];
 		gui_speedlines_noise_type = 0;
-		gui_mist_noise_tex_list = [__spr_ppf_noise_perlin, __spr_ppf_noise_blue, __spr_ppf_noise_simplex, __spr_ppf_noise_point];
+		gui_mist_noise_tex_list = [__ppf_sprNoisePerlin, __ppf_sprNoiseBlue, __ppf_sprNoiseSimplex, __ppf_sprNoisePoint];
 		gui_mist_noise_type = 0;
 		gui_dithering_bayers = [
-			[__spr_ppf_bayer2x2, 2],
-			[__spr_ppf_bayer4x4, 4],
-			[__spr_ppf_bayer8x8, 8],
-			[__spr_ppf_bayer16x16, 16],
+			[__ppf_sprBayer2x2, 2],
+			[__ppf_sprBayer4x4, 4],
+			[__ppf_sprBayer8x8, 8],
+			[__ppf_sprBayer16x16, 16],
 		];
 		gui_dithering_index = 2;
-		gui_shockwaves_lut_list = [__spr_ppf_prism_lut_rb, __spr_ppf_prism_lut_gp, __spr_ppf_prism_lut_cp, __spr_ppf_prism_lut_cr];
+		gui_shockwaves_lut_list = [__ppf_sprPrismLutRB, __ppf_sprPrismLutGP, __ppf_sprPrismLutCP, __ppf_sprPrismLutCR];
 		gui_shockwaves_lut_type = 0;
 		gui_color_curves_struct = undefined;
 		gui_color_curves_curve_index = -1;
 		gui_color_curves_get_graph = function() {
-			if (__inspected_class.__effects_array_len > 0) {
-				var _effect_struct = __inspected_class.__get_effect_struct(FX_EFFECT.COLOR_CURVES);
-				if (_effect_struct != noone) {
+			if (__inspected_class.__effectsOrderedAmount > 0) {
+				var _effect_struct = __inspected_class.__getEffectStruct(FF_COLOR_CURVES);
+				if (_effect_struct != undefined) {
 					gui_color_curves_curve_index += 1;
 					if (gui_color_curves_curve_index > 1) gui_color_curves_curve_index = 0;
 					switch(gui_color_curves_curve_index) {
-						case 0: gui_color_curves_struct = _effect_struct.settings.yrgb_curve; break;
-						case 1: gui_color_curves_struct = _effect_struct.settings.hhsl_curve; break;
+						case 0: gui_color_curves_struct = _effect_struct.yrgbCurve; break;
+						case 1: gui_color_curves_struct = _effect_struct.hhslCurve; break;
 					}
 				}
 			}
 		}
 		gui_color_curves_secure_file = false;
 		gui_system_profile_copy = undefined;
-		__inspected_class.__debug_func_start = __debug_func_start;
-		__inspected_class.__debug_func_end = __debug_func_end;
+		gui_export_lut_is_tone_mapping_enabled = false;
 		#endregion
 		
 		#region >> MAIN
 		// Create ui system
-		inspector_struct = new __PPF_UIInspector("PPFX_System")
+		inspector_struct = new __PPF_UIInspector("PPFX_Renderer");
 		
 		// main menu
-		.AddElement(new __ppf_ui_menu($"RENDERER | Post-Processing FX {PPFX_VERSION}", true, 34))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu($"RENDERER | Post-Processing FX {PPFX_VERSION}", true, 33))
 		// from system
 			.AddElement(new __ppf_ui_text_ext("Info", 0, function(element) {
 					var _width = element.parent.__panel_width-element.xx-element.parent.__element_xpadding;
 					element.width = _width;
-					var _text = "The system is responsible for drawing the effects on the screen. You need to import a profile with effects to be able to render something.";
+					var _text = "The renderer is responsible for drawing the effects on the screen. You need to import a profile with effects to be able to render something.";
 					return _text;
 				}))
 			.AddElement(new __ppf_ui_separator())
 			//.AddElement(new __ppf_ui_text("System:", 0, undefined))
 			.AddElement(new __ppf_ui_checkbox("Enable Render", 0, __inspected_class.IsRenderEnabled(), function(checked) {var _check = !checked; __inspected_class.SetRenderEnable(_check); return _check;}))
 			.AddElement(new __ppf_ui_checkbox("Enable Drawing", 1, __inspected_class.IsDrawEnabled(), function(checked) {var _check = !checked; __inspected_class.SetDrawEnable(_check); return _check;}))
-			.AddElement(new __ppf_ui_slider("Render Resolution", 0, false, __inspected_class.GetRenderResolution(), 0, 1, false, function(output) {__inspected_class.SetRenderResolution(output);}))
+			.AddElement(new __ppf_ui_slider("Render Resolution", 0, false, __inspected_class.GetRenderResolution(), 0, 2, false, function(output) {__inspected_class.SetRenderResolution(output);}))
 			.AddElement(new __ppf_ui_text("0x0", 1, function() {var _surf = __inspected_class.GetRenderSurface(); return $"{surface_get_width(_surf)}x{surface_get_height(_surf)}";}))
-			.AddElement(new __ppf_ui_text("Usage:", 1, function() { return __inspected_class.__debug_sys_usage; }))
-			.AddElement(new __ppf_ui_checkbox("Bilinear Filtering", 0, gpu_get_tex_filter(), function(checked) {var _check = !checked; gpu_set_tex_filter(_check); return _check;}))
+			.AddElement(new __ppf_ui_text("Usage:", 1, function() {return $"{__inspected_class.__cpuFrameTime/1000}ms";}))
+			.AddElement(new __ppf_ui_checkbox("Bilinear Filtering", 0, gpu_get_tex_filter(), function(checked) {var _check = !checked; gpu_set_tex_filter(_check); return _check;}));
 			
 			// Profile
+			inspector_struct
 			.AddElement(new __ppf_ui_folder("Profile", false, 14))
 				.AddElement(new __ppf_ui_folder("Presets", true, 3))
 					.AddElement(new __ppf_ui_button("Load Default (Merge)", function() {
 						// reset ppfx system profile id, so we can load the same profile again
-						__inspected_class.__current_profile = noone;
+						__inspected_class.__currentProfile = noone;
 					
 						// load the default profile
-						__inspected_class.ProfileLoad(gui_preset_profiles.GetDefault("Game"), true);
+						__inspected_class.ProfileLoad(gui_preset_profiles.GetDefault(), true);
 					
 						// update debug ui to be related to the new profile (default profile)
 						UpdateUI();
@@ -264,10 +267,10 @@ function __PPFX_DebugInspectorGenerator() constructor {
 					
 					.AddElement(new __ppf_ui_button("Load Default (Overwrite)", function() {
 						// reset ppfx system profile id, so we can load the same profile again
-						__inspected_class.__current_profile = noone;
+						__inspected_class.__currentProfile = noone;
 					
 						// load the default profile
-						__inspected_class.ProfileLoad(gui_preset_profiles.GetDefault("Game"), false);
+						__inspected_class.ProfileLoad(gui_preset_profiles.GetDefault(), false);
 					
 						// update debug ui to be related to the new profile (default profile)
 						UpdateUI();
@@ -278,7 +281,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 				.AddElement(new __ppf_ui_text("From this renderer:", 0, undefined))
 				
 				.AddElement(new __ppf_ui_button("Export (only enabled effects)", function() {
-					var _profile = __inspected_class.__current_profile;
+					var _profile = __inspected_class.__currentProfile;
 					if (_profile != noone) {
 						var _text = _profile.Stringify(false, true, __inspected_class);
 						clipboard_set_text(_text);
@@ -288,7 +291,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 				}))
 				
 				.AddElement(new __ppf_ui_button("Export (all effects)", function() {
-					var _profile = __inspected_class.__current_profile;
+					var _profile = __inspected_class.__currentProfile;
 					if (_profile != noone) {
 						var _text = _profile.Stringify(false, false, __inspected_class);
 						clipboard_set_text(_text);
@@ -298,9 +301,9 @@ function __PPFX_DebugInspectorGenerator() constructor {
 				}))
 				
 				.AddElement(new __ppf_ui_button("Unload", function() {
-					if (__inspected_class.__current_profile != noone) {
+					if (__inspected_class.__currentProfile != noone) {
 						// copy profile before unloading
-						gui_system_profile_copy = variable_clone(__inspected_class.__current_profile);
+						gui_system_profile_copy = variable_clone(__inspected_class.__currentProfile);
 					} else {
 						show_debug_message("Debug: Failed to save current profile.");
 					}
@@ -325,7 +328,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 					}))
 					.AddElement(new __ppf_ui_separator())
 					.AddElement(new __ppf_ui_text("Count", 0, function() {
-						return $"Count: {__inspected_class.__effects_array_len} | [enabled] (order) name";
+						return $"Count: {__inspected_class.__effectsOrderedAmount} | [enabled] (order) name";
 					}))
 					.AddElement(new __ppf_ui_method("Effects Array", 0,
 						function() {
@@ -340,7 +343,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 							//inspector_struct.__bake();
 							
 							// draw item list
-							var _effects = __inspected_class.__effects_array, _rec = 0, _text = "", _text_height = 0, _effect = undefined, _hovering = false,
+							var _effects = __inspected_class.__effectsOrdered, _rec = 0, _text = "", _text_height = 0, _effect = undefined, _hovering = false,
 							isize = array_length(_effects), i = isize-1,
 							_xx = element.xx,
 							_yy = element.yy,
@@ -353,7 +356,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 							repeat(isize) {
 								_rec = i / isize; 
 								_effect = _effects[i];
-								_text = $"[{_effect.settings.enabled ? "x" : "  "}] ({  string_replace_all(string_format(_effect.stack_order, 3, 0), " ", "0")  }) {_effect.effect_name}" + "\n";
+								_text = $"[{_effect.enabled ? "x" : "  "}] ({  string_replace_all(string_format(_effect.stackOrder, 3, 0), " ", "0")}) {_effect.effectName}" + "\n";
 								_text_height = string_height(_text);
 								
 								// get item
@@ -378,7 +381,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 									
 									draw_set_color(c_red);
 								} else {
-									if (_effect.stack_shared) {
+									if (_effect.isStackShared) {
 										draw_set_color(c_gray);
 									} else {
 										draw_set_color(c_white);
@@ -411,7 +414,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 								_height += _text_height + 2;
 								--i;
 							}
-							//draw_text(_mx, _my, _effects[current_item].effect_name);
+							//draw_text(_mx, _my, _effects[current_item].effectName);
 							
 							var _swap_mode = true;
 							
@@ -437,7 +440,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 											//_effects[selected_item].SetOrder(_new_order);
 											
 											//for (var k = current_item; k < isize; ++k) {
-											//	_effects[k].stack_order += 1 * sign(current_item-selected_item);
+											//	_effects[k].stackOrder += 1 * sign(current_item-selected_item);
 											//}
 											
 											// -------
@@ -465,12 +468,12 @@ function __PPFX_DebugInspectorGenerator() constructor {
 											
 											//// redefine orders
 											//for (var i = 0; i < isize; ++i) {
-											//	_effects[i].stack_order = _orders[i];
+											//	_effects[i].stackOrder = _orders[i];
 											//}
 										}
 										
 										// update effects order
-										__inspected_class.__reorder_stack();
+										__inspected_class.__effectsReorder();
 										selected_item = -1;
 									}
 									
@@ -482,8 +485,9 @@ function __PPFX_DebugInspectorGenerator() constructor {
 							}
 							
 							return _height + 16;
-						}))
+						}));
 			// Stack
+			inspector_struct
 			.AddElement(new __ppf_ui_folder("Stack", false, 5))
 				.AddElement(new __ppf_ui_text_ext("Info", 0, function(element) {
 					var _width = element.parent.__panel_width-element.xx*2;
@@ -492,8 +496,8 @@ function __PPFX_DebugInspectorGenerator() constructor {
 				}))
 				.AddElement(new __ppf_ui_method("Histogram", 0,
 					function() {
-						uni_histogram_pos_res = shader_get_uniform(__ppf_sh_histogram, "u_pos_res");
-						uni_histogram_data_tex = shader_get_sampler_index(__ppf_sh_histogram, "u_data_tex");
+						uni_histogram_pos_res = shader_get_uniform(__ppf_shHistogram, "u_pos_res");
+						uni_histogram_data_tex = shader_get_sampler_index(__ppf_shHistogram, "u_data_tex");
 					},
 					function(element) {
 						// draw Histogram
@@ -510,10 +514,10 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						_old_blendmode = gpu_get_blendmode();
 						
 						draw_set_color(c_white);
-						shader_set(__ppf_sh_histogram);
+						shader_set(__ppf_shHistogram);
 						shader_set_uniform_f(uni_histogram_pos_res, _x1, _y1, _width, _width);
 						texture_set_stage(uni_histogram_data_tex, surface_get_texture(__inspected_class.GetRenderSurface())); 
-						draw_sprite_stretched_ext(__spr_ppf_pixel, 0, _x1, _y1, _width, _width, c_black, 1);
+						draw_sprite_stretched_ext(__ppf_sprPixel, 0, _x1, _y1, _width, _width, c_black, 1);
 						shader_reset();
 						
 						gpu_set_blendmode(_old_blendmode);
@@ -565,7 +569,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 							draw_set_color(make_color_rgb(20, 20, 20));
 							draw_rectangle(_x1, _y1, _x1+_width, _y1+preview_stack_surface_height, false);
 							draw_set_color(c_white);
-							draw_sprite(__spr_ppf_debug_icon, 0, _x1+_width/2, _y1+preview_stack_surface_height/2);
+							draw_sprite(__ppf_sprDebugIcon, 0, _x1+_width/2, _y1+preview_stack_surface_height/2);
 						}
 						
 						// separator
@@ -575,9 +579,9 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						
 						// draw stacks
 						_height += 10;
-						var _stacks_surf_array = __inspected_class.__stack_surface,
-							_stacks_names_array = __inspected_class.__stack_names,
-							i = 0, isize = __inspected_class.__stack_index+1,
+						var _stacks_surf_array = __inspected_class.__stackSurfaces,
+							_stacks_names_array = __inspected_class.__stackNames,
+							i = 0, isize = __inspected_class.__stackIndex+1,
 							_stack_surf = -1,
 							_stack_name = "",
 							_stack_xx = 0,
@@ -625,11 +629,12 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						return _height + 32;
 					}))
 				.AddElement(new __ppf_ui_button("Clean Stacks (update)", function() {
-					__inspected_class.Clean();
-				}))
+					__inspected_class.__cleanSurfaces();
+				}));
 				
 			// Misc
-			.AddElement(new __ppf_ui_folder("Misc", false, 4))
+			inspector_struct
+			.AddElement(new __ppf_ui_folder("Misc", false, 3))
 				.AddElement(new __ppf_ui_button("Close All Tabs", function() {
 					inspector_struct.SetTabsFolding(false, 16);
 				}))
@@ -639,208 +644,232 @@ function __PPFX_DebugInspectorGenerator() constructor {
 				.AddElement(new __ppf_ui_button("Disable All Effects", function() {
 					__inspected_class.DisableAllEffects();
 				}))
-				.AddElement(new __ppf_ui_slider("Global Intensity", 0, false, __inspected_class.GetGlobalIntensity(), 0, 1, true, function(output) {__inspected_class.SetGlobalIntensity(output);}))
 		#endregion
 		
 		#region >> CATEGORY: LIGHTING & LENS
 		inspector_struct
-		.AddElement(new __ppf_ui_category("Lighting & Lens", false, 136))
+		.AddElement(new __ppf_ui_category("Lighting & Lens", false, 141));
 		
 		// effect: BLOOM
-		.AddElement(new __ppf_ui_menu("BLOOM", false, 18))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.BLOOM), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.BLOOM);}))
-			.AddElement(new __ppf_ui_slider("Iterations", 16, false, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_ITERATIONS), 0, 16, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLOOM, PP_BLOOM_ITERATIONS);}))
-			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_THRESHOLD), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLOOM, PP_BLOOM_THRESHOLD);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_INTENSITY), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLOOM, PP_BLOOM_INTENSITY);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("BLOOM", false, 21))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_BLOOM), function(checked) {return gui_ef_set_enabled(checked, FF_BLOOM);}))
+			.AddElement(new __ppf_ui_slider("Iterations", 16, false, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_ITERATIONS), 0, 16, true, function(output) {gui_ef_set_param_simple(output, FF_BLOOM, PP_BLOOM_ITERATIONS);}))
+			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_THRESHOLD), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_BLOOM, PP_BLOOM_THRESHOLD);}))
+			.AddElement(new __ppf_ui_slider("Knee", 0, false, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_KNEE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_BLOOM, PP_BLOOM_KNEE);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_INTENSITY), 0, 25, true, function(output) {gui_ef_set_param_simple(output, FF_BLOOM, PP_BLOOM_INTENSITY);}))
 				.AddElement(new __ppf_ui_folder("Color", false, 3))
-				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.BLOOM, PP_BLOOM_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.BLOOM, PP_BLOOM_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.BLOOM, PP_BLOOM_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.BLOOM, PP_BLOOM_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.BLOOM, PP_BLOOM_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.BLOOM, PP_BLOOM_COLOR);}))
-			.AddElement(new __ppf_ui_slider("White Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_WHITE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLOOM, PP_BLOOM_WHITE_AMOUNT);}))
-				.AddElement(new __ppf_ui_folder("Dirt Lens", false, 5))
-					.AddElement(new __ppf_ui_checkbox("Enable", 0, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_DIRT_ENABLED), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.BLOOM, PP_BLOOM_DIRT_ENABLED);}))
-					.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_DIRT_INTENSITY), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLOOM, PP_BLOOM_DIRT_INTENSITY);}))
-					.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_DIRT_SCALE), 0.25, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLOOM, PP_BLOOM_DIRT_SCALE);}))
-					.AddElement(new __ppf_ui_checkbox("Can Distort", 0, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_DIRT_CAN_DISTORT), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.BLOOM, PP_BLOOM_DIRT_CAN_DISTORT);}))
+				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_BLOOM, PP_BLOOM_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_BLOOM, PP_BLOOM_COLOR);}))
+				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_BLOOM, PP_BLOOM_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_BLOOM, PP_BLOOM_COLOR);}))
+				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_BLOOM, PP_BLOOM_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_BLOOM, PP_BLOOM_COLOR);}))
+			.AddElement(new __ppf_ui_slider("White Amount", 0, false, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_WHITE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_BLOOM, PP_BLOOM_WHITE_AMOUNT);}))
+				.AddElement(new __ppf_ui_folder("Dirt Lens", false, 6))
+					.AddElement(new __ppf_ui_checkbox("Enable", 0, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_DIRT_ENABLED), function(checked) {return gui_ef_set_param_enable(checked, FF_BLOOM, PP_BLOOM_DIRT_ENABLED);}))
+					.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_DIRT_INTENSITY), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_BLOOM, PP_BLOOM_DIRT_INTENSITY);}))
+					.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_DIRT_SCALE), 0.25, 3, true, function(output) {gui_ef_set_param_simple(output, FF_BLOOM, PP_BLOOM_DIRT_SCALE);}))
+					.AddElement(new __ppf_ui_checkbox("Tiled", 0, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_DIRT_TILED), function(checked) {return gui_ef_set_param_enable(checked, FF_BLOOM, PP_BLOOM_DIRT_TILED);}))
+					.AddElement(new __ppf_ui_checkbox("Can Distort", 0, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_DIRT_CAN_DISTORT), function(checked) {return gui_ef_set_param_enable(checked, FF_BLOOM, PP_BLOOM_DIRT_CAN_DISTORT);}))
 					.AddElement(new __ppf_ui_button("Texture", function() {
 						var _file = get_open_filename("PNG Image|*.png", "*.png");
 						if (_file != "") {
 							if (sprite_exists(gui_bloom_dirtlens_texture_id)) sprite_delete(gui_bloom_dirtlens_texture_id);
 							gui_bloom_dirtlens_texture_id = sprite_add(_file, 0, 0, 0, 0, 0);
-							gui_ef_set_param_simple(sprite_get_texture(gui_bloom_dirtlens_texture_id, 0), FX_EFFECT.BLOOM, PP_BLOOM_DIRT_TEXTURE, sprite_get_texture(gui_bloom_dirtlens_texture_id, 0));
+							gui_ef_set_param_simple(sprite_get_texture(gui_bloom_dirtlens_texture_id, 0), FF_BLOOM, PP_BLOOM_DIRT_TEXTURE, sprite_get_texture(gui_bloom_dirtlens_texture_id, 0));
 						}
 					}))
-			.AddElement(new __ppf_ui_slider("Downscale", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_DOWNSCALE), 0, 1, false, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLOOM, PP_BLOOM_DOWNSCALE)}))
-			.AddElement(new __ppf_ui_checkbox("Debug 1", 0, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_DEBUG_1), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.BLOOM, PP_BLOOM_DEBUG_1);}))
-			.AddElement(new __ppf_ui_checkbox("Debug 2", 0, gui_ef_get_param_simple(FX_EFFECT.BLOOM, PP_BLOOM_DEBUG_2), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.BLOOM, PP_BLOOM_DEBUG_2);}))
+			.AddElement(new __ppf_ui_slider("Resolution", 0, false, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_RESOLUTION), 0, 1, false, function(output) {gui_ef_set_param_simple(output, FF_BLOOM, PP_BLOOM_RESOLUTION)}))
+			.AddElement(new __ppf_ui_checkbox("Debug 1", 0, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_DEBUG_1), function(checked) {return gui_ef_set_param_enable(checked, FF_BLOOM, PP_BLOOM_DEBUG_1);}))
+			.AddElement(new __ppf_ui_checkbox("Debug 2", 0, gui_ef_get_param_simple(FF_BLOOM, PP_BLOOM_DEBUG_2), function(checked) {return gui_ef_set_param_enable(checked, FF_BLOOM, PP_BLOOM_DEBUG_2);}))
+		.AddElement(new __ppf_ui_text_ext("Info", 0, function(element) {
+			element.width = element.parent.__panel_width-element.xx-element.parent.__element_xpadding;
+			var _text = "NOTE: You may need non-linear tone mapping so that the Bloom doesn't get blown out.";
+			return _text;
+		}));
 		
 		// effect: SUNSHAFTS
-		.AddElement(new __ppf_ui_menu("SUNSHAFTS (GODRAYS)", false, 16)) // 15
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SUNSHAFTS), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SUNSHAFTS);}))
-			.AddElement(new __ppf_ui_slider("Position X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_POSITION), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_POSITION);}))
-			.AddElement(new __ppf_ui_slider("Position Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_POSITION), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_POSITION);}))
-			.AddElement(new __ppf_ui_slider("Center Smoothness", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_CENTER_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_CENTER_SMOOTHNESS);}))
-			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_THRESHOLD), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_THRESHOLD);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_INTENSITY), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Dimmer", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_DIMMER), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_DIMMER);}))
-			.AddElement(new __ppf_ui_slider("Scattering", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_SCATTERING), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_SCATTERING);}))
-			.AddElement(new __ppf_ui_checkbox("Noise Enable", 0, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_NOISE_ENABLE), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_NOISE_ENABLE);}))
-			.AddElement(new __ppf_ui_folder("Rays", false, 3))
-				.AddElement(new __ppf_ui_slider("Rays Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_RAYS_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_RAYS_INTENSITY);}))
-				.AddElement(new __ppf_ui_slider("Rays Tiling", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_RAYS_TILING), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_RAYS_TILING);}))
-				.AddElement(new __ppf_ui_slider("Rays Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_RAYS_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_RAYS_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Downscale", 0, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_DOWNSCALE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_DOWNSCALE);}))
-			.AddElement(new __ppf_ui_checkbox("Debug", 0, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_DEBUG), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_DEBUG);}))
-			.AddElement(new __ppf_ui_slider("Source Offset", 10, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_SOURCE_OFFSET), -10, 0, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SUNSHAFTS_SOURCE_OFFSET);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("SUNSHAFTS (GODRAYS)", false, 16))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SUNSHAFTS), function(checked) {return gui_ef_set_enabled(checked, FF_SUNSHAFTS);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_INTENSITY), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_THRESHOLD), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_THRESHOLD);}))
+			.AddElement(new __ppf_ui_slider("Dimmer", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_DIMMER), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_DIMMER);}))
+			.AddElement(new __ppf_ui_slider("Scattering", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_SCATTERING), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_SCATTERING);}))
+			.AddElement(new __ppf_ui_slider("Position X", 0, false, gui_ef_get_param_vec2_x(FF_SUNSHAFTS, PP_SUNSHAFTS_POSITION), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_SUNSHAFTS, PP_SUNSHAFTS_POSITION);}))
+			.AddElement(new __ppf_ui_slider("Position Y", 0, false, gui_ef_get_param_vec2_y(FF_SUNSHAFTS, PP_SUNSHAFTS_POSITION), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_SUNSHAFTS, PP_SUNSHAFTS_POSITION);}))
+			.AddElement(new __ppf_ui_folder("Rays", false, 5))
+				.AddElement(new __ppf_ui_checkbox("Rays Enable", 0, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_NOISE_ENABLE), function(checked) {return gui_ef_set_param_enable(checked, FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_NOISE_ENABLE);}))
+				.AddElement(new __ppf_ui_slider("Rays Occlusion Radius", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_OCCLUSION_RADIUS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_OCCLUSION_RADIUS);}))
+				.AddElement(new __ppf_ui_slider("Rays Intensity", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_INTENSITY);}))
+				.AddElement(new __ppf_ui_slider("Rays Tiling", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_TILING), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_TILING);}))
+				.AddElement(new __ppf_ui_slider("Rays Speed", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_RAYS_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Resolution", 0, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_RESOLUTION), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_RESOLUTION);}))
+			.AddElement(new __ppf_ui_checkbox("Debug", 0, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_DEBUG), function(checked) {return gui_ef_set_param_enable(checked, FF_SUNSHAFTS, PP_SUNSHAFTS_DEBUG);}))
+			.AddElement(new __ppf_ui_slider("Source Offset", 10, false, gui_ef_get_param_simple(FF_SUNSHAFTS, PP_SUNSHAFTS_SOURCE_OFFSET), -10, 0, true, function(output) {gui_ef_set_param_simple(output, FF_SUNSHAFTS, PP_SUNSHAFTS_SOURCE_OFFSET);}));
 		
 		// effect: CHROMATIC ABERRATION
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("CHROMATIC ABERRATION", false, 7))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.CHROMATIC_ABERRATION), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.CHROMATIC_ABERRATION);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_INTENSITY), 0, 50, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_ANGLE);}))
-			.AddElement(new __ppf_ui_slider("Center Radius", 0, false, gui_ef_get_param_simple(FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_CENTER_RADIUS), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_CENTER_RADIUS);}))
-			.AddElement(new __ppf_ui_slider("Inner", 0, false, gui_ef_get_param_simple(FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_INNER), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_INNER);}))
-			.AddElement(new __ppf_ui_checkbox("Blur Enable", 0, gui_ef_get_param_simple(FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_BLUR_ENABLE), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_BLUR_ENABLE);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_CHROMATIC_ABERRATION), function(checked) {return gui_ef_set_enabled(checked, FF_CHROMATIC_ABERRATION);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_CHROMATIC_ABERRATION, PP_CHROMABER_INTENSITY), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_CHROMATIC_ABERRATION, PP_CHROMABER_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FF_CHROMATIC_ABERRATION, PP_CHROMABER_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FF_CHROMATIC_ABERRATION, PP_CHROMABER_ANGLE);}))
+			.AddElement(new __ppf_ui_slider("Center Radius", 0, false, gui_ef_get_param_simple(FF_CHROMATIC_ABERRATION, PP_CHROMABER_CENTER_RADIUS), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_CHROMATIC_ABERRATION, PP_CHROMABER_CENTER_RADIUS);}))
+			.AddElement(new __ppf_ui_slider("Inner", 0, false, gui_ef_get_param_simple(FF_CHROMATIC_ABERRATION, PP_CHROMABER_INNER), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_CHROMATIC_ABERRATION, PP_CHROMABER_INNER);}))
+			.AddElement(new __ppf_ui_checkbox("Blur Enable", 0, gui_ef_get_param_simple(FF_CHROMATIC_ABERRATION, PP_CHROMABER_BLUR_ENABLE), function(checked) {return gui_ef_set_param_enable(checked, FF_CHROMATIC_ABERRATION, PP_CHROMABER_BLUR_ENABLE);}))
 			.AddElement(new __ppf_ui_button("Spectral/Prism LUT", function() {
 				gui_chromaber_prisma_type += 1;
 				if (gui_chromaber_prisma_type >= array_length(gui_chromaber_prisma_tex_list)) gui_chromaber_prisma_type = 0;
-				gui_ef_set_param_simple(sprite_get_texture(gui_chromaber_prisma_tex_list[gui_chromaber_prisma_type], 0), FX_EFFECT.CHROMATIC_ABERRATION, PP_CHROMABER_PRISMA_LUT_TEX);
-			}))
+				gui_ef_set_param_simple(sprite_get_texture(gui_chromaber_prisma_tex_list[gui_chromaber_prisma_type], 0), FF_CHROMATIC_ABERRATION, PP_CHROMABER_PRISMA_LUT_TEXTURE);
+			}));
 		
 		// effect: DEPTH OF FIELD
-		.AddElement(new __ppf_ui_menu("DEPTH OF FIELD", false, 14))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.DEPTH_OF_FIELD), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.DEPTH_OF_FIELD);}))
-			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_RADIUS), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_RADIUS);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_INTENSITY);}))
-				.AddElement(new __ppf_ui_folder("Shape", false, 3))
-					.AddElement(new __ppf_ui_checkbox("Shaped", 0, false, function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_SHAPED);}))
-					.AddElement(new __ppf_ui_slider("Aperture", 8, false, gui_ef_get_param_simple(FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_BLADES_APERTURE), 0, 8, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_BLADES_APERTURE);}))
-					.AddElement(new __ppf_ui_slider("Angle", 360, false, gui_ef_get_param_simple(FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_BLADES_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_BLADES_ANGLE);}))
-				.AddElement(new __ppf_ui_folder("Z-Depth", false, 5))
-					.AddElement(new __ppf_ui_checkbox("Enabled", 0, gui_ef_get_param_simple(FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_USE_ZDEPTH), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_USE_ZDEPTH);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("DEPTH OF FIELD", false, 16))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_DEPTH_OF_FIELD), function(checked) {return gui_ef_set_enabled(checked, FF_DEPTH_OF_FIELD);}))
+			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_RADIUS), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_RADIUS);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_INTENSITY);}))
+				.AddElement(new __ppf_ui_folder("Shape", false, 2))
+					.AddElement(new __ppf_ui_slider("Aperture", 32, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_BLADES_APERTURE), 0, 32, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_BLADES_APERTURE);}))
+					.AddElement(new __ppf_ui_slider("Angle", 360, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_BLADES_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_BLADES_ANGLE);}))
+				.AddElement(new __ppf_ui_folder("Z-Depth", false, 8))
+					.AddElement(new __ppf_ui_checkbox("Enabled", 0, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_USE_ZDEPTH), function(checked) {return gui_ef_set_param_enable(checked, FF_DEPTH_OF_FIELD, PP_DOF_USE_ZDEPTH);}))
 					.AddElement(new __ppf_ui_button("Texture", function() {
 						var _file = get_open_filename("PNG Image|*.png", "*.png");
 						if (_file != "") {
 							if (sprite_exists(gui_dof_zdepth_spritetex_id)) sprite_delete(gui_dof_zdepth_spritetex_id);
 							gui_dof_zdepth_spritetex_id = sprite_add(_file, 0, 0, 0, 0, 0);
-							gui_ef_set_param_simple(sprite_get_texture(gui_dof_zdepth_spritetex_id, 0), FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_ZDEPTH_TEXTURE);
+							gui_ef_set_param_simple(sprite_get_texture(gui_dof_zdepth_spritetex_id, 0), FF_DEPTH_OF_FIELD, PP_DOF_ZDEPTH_TEXTURE);
 						}
 					}))
-					.AddElement(new __ppf_ui_slider("Focus Distance", 0, false, gui_ef_get_param_simple(FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_FOCUS_DISTANCE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_FOCUS_DISTANCE);}))
-					.AddElement(new __ppf_ui_slider("Focus Range", 0, false, gui_ef_get_param_simple(FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_FOCUS_RANGE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_FOCUS_RANGE);}))
-					.AddElement(new __ppf_ui_checkbox("Debug", 0, false, function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_DEBUG);}))
-				.AddElement(new __ppf_ui_slider("Downscale", 0, false, gui_ef_get_param_simple(FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_DOWNSCALE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DEPTH_OF_FIELD, PP_DOF_DOWNSCALE);}))
+					.AddElement(new __ppf_ui_slider("Focus Distance", 0, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_FOCUS_DISTANCE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_FOCUS_DISTANCE);}))
+					.AddElement(new __ppf_ui_slider("Focus Range", 0, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_FOCUS_RANGE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_FOCUS_RANGE);}))
+					.AddElement(new __ppf_ui_slider("Focus Near", 0, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_FOCUS_NEAR), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_FOCUS_NEAR);}))
+					.AddElement(new __ppf_ui_slider("Focus Far", 0, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_FOCUS_FAR), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_FOCUS_FAR);}))
+					.AddElement(new __ppf_ui_slider("Contrast", 0, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_ZDEPTH_CONTRAST), 1, 100, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_ZDEPTH_CONTRAST);}))
+					.AddElement(new __ppf_ui_checkbox("Debug", 0, false, function(checked) {return gui_ef_set_param_enable(checked, FF_DEPTH_OF_FIELD, PP_DOF_DEBUG);}))
+				.AddElement(new __ppf_ui_slider("Resolution", 0, false, gui_ef_get_param_simple(FF_DEPTH_OF_FIELD, PP_DOF_RESOLUTION), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DEPTH_OF_FIELD, PP_DOF_RESOLUTION);}));
 		
 		// effect: GAUSSIAN BLUR
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("GAUSSIAN BLUR", false, 6))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.BLUR_GAUSSIAN), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.BLUR_GAUSSIAN);}))
-			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_MASK_POWER);}))
-			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_MASK_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_MASK_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_MASK_SMOOTHNESS);}))
-			.AddElement(new __ppf_ui_slider("Downscale", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_DOWNSCALE), 0.25, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_GAUSSIAN, PP_BLUR_GAUSSIAN_DOWNSCALE);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_GAUSSIAN_BLUR), function(checked) {return gui_ef_set_enabled(checked, FF_GAUSSIAN_BLUR);}))
+			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_MASK_POWER);}))
+			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_MASK_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_MASK_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_MASK_SMOOTHNESS);}))
+			.AddElement(new __ppf_ui_slider("Resolution", 0, false, gui_ef_get_param_simple(FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_RESOLUTION), 0.25, 1, true, function(output) {gui_ef_set_param_simple(output, FF_GAUSSIAN_BLUR, PP_BLUR_GAUSSIAN_RESOLUTION);}));
 		
 		// effect: KAWASE BLUR
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("KAWASE BLUR", false, 7))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.BLUR_KAWASE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.BLUR_KAWASE);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_MASK_POWER);}))
-			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_MASK_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_MASK_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_MASK_SMOOTHNESS);}))
-			.AddElement(new __ppf_ui_slider("Downscale", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_DOWNSCALE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_DOWNSCALE);}))
-			.AddElement(new __ppf_ui_slider("Iterations", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_ITERATIONS), 2, 20, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_KAWASE, PP_BLUR_KAWASE_ITERATIONS);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_KAWASE_BLUR), function(checked) {return gui_ef_set_enabled(checked, FF_KAWASE_BLUR);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_KAWASE_BLUR, PP_BLUR_KAWASE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_KAWASE_BLUR, PP_BLUR_KAWASE_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FF_KAWASE_BLUR, PP_BLUR_KAWASE_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FF_KAWASE_BLUR, PP_BLUR_KAWASE_MASK_POWER);}))
+			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FF_KAWASE_BLUR, PP_BLUR_KAWASE_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_KAWASE_BLUR, PP_BLUR_KAWASE_MASK_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FF_KAWASE_BLUR, PP_BLUR_KAWASE_MASK_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_KAWASE_BLUR, PP_BLUR_KAWASE_MASK_SMOOTHNESS);}))
+			.AddElement(new __ppf_ui_slider("Resolution", 0, false, gui_ef_get_param_simple(FF_KAWASE_BLUR, PP_BLUR_KAWASE_RESOLUTION), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_KAWASE_BLUR, PP_BLUR_KAWASE_RESOLUTION);}))
+			.AddElement(new __ppf_ui_slider("Iterations", 0, false, gui_ef_get_param_simple(FF_KAWASE_BLUR, PP_BLUR_KAWASE_ITERATIONS), 2, 20, true, function(output) {gui_ef_set_param_simple(output, FF_KAWASE_BLUR, PP_BLUR_KAWASE_ITERATIONS);}));
 		
 		// effect: MOTION BLUR
-		.AddElement(new __ppf_ui_menu("MOTION BLUR", false, 10))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.MOTION_BLUR), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.MOTION_BLUR);}))
-			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_ANGLE);}))
-			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_RADIUS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_RADIUS);}))
-			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_MASK_POWER);}))
-			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_MASK_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_MASK_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_MASK_SMOOTHNESS);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("MOTION BLUR", false, 9))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_MOTION_BLUR), function(checked) {return gui_ef_set_enabled(checked, FF_MOTION_BLUR);}))
+			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FF_MOTION_BLUR, PP_MOTION_BLUR_RADIUS), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_MOTION_BLUR, PP_MOTION_BLUR_RADIUS);}))
+			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FF_MOTION_BLUR, PP_MOTION_BLUR_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FF_MOTION_BLUR, PP_MOTION_BLUR_ANGLE);}))
+			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FF_MOTION_BLUR, PP_MOTION_BLUR_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FF_MOTION_BLUR, PP_MOTION_BLUR_MASK_POWER);}))
+			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FF_MOTION_BLUR, PP_MOTION_BLUR_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_MOTION_BLUR, PP_MOTION_BLUR_MASK_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FF_MOTION_BLUR, PP_MOTION_BLUR_MASK_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_MOTION_BLUR, PP_MOTION_BLUR_MASK_SMOOTHNESS);}))
 			.AddElement(new __ppf_ui_folder("Focus", false, 2))
-				.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_CENTER);}))
-				.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_CENTER);}))
-			.AddElement(new __ppf_ui_button("Overlay Texture", function() {
-				var _file = get_open_filename("PNG Image|*.png", "*.png");
-				if (_file != "") {
-					if (sprite_exists(gui_motion_blur_texture_id)) sprite_delete(gui_motion_blur_texture_id);
-					gui_motion_blur_texture_id = sprite_add(_file, 0, 0, 0, 0, 0);
-					gui_ef_set_param_simple(sprite_get_texture(gui_motion_blur_texture_id, 0), FX_EFFECT.MOTION_BLUR, PP_MOTION_BLUR_TEXTURE);
-				}
-			}))
+				.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FF_MOTION_BLUR, PP_MOTION_BLUR_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_MOTION_BLUR, PP_MOTION_BLUR_CENTER);}))
+				.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FF_MOTION_BLUR, PP_MOTION_BLUR_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_MOTION_BLUR, PP_MOTION_BLUR_CENTER);}))
 		
 		// effect: RADIAL BLUR
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("RADIAL BLUR", false, 6))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.BLUR_RADIAL), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.BLUR_RADIAL)}))
-			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_RADIAL, PP_BLUR_RADIAL_RADIUS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_RADIAL, PP_BLUR_RADIAL_RADIUS);}))
-			.AddElement(new __ppf_ui_slider("Inner", 0, false, gui_ef_get_param_simple(FX_EFFECT.BLUR_RADIAL, PP_BLUR_RADIAL_INNER), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BLUR_RADIAL, PP_BLUR_RADIAL_INNER);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_RADIAL_BLUR), function(checked) {return gui_ef_set_enabled(checked, FF_RADIAL_BLUR)}))
+			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FF_RADIAL_BLUR, PP_BLUR_RADIAL_RADIUS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_RADIAL_BLUR, PP_BLUR_RADIAL_RADIUS);}))
+			.AddElement(new __ppf_ui_slider("Inner", 0, false, gui_ef_get_param_simple(FF_RADIAL_BLUR, PP_BLUR_RADIAL_INNER), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_RADIAL_BLUR, PP_BLUR_RADIAL_INNER);}))
 			.AddElement(new __ppf_ui_folder("Center", false, 2))
-				.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.BLUR_RADIAL, PP_BLUR_RADIAL_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.BLUR_RADIAL, PP_BLUR_RADIAL_CENTER);}))
-				.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.BLUR_RADIAL, PP_BLUR_RADIAL_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.BLUR_RADIAL, PP_BLUR_RADIAL_CENTER);}))
+				.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FF_RADIAL_BLUR, PP_BLUR_RADIAL_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_RADIAL_BLUR, PP_BLUR_RADIAL_CENTER);}))
+				.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FF_RADIAL_BLUR, PP_BLUR_RADIAL_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_RADIAL_BLUR, PP_BLUR_RADIAL_CENTER);}));
 		
 		// effect: SLOW MOTION
-		.AddElement(new __ppf_ui_menu("SLOW MOTION", false, 7))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SLOW_MOTION), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SLOW_MOTION);}))
-			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_THRESHOLD), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_THRESHOLD);}))
-			.AddElement(new __ppf_ui_slider("Force", 0, false, gui_ef_get_param_simple(FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_FORCE), 0, 25, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_FORCE);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Iterations", 0, false, gui_ef_get_param_simple(FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_ITERATIONS), 1, 30, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_ITERATIONS);}))
-			.AddElement(new __ppf_ui_checkbox("Debug", 0, gui_ef_get_param_simple(FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_DEBUG), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.SLOW_MOTION, PP_SLOW_MOTION_DEBUG);}))
-			.AddElement(new __ppf_ui_slider("Source Offset", 10, false, gui_ef_get_param_simple(FX_EFFECT.SUNSHAFTS, PP_SLOW_MOTION_SOURCE_OFFSET), -10, 0, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SUNSHAFTS, PP_SLOW_MOTION_SOURCE_OFFSET);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("LONG EXPOSURE", false, 8))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_LONG_EXPOSURE), function(checked) {return gui_ef_set_enabled(checked, FF_LONG_EXPOSURE);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Iterations", 10, false, gui_ef_get_param_simple(FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_ITERATIONS), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_ITERATIONS);}))
+			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_THRESHOLD), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_THRESHOLD);}))
+			.AddElement(new __ppf_ui_slider("Lights Intensity", 0, false, gui_ef_get_param_simple(FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_LIGHTS_INTENSITY), 0, 25, true, function(output) {gui_ef_set_param_simple(output, FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_LIGHTS_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Resolution", 0, false, gui_ef_get_param_simple(FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_RESOLUTION), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_RESOLUTION);}))
+			.AddElement(new __ppf_ui_checkbox("Debug", 0, gui_ef_get_param_simple(FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_DEBUG), function(checked) {return gui_ef_set_param_enable(checked, FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_DEBUG);}))
+			.AddElement(new __ppf_ui_slider("Source Offset", 10, false, gui_ef_get_param_simple(FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_SOURCE_OFFSET), -10, 0, true, function(output) {gui_ef_set_param_simple(output, FF_LONG_EXPOSURE, PP_LONG_EXPOSURE_SOURCE_OFFSET);}));
 		
 		// effect: MIST
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("MIST", false, 20))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.MIST), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.MIST);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_INTENSITY), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_SCALE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Tiling", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_TILING), 0.25, 16, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_TILING);}))
-			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_SPEED), -10, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_ANGLE);}))
-			.AddElement(new __ppf_ui_slider("Contrast", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_CONTRAST), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_CONTRAST);}))
-			.AddElement(new __ppf_ui_slider("Power", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_POWER), 0, 4, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_POWER);}))
-			.AddElement(new __ppf_ui_slider("Remap", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_REMAP), 0, 0.99, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_REMAP);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_MIST), function(checked) {return gui_ef_set_enabled(checked, FF_MIST);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_INTENSITY), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_SCALE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Tiling", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_TILING), 0.25, 16, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_TILING);}))
+			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_SPEED), -10, 10, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_ANGLE);}))
+			.AddElement(new __ppf_ui_slider("Contrast", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_CONTRAST), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_CONTRAST);}))
+			.AddElement(new __ppf_ui_slider("Power", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_POWER), 0, 4, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_POWER);}))
+			.AddElement(new __ppf_ui_slider("Remap", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_REMAP), 0, 0.99, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_REMAP);}))
 				.AddElement(new __ppf_ui_folder("Color", false, 3))
-				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.MIST, PP_MIST_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.MIST, PP_MIST_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.MIST, PP_MIST_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.MIST, PP_MIST_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.MIST, PP_MIST_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.MIST, PP_MIST_COLOR);}))
-			.AddElement(new __ppf_ui_slider("Mix", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_MIX), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_MIX);}))
-			.AddElement(new __ppf_ui_slider("Mix Threshold", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_MIX_THRESHOLD), -0.5, 0.5, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_MIX_THRESHOLD);}))
+				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_MIST, PP_MIST_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_MIST, PP_MIST_COLOR);}))
+				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_MIST, PP_MIST_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_MIST, PP_MIST_COLOR);}))
+				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_MIST, PP_MIST_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_MIST, PP_MIST_COLOR);}))
+			.AddElement(new __ppf_ui_slider("Mix", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_MIX), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_MIX);}))
+			.AddElement(new __ppf_ui_slider("Mix Threshold", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_MIX_THRESHOLD), -0.5, 0.5, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_MIX_THRESHOLD);}))
 			.AddElement(new __ppf_ui_button("Noise Texture", function() {
 				gui_mist_noise_type += 1;
 				if (gui_mist_noise_type >= array_length(gui_mist_noise_tex_list)) gui_mist_noise_type = 0;
-				gui_ef_set_param_simple(sprite_get_texture(gui_mist_noise_tex_list[gui_mist_noise_type], 0), FX_EFFECT.MIST, PP_MIST_NOISE_TEX);
+				gui_ef_set_param_simple(sprite_get_texture(gui_mist_noise_tex_list[gui_mist_noise_type], 0), FF_MIST, PP_MIST_NOISE_TEXTURE);
 			}))
-			.AddElement(new __ppf_ui_slider("Offset X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.MIST, PP_MIST_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.MIST, PP_MIST_OFFSET);}))
-			.AddElement(new __ppf_ui_slider("Offset Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.MIST, PP_MIST_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.MIST, PP_MIST_OFFSET);}))
-			.AddElement(new __ppf_ui_slider("Fade Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_FADE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_FADE_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Fade Angle", 0, false, gui_ef_get_param_simple(FX_EFFECT.MIST, PP_MIST_FADE_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.MIST, PP_MIST_FADE_ANGLE);}))
+			.AddElement(new __ppf_ui_slider("Offset X", 0, false, gui_ef_get_param_vec2_x(FF_MIST, PP_MIST_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_x(output, FF_MIST, PP_MIST_OFFSET);}))
+			.AddElement(new __ppf_ui_slider("Offset Y", 0, false, gui_ef_get_param_vec2_y(FF_MIST, PP_MIST_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_y(output, FF_MIST, PP_MIST_OFFSET);}))
+			.AddElement(new __ppf_ui_slider("Fade Amount", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_FADE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_FADE_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Fade Angle", 0, false, gui_ef_get_param_simple(FF_MIST, PP_MIST_FADE_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FF_MIST, PP_MIST_FADE_ANGLE);}));
 		
 		// effect: VIGNETTE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("VIGNETTE", false, 14))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.VIGNETTE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.VIGNETTE);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.VIGNETTE, PP_VIGNETTE_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Curvature", 0, false, gui_ef_get_param_simple(FX_EFFECT.VIGNETTE, PP_VIGNETTE_CURVATURE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_CURVATURE);}))
-			.AddElement(new __ppf_ui_slider("Inner", 0, false, gui_ef_get_param_simple(FX_EFFECT.VIGNETTE, PP_VIGNETTE_INNER), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_INNER);}))
-			.AddElement(new __ppf_ui_slider("Outer", 0, false, gui_ef_get_param_simple(FX_EFFECT.VIGNETTE, PP_VIGNETTE_OUTER), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_OUTER);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_VIGNETTE), function(checked) {return gui_ef_set_enabled(checked, FF_VIGNETTE);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_VIGNETTE, PP_VIGNETTE_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VIGNETTE, PP_VIGNETTE_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Curvature", 0, false, gui_ef_get_param_simple(FF_VIGNETTE, PP_VIGNETTE_CURVATURE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VIGNETTE, PP_VIGNETTE_CURVATURE);}))
+			.AddElement(new __ppf_ui_slider("Inner", 0, false, gui_ef_get_param_simple(FF_VIGNETTE, PP_VIGNETTE_INNER), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VIGNETTE, PP_VIGNETTE_INNER);}))
+			.AddElement(new __ppf_ui_slider("Outer", 0, false, gui_ef_get_param_simple(FF_VIGNETTE, PP_VIGNETTE_OUTER), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_VIGNETTE, PP_VIGNETTE_OUTER);}))
 				.AddElement(new __ppf_ui_folder("Color", false, 3))
-					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.VIGNETTE, PP_VIGNETTE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.VIGNETTE, PP_VIGNETTE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.VIGNETTE, PP_VIGNETTE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_VIGNETTE, PP_VIGNETTE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_VIGNETTE, PP_VIGNETTE_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_VIGNETTE, PP_VIGNETTE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_VIGNETTE, PP_VIGNETTE_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_VIGNETTE, PP_VIGNETTE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_VIGNETTE, PP_VIGNETTE_COLOR);}))
 				.AddElement(new __ppf_ui_folder("Center", false, 2))
-					.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.VIGNETTE, PP_VIGNETTE_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_CENTER);}))
-					.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.VIGNETTE, PP_VIGNETTE_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.VIGNETTE, PP_VIGNETTE_CENTER);}))
-			.AddElement(new __ppf_ui_checkbox("Rounded", 0, gui_ef_get_param_simple(FX_EFFECT.VIGNETTE, PP_VIGNETTE_ROUNDED), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.VIGNETTE, PP_VIGNETTE_ROUNDED);}))
-			.AddElement(new __ppf_ui_checkbox("Linear", 0, gui_ef_get_param_simple(FX_EFFECT.VIGNETTE, PP_VIGNETTE_LINEAR), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.VIGNETTE, PP_VIGNETTE_LINEAR);}));
+					.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FF_VIGNETTE, PP_VIGNETTE_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_VIGNETTE, PP_VIGNETTE_CENTER);}))
+					.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FF_VIGNETTE, PP_VIGNETTE_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_VIGNETTE, PP_VIGNETTE_CENTER);}))
+			.AddElement(new __ppf_ui_checkbox("Rounded", 0, gui_ef_get_param_simple(FF_VIGNETTE, PP_VIGNETTE_ROUNDED), function(checked) {return gui_ef_set_param_enable(checked, FF_VIGNETTE, PP_VIGNETTE_ROUNDED);}))
+			.AddElement(new __ppf_ui_checkbox("Linear", 0, gui_ef_get_param_simple(FF_VIGNETTE, PP_VIGNETTE_LINEAR), function(checked) {return gui_ef_set_param_enable(checked, FF_VIGNETTE, PP_VIGNETTE_LINEAR);}));
 		#endregion
 		
 		#region >> CATEGORY: COLOR GRADING
 		inspector_struct
-		.AddElement(new __ppf_ui_category("Color Grading", false, 126))
+		.AddElement(new __ppf_ui_category("Color Grading", false, 145));
+		
+		// effect: TONE MAPPING
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("TONE MAPPING", false, 7))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_TONE_MAPPING), function(checked) {return gui_ef_set_enabled(checked, FF_TONE_MAPPING);}))
+			.AddElement(new __ppf_ui_folder("Type", true, 4))
+				.AddElement(new __ppf_ui_button("Linear", function() {gui_ef_set_param_simple(0, FF_TONE_MAPPING, PP_TONE_MAPPING_MODE);}))
+				.AddElement(new __ppf_ui_button("Reinhard", function() {gui_ef_set_param_simple(1, FF_TONE_MAPPING, PP_TONE_MAPPING_MODE);}))
+				.AddElement(new __ppf_ui_button("ACES", function() {gui_ef_set_param_simple(2, FF_TONE_MAPPING, PP_TONE_MAPPING_MODE);}))
+				.AddElement(new __ppf_ui_button("ACES Film", function() {gui_ef_set_param_simple(3, FF_TONE_MAPPING, PP_TONE_MAPPING_MODE);}))
+		.AddElement(new __ppf_ui_slider("White", 0, false, gui_ef_get_param_simple(FF_TONE_MAPPING, PP_TONE_MAPPING_WHITE), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_TONE_MAPPING, PP_TONE_MAPPING_WHITE);}))
 		
 		// effect: Color Curves
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("COLOR CURVES", false, 17))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.COLOR_CURVES), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.COLOR_CURVES);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_COLOR_CURVES), function(checked) {return gui_ef_set_enabled(checked, FF_COLOR_CURVES);}))
 			.AddElement(new __ppf_ui_text_ext("Info", 0, function(element) {
 					var _width = element.parent.__panel_width-element.xx*2;
 					element.width = _width;
@@ -857,9 +886,9 @@ function __PPFX_DebugInspectorGenerator() constructor {
 				}
 			}))
 			.AddElement(new __ppf_ui_method("Curves", 0, function() {
-					uni_curve_background_pos_res = shader_get_uniform(__ppf_sh_graph, "u_pos_res");
-					uni_curve_background_index = shader_get_uniform(__ppf_sh_graph, "u_background_index");
-					uni_curve_background_grid_size = shader_get_uniform(__ppf_sh_graph, "u_grid_size");
+					uni_curve_background_pos_res = shader_get_uniform(__ppf_shGraph, "u_pos_res");
+					uni_curve_background_index = shader_get_uniform(__ppf_shGraph, "u_background_index");
+					uni_curve_background_grid_size = shader_get_uniform(__ppf_shGraph, "u_grid_size");
 					gui_color_curves_get_graph();
 				},
 				function(element) {
@@ -881,11 +910,11 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						}
 						draw_set_color(c_white);
 						draw_set_alpha(element.alpha * 0.85);
-						shader_set(__ppf_sh_graph);
+						shader_set(__ppf_shGraph);
 						shader_set_uniform_f(uni_curve_background_pos_res, _x1, _y1, _width, _height);
 						shader_set_uniform_f(uni_curve_background_grid_size, 256/10, 256/10);
 						shader_set_uniform_i(uni_curve_background_index, _background_index);
-						draw_sprite_stretched(__spr_ppf_pixel, 0, _x1, _y1, _width, _height);
+						draw_sprite_stretched(__ppf_sprPixel, 0, _x1, _y1, _width, _height);
 						shader_reset();
 						draw_set_alpha(1);
 						
@@ -903,13 +932,13 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						return 48;
 					}
 				}))
-			.AddElement(new __ppf_ui_checkbox("Preserve Luminance", 0, gui_ef_get_param_simple(FX_EFFECT.COLOR_CURVES, PP_COLOR_CURVES_PRESERVE_LUMA), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.COLOR_CURVES, PP_COLOR_CURVES_PRESERVE_LUMA);}))
+			.AddElement(new __ppf_ui_checkbox("Preserve Luminance", 0, gui_ef_get_param_simple(FF_COLOR_CURVES, PP_COLOR_CURVES_PRESERVE_LUMA), function(checked) {return gui_ef_set_param_enable(checked, FF_COLOR_CURVES, PP_COLOR_CURVES_PRESERVE_LUMA);}))
 			.AddElement(new __ppf_ui_folder("Data", false, 9))
 			.AddElement(new __ppf_ui_button("Reset Channel", function() {
 				if (gui_color_curves_struct != undefined) {
 					switch(gui_color_curves_curve_index) {
-						case 0: gui_color_curves_struct.ResetChannel(__ac_ppf_yrgb_curve); break;
-						case 1: gui_color_curves_struct.ResetChannel(__ac_ppf_hhsl_curve); break;
+						case 0: gui_color_curves_struct.ResetChannel(__ppf_acYRGB); break;
+						case 1: gui_color_curves_struct.ResetChannel(__ppf_acHHSL); break;
 					}
 					inspector_struct.__bake();
 					gui_color_curves_struct.__debug_bake();
@@ -918,8 +947,8 @@ function __PPFX_DebugInspectorGenerator() constructor {
 			.AddElement(new __ppf_ui_button("Reset Curve", function() {
 				if (gui_color_curves_struct != undefined) {
 					switch(gui_color_curves_curve_index) {
-						case 0: gui_color_curves_struct.LoadAnimCurve(__ac_ppf_yrgb_curve); break;
-						case 1: gui_color_curves_struct.LoadAnimCurve(__ac_ppf_hhsl_curve); break;
+						case 0: gui_color_curves_struct.LoadAnimCurve(__ppf_acYRGB); break;
+						case 1: gui_color_curves_struct.LoadAnimCurve(__ppf_acHHSL); break;
 					}
 					inspector_struct.__bake();
 					gui_color_curves_struct.__debug_bake();
@@ -963,175 +992,230 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						gui_color_curves_struct.LoadSprite(gui_yrgb_curve_sprite_id, 0);
 					}
 				}
-			}))
+			}));
 		
 		// effect: LUT
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("LUT", false, 8))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.LUT), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.LUT);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.LUT, PP_LUT_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.LUT, PP_LUT_INTENSITY);}))
-				
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_LUT), function(checked) {return gui_ef_set_enabled(checked, FF_LUT);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_LUT, PP_LUT_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_LUT, PP_LUT_INTENSITY);}))
+			
 			.AddElement(new __ppf_ui_folder("Type", false, 3))
 				.AddElement(new __ppf_ui_button("Strip", function() {
-					gui_ef_set_param_simple(0, FX_EFFECT.LUT, PP_LUT_TYPE);
+					gui_ef_set_param_simple(0, FF_LUT, PP_LUT_TYPE);
 				}))
 				.AddElement(new __ppf_ui_button("Grid", function() {
-					gui_ef_set_param_simple(1, FX_EFFECT.LUT, PP_LUT_TYPE);
+					gui_ef_set_param_simple(1, FF_LUT, PP_LUT_TYPE);
 				}))
 				.AddElement(new __ppf_ui_button("Hald Grid (.Cube)", function() {
-					gui_ef_set_param_simple(2, FX_EFFECT.LUT, PP_LUT_TYPE);
+					gui_ef_set_param_simple(2, FF_LUT, PP_LUT_TYPE);
 				}))
 				
-			.AddElement(new __ppf_ui_slider("Horizontal Squares", 64, false, gui_ef_get_param_simple(FX_EFFECT.LUT, PP_LUT_SQUARES), 0, 64, false, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.LUT, PP_LUT_SQUARES);}))
+			.AddElement(new __ppf_ui_slider("Horizontal Squares", 64, false, gui_ef_get_param_simple(FF_LUT, PP_LUT_SQUARES), 0, 64, false, function(output) {gui_ef_set_param_simple(output, FF_LUT, PP_LUT_SQUARES);}))
 			.AddElement(new __ppf_ui_button("Texture", function() {
 				var _file = get_open_filename("PNG Image|*.png", "*.png");
 				if (_file != "") {
 					if (sprite_exists(gui_lut_texture_id)) sprite_delete(gui_lut_texture_id);
 					gui_lut_texture_id = sprite_add(_file, 0, 0, 0, 0, 0);
-					gui_ef_set_param_simple(sprite_get_texture(gui_lut_texture_id, 0), FX_EFFECT.LUT, PP_LUT_TEXTURE);
+					gui_ef_set_param_simple(sprite_get_texture(gui_lut_texture_id, 0), FF_LUT, PP_LUT_TEXTURE);
 				}
-			}))
+			}));
 		
 		// effect: PALETTE SWAP
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("PALETTE SWAP", false, 8))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.PALETTE_SWAP), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.PALETTE_SWAP);}))
-			.AddElement(new __ppf_ui_slider("Row", 8, false, gui_ef_get_param_simple(FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_ROW), 0, 8, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_ROW);}))
-			.AddElement(new __ppf_ui_slider("Height", 8, false, gui_ef_get_param_simple(FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_PAL_HEIGHT), 0, 8, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_PAL_HEIGHT);}))
-			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_THRESHOLD), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_THRESHOLD);}))
-			.AddElement(new __ppf_ui_slider("Smoothness", 0, false, gui_ef_get_param_simple(FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_SMOOTHNESS);}))
-			.AddElement(new __ppf_ui_checkbox("Flip", 0, gui_ef_get_param_simple(FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_FLIP), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_FLIP);}))
-			.AddElement(new __ppf_ui_checkbox("Limit Colors", 0, gui_ef_get_param_simple(FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_LIMIT_COLORS), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_LIMIT_COLORS);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_PALETTE_SWAP), function(checked) {return gui_ef_set_enabled(checked, FF_PALETTE_SWAP);}))
+			.AddElement(new __ppf_ui_slider("Row", 9, false, gui_ef_get_param_simple(FF_PALETTE_SWAP, PP_PALETTE_SWAP_ROW), 1, 10, true, function(output) {gui_ef_set_param_simple(output, FF_PALETTE_SWAP, PP_PALETTE_SWAP_ROW);}))
+			.AddElement(new __ppf_ui_slider("Height", 9, false, gui_ef_get_param_simple(FF_PALETTE_SWAP, PP_PALETTE_SWAP_PAL_HEIGHT), 1, 10, true, function(output) {gui_ef_set_param_simple(output, FF_PALETTE_SWAP, PP_PALETTE_SWAP_PAL_HEIGHT);}))
+			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FF_PALETTE_SWAP, PP_PALETTE_SWAP_THRESHOLD), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_PALETTE_SWAP, PP_PALETTE_SWAP_THRESHOLD);}))
+			.AddElement(new __ppf_ui_slider("Smoothness", 0, false, gui_ef_get_param_simple(FF_PALETTE_SWAP, PP_PALETTE_SWAP_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_PALETTE_SWAP, PP_PALETTE_SWAP_SMOOTHNESS);}))
+			.AddElement(new __ppf_ui_checkbox("Flip", 0, gui_ef_get_param_simple(FF_PALETTE_SWAP, PP_PALETTE_SWAP_FLIP), function(checked) {return gui_ef_set_param_enable(checked, FF_PALETTE_SWAP, PP_PALETTE_SWAP_FLIP);}))
+			.AddElement(new __ppf_ui_checkbox("Limit Colors", 0, gui_ef_get_param_simple(FF_PALETTE_SWAP, PP_PALETTE_SWAP_LIMIT_COLORS), function(checked) {return gui_ef_set_param_enable(checked, FF_PALETTE_SWAP, PP_PALETTE_SWAP_LIMIT_COLORS);}))
 			.AddElement(new __ppf_ui_button("Texture", function() {
 				var _file = get_open_filename("PNG Image|*.png", "*.png");
 				if (_file != "") {
 					if (sprite_exists(gui_palette_texture_id)) sprite_delete(gui_palette_texture_id);
 					gui_palette_texture_id = sprite_add(_file, 0, 0, 0, 0, 0);
-					gui_ef_set_param_simple(sprite_get_texture(gui_palette_texture_id, 0), FX_EFFECT.PALETTE_SWAP, PP_PALETTE_SWAP_TEXTURE);
+					gui_ef_set_param_simple(sprite_get_texture(gui_palette_texture_id, 0), FF_PALETTE_SWAP, PP_PALETTE_SWAP_TEXTURE);
 				}
-			}))
-		
-		// effect: SHADOW, MIDTONE, HIGHLIGHT
-		.AddElement(new __ppf_ui_menu("SHADOW, MIDTONE, HIGHLIGHT", false, 15))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT);}))
-			.AddElement(new __ppf_ui_folder("Shadow", false, 3))
-				.AddElement(new __ppf_ui_slider("Shadow - Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Shadow - Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Shadow - Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_COLOR);}))
-			.AddElement(new __ppf_ui_folder("Midtone", false, 3))
-				.AddElement(new __ppf_ui_slider("Midtone - Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Midtone - Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Midtone - Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_COLOR);}))
-			.AddElement(new __ppf_ui_folder("Highlight", false, 3))
-				.AddElement(new __ppf_ui_slider("Highlight - Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Highlight - Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Highlight - Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_COLOR), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_COLOR);}))
-			.AddElement(new __ppf_ui_slider("Shadow Range", 0, false, gui_ef_get_param_simple(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_RANGE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_RANGE);}))
-			.AddElement(new __ppf_ui_slider("Highlight Range", 0, false, gui_ef_get_param_simple(FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_RANGE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_RANGE);}))
-		
-		// effect: LIFT, GAMMA, GAIN
-		.AddElement(new __ppf_ui_menu("LIFT, GAMMA, GAIN", false, 13))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.LIFT_GAMMA_GAIN), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.LIFT_GAMMA_GAIN);}))
-			.AddElement(new __ppf_ui_folder("Lift", false, 3))
-				.AddElement(new __ppf_ui_slider("Lift - Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.LIFT_GAMMA_GAIN, PP_LIFT), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_LIFT);}))
-				.AddElement(new __ppf_ui_slider("Lift - Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.LIFT_GAMMA_GAIN, PP_LIFT), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_LIFT);}))
-				.AddElement(new __ppf_ui_slider("Lift - Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.LIFT_GAMMA_GAIN, PP_LIFT), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_LIFT);}))
-			.AddElement(new __ppf_ui_folder("Gamma", false, 3))
-				.AddElement(new __ppf_ui_slider("Gamma - Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAMMA), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAMMA);}))
-				.AddElement(new __ppf_ui_slider("Gamma - Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAMMA), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAMMA);}))
-				.AddElement(new __ppf_ui_slider("Gamma - Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAMMA), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAMMA);}))
-			.AddElement(new __ppf_ui_folder("Gain", false, 3))
-				.AddElement(new __ppf_ui_slider("Gain - Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAIN), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAIN);}))
-				.AddElement(new __ppf_ui_slider("Gain - Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAIN), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAIN);}))
-				.AddElement(new __ppf_ui_slider("Gain - Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAIN), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.LIFT_GAMMA_GAIN, PP_GAIN);}))
-		
-		// effect: HUE SHIFT
-		.AddElement(new __ppf_ui_menu("HUE SHIFT", false, 4))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.HUE_SHIFT), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.HUE_SHIFT);}))
-			.AddElement(new __ppf_ui_slider("Hue", 0, false, gui_ef_get_param_simple(FX_EFFECT.HUE_SHIFT, PP_HUE_SHIFT_HUE), 0, 255, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.HUE_SHIFT, PP_HUE_SHIFT_HUE);}))
-			.AddElement(new __ppf_ui_slider("Saturation", gui_ef_get_param_simple(FX_EFFECT.HUE_SHIFT, PP_HUE_SHIFT_SATURATION), false, 255, 0, 510, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.HUE_SHIFT, PP_HUE_SHIFT_SATURATION);}))
-			.AddElement(new __ppf_ui_checkbox("Preserve Luminance", 0, gui_ef_get_param_simple(FX_EFFECT.HUE_SHIFT, PP_HUE_SHIFT_PRESERVE_LUMA), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.HUE_SHIFT, PP_HUE_SHIFT_PRESERVE_LUMA);}))
-		
-		// effect: COLORIZE
-		.AddElement(new __ppf_ui_menu("COLORIZE", false, 5))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.COLORIZE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.COLORIZE);}))
-			.AddElement(new __ppf_ui_slider("Hue", 0, false, gui_ef_get_param_simple(FX_EFFECT.COLORIZE, PP_COLORIZE_HUE), 0, 255, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.COLORIZE, PP_COLORIZE_HUE);}))
-			.AddElement(new __ppf_ui_slider("Saturation", 0, false, gui_ef_get_param_simple(FX_EFFECT.COLORIZE, PP_COLORIZE_SATURATION), 0, 255, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.COLORIZE, PP_COLORIZE_SATURATION);}))
-			.AddElement(new __ppf_ui_slider("Value", 0, false, gui_ef_get_param_simple(FX_EFFECT.COLORIZE, PP_COLORIZE_VALUE), 0, 255, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.COLORIZE, PP_COLORIZE_VALUE);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.COLORIZE, PP_COLORIZE_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.COLORIZE, PP_COLORIZE_INTENSITY);}))
-		
-		// effect: COLOR TINT
-		.AddElement(new __ppf_ui_menu("COLOR TINT", false, 4))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.COLOR_TINT), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.COLOR_TINT);}))
-			.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.COLOR_TINT, PP_COLOR_TINT_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.COLOR_TINT, PP_COLOR_TINT_COLOR);}))
-			.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.COLOR_TINT, PP_COLOR_TINT_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.COLOR_TINT, PP_COLOR_TINT_COLOR);}))
-			.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.COLOR_TINT, PP_COLOR_TINT_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.COLOR_TINT, PP_COLOR_TINT_COLOR);}))
-		
-		// effect: CHANNEL MIXER
-		.AddElement(new __ppf_ui_menu("CHANNEL MIXER", false, 13))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.CHANNEL_MIXER), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.CHANNEL_MIXER);}))
-			.AddElement(new __ppf_ui_folder("Red", false, 3))
-				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_RED), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_RED);}))
-				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_RED), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_RED);}))
-				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_RED), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_RED);}))
-			.AddElement(new __ppf_ui_folder("Green", false, 3))
-				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN);}))
-				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN);}))
-				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN);}))
-			.AddElement(new __ppf_ui_folder("Blue", false, 3))
-				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE), 0, 512, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE);}))
-				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE), 0, 512, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE);}))
-				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE), 0, 512, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE);}))
-		
-		// effect: INVERT COLORS
-		.AddElement(new __ppf_ui_menu("INVERT COLORS", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.INVERT_COLORS), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.INVERT_COLORS);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.INVERT_COLORS, PP_INVERT_COLORS_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.INVERT_COLORS, PP_INVERT_COLORS_INTENSITY);}))
+			}));
 		
 		// effect: EXPOSURE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("EXPOSURE", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.EXPOSURE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.EXPOSURE);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.EXPOSURE, PP_EXPOSURE), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.EXPOSURE, PP_EXPOSURE);}))
-		
-		// effect: BRIGHTNESS
-		.AddElement(new __ppf_ui_menu("BRIGHTNESS", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.BRIGHTNESS), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.BRIGHTNESS);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.BRIGHTNESS, PP_BRIGHTNESS), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BRIGHTNESS, PP_BRIGHTNESS);}))
-		
-		// effect: SATURATION
-		.AddElement(new __ppf_ui_menu("SATURATION", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SATURATION), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SATURATION);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.SATURATION, PP_SATURATION), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SATURATION, PP_SATURATION);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_EXPOSURE), function(checked) {return gui_ef_set_enabled(checked, FF_EXPOSURE);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_EXPOSURE, PP_EXPOSURE), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_EXPOSURE, PP_EXPOSURE);}));
 		
 		// effect: CONTRAST
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("CONTRAST", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.CONTRAST), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.CONTRAST);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.CONTRAST, PP_CONTRAST), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CONTRAST, PP_CONTRAST);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_CONTRAST), function(checked) {return gui_ef_set_enabled(checked, FF_CONTRAST);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_CONTRAST, PP_CONTRAST), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_CONTRAST, PP_CONTRAST);}));
+		
+		// effect: BRIGHTNESS
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("BRIGHTNESS", false, 2))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_BRIGHTNESS), function(checked) {return gui_ef_set_enabled(checked, FF_BRIGHTNESS);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_BRIGHTNESS, PP_BRIGHTNESS), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_BRIGHTNESS, PP_BRIGHTNESS);}));
+		
+		// effect: INVERT COLORS
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("INVERT COLORS", false, 2))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_INVERT_COLORS), function(checked) {return gui_ef_set_enabled(checked, FF_INVERT_COLORS);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_INVERT_COLORS, PP_INVERT_COLORS_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_INVERT_COLORS, PP_INVERT_COLORS_INTENSITY);}));
+		
+		// effect: CHANNEL MIXER
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("CHANNEL MIXER", false, 13))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_CHANNEL_MIXER), function(checked) {return gui_ef_set_enabled(checked, FF_CHANNEL_MIXER);}))
+			.AddElement(new __ppf_ui_folder("Red", false, 3))
+				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_RED_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_RED_RED);}))
+				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_RED_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_RED_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_RED_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_RED_BLUE);}))
+			.AddElement(new __ppf_ui_folder("Green", false, 3))
+				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN_RED);}))
+				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_GREEN_BLUE);}))
+			.AddElement(new __ppf_ui_folder("Blue", false, 3))
+				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE_RED);}))
+				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_simple(FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNEL_MIXER, PP_CHANNEL_MIXER_BLUE_BLUE);}));
+		
+		// effect: SHADOW, MIDTONE, HIGHLIGHT
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("SHADOW, MIDTONE, HIGHLIGHT", false, 18))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SHADOW_MIDTONE_HIGHLIGHT), function(checked) {return gui_ef_set_enabled(checked, FF_SHADOW_MIDTONE_HIGHLIGHT);}))
+			.AddElement(new __ppf_ui_folder("Shadow", false, 3))
+				.AddElement(new __ppf_ui_slider("Shadow - Red", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_RED);}))
+				.AddElement(new __ppf_ui_slider("Shadow - Green", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Shadow - Blue", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_BLUE);}))
+			.AddElement(new __ppf_ui_folder("Midtone", false, 3))
+				.AddElement(new __ppf_ui_slider("Midtone - Red", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_RED);}))
+				.AddElement(new __ppf_ui_slider("Midtone - Green", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Midtone - Blue", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_MIDTONE_BLUE);}))
+			.AddElement(new __ppf_ui_folder("Highlight", false, 3))
+				.AddElement(new __ppf_ui_slider("Highlight - Red", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_RED);}))
+				.AddElement(new __ppf_ui_slider("Highlight - Green", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Highlight - Blue", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_BLUE);}))
+			.AddElement(new __ppf_ui_folder("Range", false, 4))
+			.AddElement(new __ppf_ui_slider("Shadow Range Min", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_RANGE_MIN), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_RANGE_MIN);}))
+			.AddElement(new __ppf_ui_slider("Shadow Range Max", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_RANGE_MAX), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_SHADOW_RANGE_MAX);}))
+			.AddElement(new __ppf_ui_slider("Highlight Range Min", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_RANGE_MIN), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_RANGE_MIN);}))
+			.AddElement(new __ppf_ui_slider("Highlight Range Max", 0, false, gui_ef_get_param_simple(FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_RANGE_MAX), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHADOW_MIDTONE_HIGHLIGHT, PP_HIGHLIGHT_RANGE_MAX);}));
+		
+		// effect: LIFT, GAMMA, GAIN
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("LIFT, GAMMA, GAIN", false, 16))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_LIFT_GAMMA_GAIN), function(checked) {return gui_ef_set_enabled(checked, FF_LIFT_GAMMA_GAIN);}))
+			
+			.AddElement(new __ppf_ui_slider("Lift Intensity", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_LIFT_INTENSITY), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_LIFT_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Gamma Intensity", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_GAMMA_INTENSITY), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_GAMMA_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Gain Intensity", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_GAIN_INTENSITY), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_GAIN_INTENSITY);}))
+			
+			.AddElement(new __ppf_ui_folder("Lift", false, 3))
+				.AddElement(new __ppf_ui_slider("Lift - Red", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_LIFT_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_LIFT_RED);}))
+				.AddElement(new __ppf_ui_slider("Lift - Green", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_LIFT_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_LIFT_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Lift - Blue", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_LIFT_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_LIFT_BLUE);}))
+			.AddElement(new __ppf_ui_folder("Gamma", false, 3))
+				.AddElement(new __ppf_ui_slider("Gamma - Red", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_GAMMA_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_GAMMA_RED);}))
+				.AddElement(new __ppf_ui_slider("Gamma - Green", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_GAMMA_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_GAMMA_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Gamma - Blue", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_GAMMA_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_GAMMA_BLUE);}))
+			.AddElement(new __ppf_ui_folder("Gain", false, 3))
+				.AddElement(new __ppf_ui_slider("Gain - Red", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_GAIN_RED), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_GAIN_RED);}))
+				.AddElement(new __ppf_ui_slider("Gain - Green", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_GAIN_GREEN), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_GAIN_GREEN);}))
+				.AddElement(new __ppf_ui_slider("Gain - Blue", 0, false, gui_ef_get_param_simple(FF_LIFT_GAMMA_GAIN, PP_GAIN_BLUE), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_LIFT_GAMMA_GAIN, PP_GAIN_BLUE);}));
+		
+		// effect: SATURATION
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("SATURATION", false, 2))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SATURATION), function(checked) {return gui_ef_set_enabled(checked, FF_SATURATION);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_SATURATION, PP_SATURATION), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SATURATION, PP_SATURATION);}));
+		
+		// effect: HUE SHIFT
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("HUE SHIFT", false, 4))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_HUE_SHIFT), function(checked) {return gui_ef_set_enabled(checked, FF_HUE_SHIFT);}))
+			.AddElement(new __ppf_ui_slider("Hue", 0, false, gui_ef_get_param_simple(FF_HUE_SHIFT, PP_HUE_SHIFT_HUE), 0, 255, true, function(output) {gui_ef_set_param_simple(output, FF_HUE_SHIFT, PP_HUE_SHIFT_HUE);}))
+			.AddElement(new __ppf_ui_slider("Saturation", gui_ef_get_param_simple(FF_HUE_SHIFT, PP_HUE_SHIFT_SATURATION), false, 255, 0, 510, true, function(output) {gui_ef_set_param_simple(output, FF_HUE_SHIFT, PP_HUE_SHIFT_SATURATION);}))
+			.AddElement(new __ppf_ui_checkbox("Preserve Luminance", 0, gui_ef_get_param_simple(FF_HUE_SHIFT, PP_HUE_SHIFT_PRESERVE_LUMA), function(checked) {return gui_ef_set_param_enable(checked, FF_HUE_SHIFT, PP_HUE_SHIFT_PRESERVE_LUMA);}));
+		
+		// effect: COLORIZE
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("COLORIZE", false, 5))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_COLORIZE), function(checked) {return gui_ef_set_enabled(checked, FF_COLORIZE);}))
+			.AddElement(new __ppf_ui_slider("Hue", 0, false, gui_ef_get_param_simple(FF_COLORIZE, PP_COLORIZE_HUE), 0, 255, true, function(output) {gui_ef_set_param_simple(output, FF_COLORIZE, PP_COLORIZE_HUE);}))
+			.AddElement(new __ppf_ui_slider("Saturation", 0, false, gui_ef_get_param_simple(FF_COLORIZE, PP_COLORIZE_SATURATION), 0, 255, true, function(output) {gui_ef_set_param_simple(output, FF_COLORIZE, PP_COLORIZE_SATURATION);}))
+			.AddElement(new __ppf_ui_slider("Value", 0, false, gui_ef_get_param_simple(FF_COLORIZE, PP_COLORIZE_VALUE), 0, 255, true, function(output) {gui_ef_set_param_simple(output, FF_COLORIZE, PP_COLORIZE_VALUE);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_COLORIZE, PP_COLORIZE_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_COLORIZE, PP_COLORIZE_INTENSITY);}));
+		
+		// effect: COLOR TINT
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("COLOR TINT", false, 4))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_COLOR_TINT), function(checked) {return gui_ef_set_enabled(checked, FF_COLOR_TINT);}))
+			.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_COLOR_TINT, PP_COLOR_TINT_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_COLOR_TINT, PP_COLOR_TINT_COLOR);}))
+			.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_COLOR_TINT, PP_COLOR_TINT_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_COLOR_TINT, PP_COLOR_TINT_COLOR);}))
+			.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_COLOR_TINT, PP_COLOR_TINT_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_COLOR_TINT, PP_COLOR_TINT_COLOR);}));
 		
 		// effect: CHANNELS
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("CHANNELS", false, 4))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.CHANNELS), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.CHANNELS);}))
-			.AddElement(new __ppf_ui_slider("Red Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.CHANNELS, PP_CHANNEL_RED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CHANNELS, PP_CHANNEL_RED);}))
-			.AddElement(new __ppf_ui_slider("Green Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.CHANNELS, PP_CHANNEL_GREEN), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CHANNELS, PP_CHANNEL_GREEN);}))
-			.AddElement(new __ppf_ui_slider("Blue Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.CHANNELS, PP_CHANNEL_BLUE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CHANNELS, PP_CHANNEL_BLUE);}))
-		
-		// effect: POSTERIZATION
-		.AddElement(new __ppf_ui_menu("POSTERIZATION", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.POSTERIZATION), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.POSTERIZATION);}))
-			.AddElement(new __ppf_ui_slider("Color Factor", 128, false, gui_ef_get_param_simple(FX_EFFECT.POSTERIZATION, PP_POSTERIZATION_COL_FACTOR), 0, 128, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.POSTERIZATION, PP_POSTERIZATION_COL_FACTOR);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_CHANNELS), function(checked) {return gui_ef_set_enabled(checked, FF_CHANNELS);}))
+			.AddElement(new __ppf_ui_slider("Red Amount", 0, false, gui_ef_get_param_simple(FF_CHANNELS, PP_CHANNEL_RED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNELS, PP_CHANNEL_RED);}))
+			.AddElement(new __ppf_ui_slider("Green Amount", 0, false, gui_ef_get_param_simple(FF_CHANNELS, PP_CHANNEL_GREEN), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNELS, PP_CHANNEL_GREEN);}))
+			.AddElement(new __ppf_ui_slider("Blue Amount", 0, false, gui_ef_get_param_simple(FF_CHANNELS, PP_CHANNEL_BLUE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_CHANNELS, PP_CHANNEL_BLUE);}));
 		
 		// effect: WHITE BALANCE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("WHITE BALANCE", false, 3))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.WHITE_BALANCE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.WHITE_BALANCE);}))
-			.AddElement(new __ppf_ui_slider("Temperature", 0, false, gui_ef_get_param_simple(FX_EFFECT.WHITE_BALANCE, PP_WHITE_BALANCE_TEMPERATURE), -1, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.WHITE_BALANCE, PP_WHITE_BALANCE_TEMPERATURE);}))
-			.AddElement(new __ppf_ui_slider("Tint", gui_ef_get_param_simple(FX_EFFECT.WHITE_BALANCE, PP_WHITE_BALANCE_TINT), false, 0, -1, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.WHITE_BALANCE, PP_WHITE_BALANCE_TINT);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_WHITE_BALANCE), function(checked) {return gui_ef_set_enabled(checked, FF_WHITE_BALANCE);}))
+			.AddElement(new __ppf_ui_slider("Temperature", 0, false, gui_ef_get_param_simple(FF_WHITE_BALANCE, PP_WHITE_BALANCE_TEMPERATURE), -1, 1, true, function(output) {gui_ef_set_param_simple(output, FF_WHITE_BALANCE, PP_WHITE_BALANCE_TEMPERATURE);}))
+			.AddElement(new __ppf_ui_slider("Tint", gui_ef_get_param_simple(FF_WHITE_BALANCE, PP_WHITE_BALANCE_TINT), false, 0, -1, 1, true, function(output) {gui_ef_set_param_simple(output, FF_WHITE_BALANCE, PP_WHITE_BALANCE_TINT);}));
 		
-		// export color grading LUT
-		.AddElement(new __ppf_ui_folder("Export Stack", false, 2))
+		// effect: POSTERIZATION
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("POSTERIZATION", false, 2))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_POSTERIZATION), function(checked) {return gui_ef_set_enabled(checked, FF_POSTERIZATION);}))
+			.AddElement(new __ppf_ui_slider("Color Factor", 128, false, gui_ef_get_param_simple(FF_POSTERIZATION, PP_POSTERIZATION_COL_FACTOR), 0, 128, true, function(output) {gui_ef_set_param_simple(output, FF_POSTERIZATION, PP_POSTERIZATION_COL_FACTOR);}));
+		
+		// Export Color Grading LUT
+		inspector_struct
+		.AddElement(new __ppf_ui_folder("Export Stack", false, 7))
 		.AddElement(new __ppf_ui_text_ext("Info", 0, function(element) {
 			var _width = element.parent.__panel_width-element.xx-element.parent.__element_xpadding;
 			element.width = _width;
-			var _text = "Use this option to bake all modifications to a color grading LUT sprite/image. This is useful for mobile platforms, as it saves a lot of math calculations in shaders.\n\nNOTE: The following effects in this category are not included in the LUT:\n\nWhite Balance, Palette Swap.";
+			var _text = "Use this option to bake all modifications to a color grading LUT sprite/image.";
 			return _text;
 		}))
+		.AddElement(new __ppf_ui_method("LUT Image", 0, undefined,
+		function(element) {
+			var _surf = __inspected_class.__miscBakedLUTSurf;
+			if (surface_exists(_surf)) {
+				with(element) {
+					// draw LUT surface
+					var 
+					_xscale = (parent.__panel_width-xx*3) / surface_get_width(_surf),
+					_yscale = _xscale;
+					draw_surface_ext(_surf, xx, yy, _xscale, _yscale, 0, c_white, 1);
+				}
+				// bake graph in realtime
+				inspector_struct.__bake();
+				return _yscale * surface_get_height(_surf) + 8;
+			}
+			return 8;
+		}))
+		.AddElement(new __ppf_ui_text_ext("Info", 0, function(element) {
+			var _width = element.parent.__panel_width-element.xx-element.parent.__element_xpadding;
+			element.width = _width;
+			var _text = "This is useful for mobile platforms, as it saves a lot of math calculations in shaders.\n\nNOTE: The following effect in this category is not included in the LUT:\n\n- Palette Swap\n- Channels";
+			return _text;
+		}))
+		.AddElement(new __ppf_ui_button("Generate Neutral Grid LUT", function() {
+			__inspected_class.SetBakingLUT(guiLutGeneratorBaking.GenerateGrid(8, true));
+		}))
+		.AddElement(new __ppf_ui_button("Generate Neutral Strip LUT", function() {
+			__inspected_class.SetBakingLUT(guiLutGeneratorBaking.GenerateStrip(16, true));
+		}))
+		.AddElement(new __ppf_ui_separator())
 		.AddElement(new __ppf_ui_button("Export color grading as LUT", function() {
 			var _sprite = __inspected_class.GetBakedLUT();
 			if (_sprite != undefined) {
@@ -1148,326 +1232,407 @@ function __PPFX_DebugInspectorGenerator() constructor {
 		
 		#region >> CATEGORY: TRANSFORM
 		inspector_struct
-		.AddElement(new __ppf_ui_category("Transform", false, 59))
+		.AddElement(new __ppf_ui_category("Transform", false, 60));
 		
 		// effect: DISPLACEMENT MAPS
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("DISPLACEMENT MAPS", false, 9))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.DISPLACEMAP), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.DISPLACEMAP);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_SCALE), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_ANGLE);}))
-			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_SPEED);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_DISPLACEMAP), function(checked) {return gui_ef_set_enabled(checked, FF_DISPLACEMAP);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_DISPLACEMAP, PP_DISPLACEMAP_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DISPLACEMAP, PP_DISPLACEMAP_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FF_DISPLACEMAP, PP_DISPLACEMAP_SCALE), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FF_DISPLACEMAP, PP_DISPLACEMAP_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FF_DISPLACEMAP, PP_DISPLACEMAP_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FF_DISPLACEMAP, PP_DISPLACEMAP_ANGLE);}))
+			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_DISPLACEMAP, PP_DISPLACEMAP_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DISPLACEMAP, PP_DISPLACEMAP_SPEED);}))
 			.AddElement(new __ppf_ui_folder("Offset", false, 2))
-				.AddElement(new __ppf_ui_slider("Offset X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_OFFSET);}))
-				.AddElement(new __ppf_ui_slider("Offset Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_OFFSET);}))
+				.AddElement(new __ppf_ui_slider("Offset X", 0, false, gui_ef_get_param_vec2_x(FF_DISPLACEMAP, PP_DISPLACEMAP_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_x(output, FF_DISPLACEMAP, PP_DISPLACEMAP_OFFSET);}))
+				.AddElement(new __ppf_ui_slider("Offset Y", 0, false, gui_ef_get_param_vec2_y(FF_DISPLACEMAP, PP_DISPLACEMAP_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_y(output, FF_DISPLACEMAP, PP_DISPLACEMAP_OFFSET);}))
 			.AddElement(new __ppf_ui_button("Texture", function() {
 				var _file = get_open_filename("PNG Image|*.png", "*.png");
 				if (_file != "") {
 					if (sprite_exists(gui_displacemap_texture_id)) sprite_delete(gui_displacemap_texture_id);
 					gui_displacemap_texture_id = sprite_add(_file, 0, 0, 0, 0, 0);
-					gui_ef_set_param_simple(sprite_get_texture(gui_displacemap_texture_id, 0), FX_EFFECT.DISPLACEMAP, PP_DISPLACEMAP_TEXTURE, sprite_get_texture(gui_displacemap_texture_id, 0));
+					gui_ef_set_param_simple(sprite_get_texture(gui_displacemap_texture_id, 0), FF_DISPLACEMAP, PP_DISPLACEMAP_TEXTURE, sprite_get_texture(gui_displacemap_texture_id, 0));
 				}
-			}))
+			}));
 		
 		// effect: LENS DISTORTION
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("LENS DISTORTION", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.LENS_DISTORTION), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.LENS_DISTORTION);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.LENS_DISTORTION, PP_LENS_DISTORTION_AMOUNT), -1, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.LENS_DISTORTION, PP_LENS_DISTORTION_AMOUNT);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_LENS_DISTORTION), function(checked) {return gui_ef_set_enabled(checked, FF_LENS_DISTORTION);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_LENS_DISTORTION, PP_LENS_DISTORTION_AMOUNT), -1, 1, true, function(output) {gui_ef_set_param_simple(output, FF_LENS_DISTORTION, PP_LENS_DISTORTION_AMOUNT);}));
 		
 		// effect: PANORAMA
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("PANORAMA", false, 3))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.PANORAMA), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.PANORAMA);}))
-			.AddElement(new __ppf_ui_slider("Depth X", 0, false, gui_ef_get_param_simple(FX_EFFECT.PANORAMA, PP_PANORAMA_DEPTH_X), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PANORAMA, PP_PANORAMA_DEPTH_X);}))
-			.AddElement(new __ppf_ui_slider("Depth Y", 0, false, gui_ef_get_param_simple(FX_EFFECT.PANORAMA, PP_PANORAMA_DEPTH_Y), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PANORAMA, PP_PANORAMA_DEPTH_Y);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_PANORAMA), function(checked) {return gui_ef_set_enabled(checked, FF_PANORAMA);}))
+			.AddElement(new __ppf_ui_slider("Depth X", 0, false, gui_ef_get_param_simple(FF_PANORAMA, PP_PANORAMA_DEPTH_X), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_PANORAMA, PP_PANORAMA_DEPTH_X);}))
+			.AddElement(new __ppf_ui_slider("Depth Y", 0, false, gui_ef_get_param_simple(FF_PANORAMA, PP_PANORAMA_DEPTH_Y), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_PANORAMA, PP_PANORAMA_DEPTH_Y);}));
 		
 		// effect: PIXELIZE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("PIXELIZE", false, 4))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.PIXELIZE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.PIXELIZE);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.PIXELIZE, PP_PIXELIZE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PIXELIZE, PP_PIXELIZE_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Squares Max", 40, false, gui_ef_get_param_simple(FX_EFFECT.PIXELIZE, PP_PIXELIZE_SQUARES_MAX), 0, 40, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PIXELIZE, PP_PIXELIZE_SQUARES_MAX);}))
-			.AddElement(new __ppf_ui_slider("Steps", 50, false, gui_ef_get_param_simple(FX_EFFECT.PIXELIZE, PP_PIXELIZE_STEPS), 0, 50, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.PIXELIZE, PP_PIXELIZE_STEPS);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_PIXELIZE), function(checked) {return gui_ef_set_enabled(checked, FF_PIXELIZE);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_PIXELIZE, PP_PIXELIZE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_PIXELIZE, PP_PIXELIZE_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Squares Max", 40, false, gui_ef_get_param_simple(FF_PIXELIZE, PP_PIXELIZE_PIXEL_MAX_SIZE), 0, 40, true, function(output) {gui_ef_set_param_simple(output, FF_PIXELIZE, PP_PIXELIZE_PIXEL_MAX_SIZE);}))
+			.AddElement(new __ppf_ui_slider("Steps", 50, false, gui_ef_get_param_simple(FF_PIXELIZE, PP_PIXELIZE_STEPS), 0, 50, true, function(output) {gui_ef_set_param_simple(output, FF_PIXELIZE, PP_PIXELIZE_STEPS);}));
 		
 		// effect: ROTATION
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("ROTATION", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.ROTATION), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.ROTATION);}))
-			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FX_EFFECT.ROTATION, PP_ROTATION_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.ROTATION, PP_ROTATION_ANGLE);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_ROTATION), function(checked) {return gui_ef_set_enabled(checked, FF_ROTATION);}))
+			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FF_ROTATION, PP_ROTATION_ANGLE), 0, 360, true, function(output) {gui_ef_set_param_simple(output, FF_ROTATION, PP_ROTATION_ANGLE);}));
 		
 		// effect: SINE WAVE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("SINE WAVE", false, 8))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SINE_WAVE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SINE_WAVE);}))
-			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_SPEED), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Amplitude X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_AMPLITUDE), -1, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_AMPLITUDE);}))
-			.AddElement(new __ppf_ui_slider("Amplitude Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_AMPLITUDE), -1, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_AMPLITUDE);}))
-			.AddElement(new __ppf_ui_slider("Frequency X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_FREQUENCY), 0, 50, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_FREQUENCY);}))
-			.AddElement(new __ppf_ui_slider("Frequency Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_FREQUENCY), 0, 50, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_FREQUENCY);}))
-			.AddElement(new __ppf_ui_slider("Offset X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_OFFSET);}))
-			.AddElement(new __ppf_ui_slider("Offset Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.SINE_WAVE, PP_SINE_WAVE_OFFSET);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SINE_WAVE), function(checked) {return gui_ef_set_enabled(checked, FF_SINE_WAVE);}))
+			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_SINE_WAVE, PP_SINE_WAVE_SPEED), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FF_SINE_WAVE, PP_SINE_WAVE_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Amplitude X", 0, false, gui_ef_get_param_vec2_x(FF_SINE_WAVE, PP_SINE_WAVE_AMPLITUDE), -1, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_SINE_WAVE, PP_SINE_WAVE_AMPLITUDE);}))
+			.AddElement(new __ppf_ui_slider("Amplitude Y", 0, false, gui_ef_get_param_vec2_y(FF_SINE_WAVE, PP_SINE_WAVE_AMPLITUDE), -1, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_SINE_WAVE, PP_SINE_WAVE_AMPLITUDE);}))
+			.AddElement(new __ppf_ui_slider("Frequency X", 0, false, gui_ef_get_param_vec2_x(FF_SINE_WAVE, PP_SINE_WAVE_FREQUENCY), 0, 50, true, function(output) {gui_ef_set_param_vec2_x(output, FF_SINE_WAVE, PP_SINE_WAVE_FREQUENCY);}))
+			.AddElement(new __ppf_ui_slider("Frequency Y", 0, false, gui_ef_get_param_vec2_y(FF_SINE_WAVE, PP_SINE_WAVE_FREQUENCY), 0, 50, true, function(output) {gui_ef_set_param_vec2_y(output, FF_SINE_WAVE, PP_SINE_WAVE_FREQUENCY);}))
+			.AddElement(new __ppf_ui_slider("Offset X", 0, false, gui_ef_get_param_vec2_x(FF_SINE_WAVE, PP_SINE_WAVE_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_x(output, FF_SINE_WAVE, PP_SINE_WAVE_OFFSET);}))
+			.AddElement(new __ppf_ui_slider("Offset Y", 0, false, gui_ef_get_param_vec2_y(FF_SINE_WAVE, PP_SINE_WAVE_OFFSET), -100, 100, true, function(output) {gui_ef_set_param_vec2_y(output, FF_SINE_WAVE, PP_SINE_WAVE_OFFSET);}));
 		
 		// effect: SHAKE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("SHAKE", false, 5))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SHAKE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SHAKE);}))
-			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.SHAKE, PP_SHAKE_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SHAKE, PP_SHAKE_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Magnitude", 0, false, gui_ef_get_param_simple(FX_EFFECT.SHAKE, PP_SHAKE_MAGNITUDE), 0, 0.1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SHAKE, PP_SHAKE_MAGNITUDE);}))
-			.AddElement(new __ppf_ui_slider("Hspeed", 0, false, gui_ef_get_param_simple(FX_EFFECT.SHAKE, PP_SHAKE_HSPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SHAKE, PP_SHAKE_HSPEED);}))
-			.AddElement(new __ppf_ui_slider("Vspeed", 0, false, gui_ef_get_param_simple(FX_EFFECT.SHAKE, PP_SHAKE_VSPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SHAKE, PP_SHAKE_VSPEED);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SHAKE), function(checked) {return gui_ef_set_enabled(checked, FF_SHAKE);}))
+			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_SHAKE, PP_SHAKE_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHAKE, PP_SHAKE_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Magnitude", 0, false, gui_ef_get_param_simple(FF_SHAKE, PP_SHAKE_MAGNITUDE), 0, 0.1, true, function(output) {gui_ef_set_param_simple(output, FF_SHAKE, PP_SHAKE_MAGNITUDE);}))
+			.AddElement(new __ppf_ui_slider("Hspeed", 0, false, gui_ef_get_param_simple(FF_SHAKE, PP_SHAKE_HSPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHAKE, PP_SHAKE_HSPEED);}))
+			.AddElement(new __ppf_ui_slider("Vspeed", 0, false, gui_ef_get_param_simple(FF_SHAKE, PP_SHAKE_VSPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHAKE, PP_SHAKE_VSPEED);}));
 		
 		// effect: SHOCKWAVES
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("SHOCKWAVES", false, 4))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SHOCKWAVES), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SHOCKWAVES);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, 0.1, 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SHOCKWAVES, PP_SHOCKWAVES_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Aberration", 0, false, 0.1, 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SHOCKWAVES, PP_SHOCKWAVES_ABERRATION);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SHOCKWAVES), function(checked) {return gui_ef_set_enabled(checked, FF_SHOCKWAVES);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, 0.1, 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHOCKWAVES, PP_SHOCKWAVES_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Aberration", 0, false, 0.1, 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SHOCKWAVES, PP_SHOCKWAVES_ABERRATION);}))
 		.AddElement(new __ppf_ui_button("Prisma LUT", function() {
 				gui_shockwaves_lut_type += 1;
 				if (gui_shockwaves_lut_type >= array_length(gui_shockwaves_lut_list)) gui_shockwaves_lut_type = 0;
-				gui_ef_set_param_simple(sprite_get_texture(gui_shockwaves_lut_list[gui_shockwaves_lut_type], 0), FX_EFFECT.SHOCKWAVES, PP_SHOCKWAVES_PRISMA_LUT_TEX);
-			}))
+				gui_ef_set_param_simple(sprite_get_texture(gui_shockwaves_lut_list[gui_shockwaves_lut_type], 0), FF_SHOCKWAVES, PP_SHOCKWAVES_PRISMA_LUT_TEX);
+			}));
 		
 		// effect: SWIRL
-		.AddElement(new __ppf_ui_menu("SWIRL", false, 6))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SWIRL), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SWIRL);}))
-			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FX_EFFECT.SWIRL, PP_SWIRL_ANGLE), -720, 720, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SWIRL, PP_SWIRL_ANGLE);}))
-			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FX_EFFECT.SWIRL, PP_SWIRL_RADIUS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SWIRL, PP_SWIRL_RADIUS);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("SWIRL", false, 7))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SWIRL), function(checked) {return gui_ef_set_enabled(checked, FF_SWIRL);}))
+			.AddElement(new __ppf_ui_slider("Angle", 0, false, gui_ef_get_param_simple(FF_SWIRL, PP_SWIRL_ANGLE), -720, 720, true, function(output) {gui_ef_set_param_simple(output, FF_SWIRL, PP_SWIRL_ANGLE);}))
+			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FF_SWIRL, PP_SWIRL_RADIUS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SWIRL, PP_SWIRL_RADIUS);}))
+			.AddElement(new __ppf_ui_checkbox("Rounded", 0, gui_ef_get_param_simple(FF_SWIRL, PP_SWIRL_ROUNDED), function(checked) {return gui_ef_set_param_enable(checked, FF_SWIRL, PP_SWIRL_ROUNDED);}))
 			.AddElement(new __ppf_ui_folder("Center", false, 2))
-				.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.SWIRL, PP_SWIRL_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.SWIRL, PP_SWIRL_CENTER);}))
-				.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.SWIRL, PP_SWIRL_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.SWIRL, PP_SWIRL_CENTER);}))
+				.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FF_SWIRL, PP_SWIRL_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_SWIRL, PP_SWIRL_CENTER);}))
+				.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FF_SWIRL, PP_SWIRL_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_SWIRL, PP_SWIRL_CENTER);}));
 		
 		// effect: ZOOM
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("ZOOM", false, 6))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.ZOOM), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.ZOOM);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.ZOOM, PP_ZOOM_AMOUNT), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.ZOOM, PP_ZOOM_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Range", 0, false, gui_ef_get_param_simple(FX_EFFECT.ZOOM, PP_ZOOM_RANGE), 1, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.ZOOM, PP_ZOOM_RANGE);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_ZOOM), function(checked) {return gui_ef_set_enabled(checked, FF_ZOOM);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_ZOOM, PP_ZOOM_AMOUNT), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_ZOOM, PP_ZOOM_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Range", 0, false, gui_ef_get_param_simple(FF_ZOOM, PP_ZOOM_RANGE), 1, 10, true, function(output) {gui_ef_set_param_simple(output, FF_ZOOM, PP_ZOOM_RANGE);}))
 			.AddElement(new __ppf_ui_folder("Focus", false, 2))
-				.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FX_EFFECT.ZOOM, PP_ZOOM_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FX_EFFECT.ZOOM, PP_ZOOM_CENTER);}))
-				.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FX_EFFECT.ZOOM, PP_ZOOM_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FX_EFFECT.ZOOM, PP_ZOOM_CENTER);}));
+				.AddElement(new __ppf_ui_slider("Center X", 0, false, gui_ef_get_param_vec2_x(FF_ZOOM, PP_ZOOM_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_ZOOM, PP_ZOOM_CENTER);}))
+				.AddElement(new __ppf_ui_slider("Center Y", 0, false, gui_ef_get_param_vec2_y(FF_ZOOM, PP_ZOOM_CENTER), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_ZOOM, PP_ZOOM_CENTER);}));
 		
 		#endregion
 		
 		#region >> CATEGORY: ARTISTIC
 		inspector_struct
-		.AddElement(new __ppf_ui_category("Artistic", false, 109))
-			
+		.AddElement(new __ppf_ui_category("Artistic", false, 140));
+		
+		// effect: Glitch
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("GLITCH", false, 21))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_GLITCH), function(checked) {return gui_ef_set_enabled(checked, FF_GLITCH);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Shake Offset", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SHAKE_OFFSET), 0, 0.1, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SHAKE_OFFSET);}))
+			.AddElement(new __ppf_ui_slider("Shake Speed", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SHAKE_SPEED), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SHAKE_SPEED);}))
+				.AddElement(new __ppf_ui_folder("Shuffle", false, 9))
+					.AddElement(new __ppf_ui_slider("Offset", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SHUFFLE_OFFSET), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SHUFFLE_OFFSET);}))
+					.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SHUFFLE_SPEED), 0, 50, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SHUFFLE_SPEED);}))
+					.AddElement(new __ppf_ui_slider("Amount X", 0, false, gui_ef_get_param_vec2_x(FF_GLITCH, PP_GLITCH_SHUFFLE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_GLITCH, PP_GLITCH_SHUFFLE_AMOUNT);}))
+					.AddElement(new __ppf_ui_slider("Amount Y", 0, false, gui_ef_get_param_vec2_y(FF_GLITCH, PP_GLITCH_SHUFFLE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_GLITCH, PP_GLITCH_SHUFFLE_AMOUNT);}))
+					.AddElement(new __ppf_ui_slider("Scale1 X", 0, false, gui_ef_get_param_vec2_x(FF_GLITCH, PP_GLITCH_SHUFFLE_SCALE1), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_GLITCH, PP_GLITCH_SHUFFLE_SCALE1);}))
+					.AddElement(new __ppf_ui_slider("Scale1 Y", 0, false, gui_ef_get_param_vec2_y(FF_GLITCH, PP_GLITCH_SHUFFLE_SCALE1), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_GLITCH, PP_GLITCH_SHUFFLE_SCALE1);}))
+					.AddElement(new __ppf_ui_slider("Scale2 X", 0, false, gui_ef_get_param_vec2_x(FF_GLITCH, PP_GLITCH_SHUFFLE_SCALE2), 0, 1, true, function(output) {gui_ef_set_param_vec2_x(output, FF_GLITCH, PP_GLITCH_SHUFFLE_SCALE2);}))
+					.AddElement(new __ppf_ui_slider("Scale2 Y", 0, false, gui_ef_get_param_vec2_y(FF_GLITCH, PP_GLITCH_SHUFFLE_SCALE2), 0, 1, true, function(output) {gui_ef_set_param_vec2_y(output, FF_GLITCH, PP_GLITCH_SHUFFLE_SCALE2);}))
+					.AddElement(new __ppf_ui_slider("Power", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SHUFFLE_POWER), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SHUFFLE_POWER);}))
+			.AddElement(new __ppf_ui_folder("Sine", false, 4))
+				.AddElement(new __ppf_ui_slider("Offset", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SINE_OFFSET), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SINE_OFFSET);}))
+				.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SINE_SPEED), 0, 50, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SINE_SPEED);}))
+				.AddElement(new __ppf_ui_slider("Wiggle Intensity", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SINE_WIGGLE_INTENSITY), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SINE_WIGGLE_INTENSITY);}))
+				.AddElement(new __ppf_ui_slider("Wiggle Interval", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_SINE_WIGGLE_INTERVAL), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_SINE_WIGGLE_INTERVAL);}))
+			.AddElement(new __ppf_ui_folder("Interlacing", false, 1))
+				.AddElement(new __ppf_ui_slider("Offset", 0, false, gui_ef_get_param_simple(FF_GLITCH, PP_GLITCH_INTERLACING_OFFSET), 0, 50, true, function(output) {gui_ef_set_param_simple(output, FF_GLITCH, PP_GLITCH_INTERLACING_OFFSET);}))
+		
 		// effect: VHS
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("VHS", false, 16))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.VHS), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.VHS);}))
-			.AddElement(new __ppf_ui_slider("Chromatic Aberration", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_CHROMATIC_ABERRATION), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_CHROMATIC_ABERRATION);}))
-			.AddElement(new __ppf_ui_slider("Scan Aberration", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_SCAN_CHROMATIC_ABERRATION), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_SCAN_CHROMATIC_ABERRATION);}))
-			.AddElement(new __ppf_ui_slider("Grain Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_GRAIN_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_GRAIN_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Grain Height", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_GRAIN_HEIGHT), 1, 50, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_GRAIN_HEIGHT);}))
-			.AddElement(new __ppf_ui_slider("Grain Fade", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_GRAIN_FADE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_GRAIN_FADE);}))
-			.AddElement(new __ppf_ui_slider("Grain Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_GRAIN_AMOUNT), 1, 100, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_GRAIN_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Grain Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_GRAIN_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_GRAIN_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Grain Interval", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_GRAIN_INTERVAL), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_GRAIN_INTERVAL);}))
-			.AddElement(new __ppf_ui_slider("Scan Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_SCAN_SPEED), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_SCAN_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Scan Size", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_SCAN_SIZE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_SCAN_SIZE);}))
-			.AddElement(new __ppf_ui_slider("Scan Offset", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_SCAN_OFFSET), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_SCAN_OFFSET);}))
-			.AddElement(new __ppf_ui_slider("HScan Offset", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_HSCAN_OFFSET), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_HSCAN_OFFSET);}))
-			.AddElement(new __ppf_ui_slider("Flickering Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_FLICKERING_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_FLICKERING_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Flickering Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_FLICKERING_SPEED), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_FLICKERING_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Wiggle Amplitude", 0, false, gui_ef_get_param_simple(FX_EFFECT.VHS, PP_VHS_WIGGLE_AMPLITUDE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.VHS, PP_VHS_WIGGLE_AMPLITUDE);}))
-			
-		// effect: GLITCH
-		.AddElement(new __ppf_ui_menu("GLITCH", false, 7))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.GLITCH), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.GLITCH);}))
-			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.GLITCH, PP_GLITCH_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.GLITCH, PP_GLITCH_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Block Size", 0, false, gui_ef_get_param_simple(FX_EFFECT.GLITCH, PP_GLITCH_BLOCK_SIZE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.GLITCH, PP_GLITCH_BLOCK_SIZE);}))
-			.AddElement(new __ppf_ui_slider("Interval", 0, false, gui_ef_get_param_simple(FX_EFFECT.GLITCH, PP_GLITCH_INTERVAL), 0.5, 0.999, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.GLITCH, PP_GLITCH_INTERVAL);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.GLITCH, PP_GLITCH_INTENSITY), -1, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.GLITCH, PP_GLITCH_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Peak Amplitude 1", 0, false, gui_ef_get_param_simple(FX_EFFECT.GLITCH, PP_GLITCH_AMPLITUDE1), -5, 5, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.GLITCH, PP_GLITCH_AMPLITUDE1);}))
-			.AddElement(new __ppf_ui_slider("Peak Amplitude 2", 0, false, gui_ef_get_param_simple(FX_EFFECT.GLITCH, PP_GLITCH_AMPLITUDE2), -5, 5, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.GLITCH, PP_GLITCH_AMPLITUDE2);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_VHS), function(checked) {return gui_ef_set_enabled(checked, FF_VHS);}))
+			.AddElement(new __ppf_ui_slider("Chromatic Aberration", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_CHROMATIC_ABERRATION), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_CHROMATIC_ABERRATION);}))
+			.AddElement(new __ppf_ui_slider("Scan Aberration", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_SCAN_CHROMATIC_ABERRATION), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_SCAN_CHROMATIC_ABERRATION);}))
+			.AddElement(new __ppf_ui_slider("Grain Intensity", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_GRAIN_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_GRAIN_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Grain Height", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_GRAIN_HEIGHT), 1, 50, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_GRAIN_HEIGHT);}))
+			.AddElement(new __ppf_ui_slider("Grain Fade", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_GRAIN_FADE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_GRAIN_FADE);}))
+			.AddElement(new __ppf_ui_slider("Grain Amount", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_GRAIN_AMOUNT), 1, 100, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_GRAIN_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Grain Speed", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_GRAIN_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_GRAIN_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Grain Interval", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_GRAIN_INTERVAL), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_GRAIN_INTERVAL);}))
+			.AddElement(new __ppf_ui_slider("Scan Speed", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_SCAN_SPEED), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_SCAN_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Scan Size", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_SCAN_SIZE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_SCAN_SIZE);}))
+			.AddElement(new __ppf_ui_slider("Scan Offset", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_SCAN_OFFSET), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_SCAN_OFFSET);}))
+			.AddElement(new __ppf_ui_slider("HScan Offset", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_HSCAN_OFFSET), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_HSCAN_OFFSET);}))
+			.AddElement(new __ppf_ui_slider("Flickering Intensity", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_FLICKERING_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_FLICKERING_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Flickering Speed", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_FLICKERING_SPEED), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_FLICKERING_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Wiggle Amplitude", 0, false, gui_ef_get_param_simple(FF_VHS, PP_VHS_WIGGLE_AMPLITUDE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_VHS, PP_VHS_WIGGLE_AMPLITUDE);}));
+		
+		// effect: INTERFERENCE
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("INTERFERENCE", false, 7))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_INTERFERENCE), function(checked) {return gui_ef_set_enabled(checked, FF_INTERFERENCE);}))
+			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_INTERFERENCE, PP_INTERFERENCE_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_INTERFERENCE, PP_INTERFERENCE_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Block Size", 0, false, gui_ef_get_param_simple(FF_INTERFERENCE, PP_INTERFERENCE_BLOCK_SIZE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_INTERFERENCE, PP_INTERFERENCE_BLOCK_SIZE);}))
+			.AddElement(new __ppf_ui_slider("Interval", 0, false, gui_ef_get_param_simple(FF_INTERFERENCE, PP_INTERFERENCE_INTERVAL), 0.5, 0.999, true, function(output) {gui_ef_set_param_simple(output, FF_INTERFERENCE, PP_INTERFERENCE_INTERVAL);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_INTERFERENCE, PP_INTERFERENCE_INTENSITY), -1, 1, true, function(output) {gui_ef_set_param_simple(output, FF_INTERFERENCE, PP_INTERFERENCE_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Peak Amplitude 1", 0, false, gui_ef_get_param_simple(FF_INTERFERENCE, PP_INTERFERENCE_AMPLITUDE1), -5, 5, true, function(output) {gui_ef_set_param_simple(output, FF_INTERFERENCE, PP_INTERFERENCE_AMPLITUDE1);}))
+			.AddElement(new __ppf_ui_slider("Peak Amplitude 2", 0, false, gui_ef_get_param_simple(FF_INTERFERENCE, PP_INTERFERENCE_AMPLITUDE2), -5, 5, true, function(output) {gui_ef_set_param_simple(output, FF_INTERFERENCE, PP_INTERFERENCE_AMPLITUDE2);}));
+		
+		// effect: ASCII
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("ASCII", false, 14))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_ASCII), function(checked) {return gui_ef_set_enabled(checked, FF_ASCII);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_ASCII, PP_ASCII_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_ASCII, PP_ASCII_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Saturation", 0, false, gui_ef_get_param_simple(FF_ASCII, PP_ASCII_SATURATION), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_ASCII, PP_ASCII_SATURATION);}))
+			.AddElement(new __ppf_ui_slider("Mix", 0, false, gui_ef_get_param_simple(FF_ASCII, PP_ASCII_MIX), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_ASCII, PP_ASCII_MIX);}))
+			.AddElement(new __ppf_ui_slider("Pixel Mix", 0, false, gui_ef_get_param_simple(FF_ASCII, PP_ASCII_PIXEL_MIX), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_ASCII, PP_ASCII_PIXEL_MIX);}))
+			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FF_ASCII, PP_ASCII_SCALE), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_ASCII, PP_ASCII_SCALE);}))
+			.AddElement(new __ppf_ui_folder("Color", false, 3))
+					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_ASCII, PP_ASCII_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_ASCII, PP_ASCII_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_ASCII, PP_ASCII_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_ASCII, PP_ASCII_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_ASCII, PP_ASCII_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_ASCII, PP_ASCII_COLOR);}))
+			.AddElement(new __ppf_ui_slider("Frames Amount", 10, false, gui_ef_get_param_simple(FF_ASCII, PP_ASCII_FRAMES_AMOUNT), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_ASCII, PP_ASCII_FRAMES_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Grid Cell Width", 64, false, gui_ef_get_param_simple(FF_ASCII, PP_ASCII_GRID_CELL_WIDTH), 0, 64, true, function(output) {gui_ef_set_param_simple(output, FF_ASCII, PP_ASCII_GRID_CELL_WIDTH);}))
+			.AddElement(new __ppf_ui_slider("Grid Cell Height", 64, false, gui_ef_get_param_simple(FF_ASCII, PP_ASCII_GRID_CELL_HEIGHT), 0, 64, true, function(output) {gui_ef_set_param_simple(output, FF_ASCII, PP_ASCII_GRID_CELL_HEIGHT);}))
+			.AddElement(new __ppf_ui_button("Texture", function() {
+				var _file = get_open_filename("PNG Image|*.png", "*.png");
+				if (_file != "") {
+					if (sprite_exists(gui_ascii_texture_id)) sprite_delete(gui_ascii_texture_id);
+					gui_ascii_texture_id = sprite_add(_file, 0, 0, 0, 0, 0);
+					gui_ef_set_param_simple(sprite_get_texture(gui_ascii_texture_id, 0), FF_ASCII, PP_ASCII_TEXTURE);
+				}
+			}));
 		
 		// effect: CINEMA BARS
-		.AddElement(new __ppf_ui_menu("CINEMA BARS", false, 10))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.CINEMA_BARS), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.CINEMA_BARS);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_AMOUNT), 0, 0.3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_INTENSITY);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("CINEMA BARS", false, 11))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_CINEMA_BARS), function(checked) {return gui_ef_set_enabled(checked, FF_CINEMA_BARS);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_CINEMA_BARS, PP_CINEMA_BARS_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_CINEMA_BARS, PP_CINEMA_BARS_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_CINEMA_BARS, PP_CINEMA_BARS_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_CINEMA_BARS, PP_CINEMA_BARS_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Smoothness", 0, false, gui_ef_get_param_simple(FF_CINEMA_BARS, PP_CINEMA_BARS_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_CINEMA_BARS, PP_CINEMA_BARS_SMOOTHNESS);}))
 				.AddElement(new __ppf_ui_folder("Color", false, 3))
-					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_COLOR);}))
-			.AddElement(new __ppf_ui_checkbox("Vertical Enable", 0, gui_ef_get_param_simple(FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_VERT_ENABLE), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_VERT_ENABLE);}))
-			.AddElement(new __ppf_ui_checkbox("Horizontal Enable", 0, gui_ef_get_param_simple(FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_HOR_ENABLE), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_HOR_ENABLE);}))
-			.AddElement(new __ppf_ui_checkbox("Can Distort", 0, gui_ef_get_param_simple(FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_CAN_DISTORT), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.CINEMA_BARS, PP_CINEMA_BARS_CAN_DISTORT);}))
+					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_CINEMA_BARS, PP_CINEMA_BARS_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_CINEMA_BARS, PP_CINEMA_BARS_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_CINEMA_BARS, PP_CINEMA_BARS_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_CINEMA_BARS, PP_CINEMA_BARS_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_CINEMA_BARS, PP_CINEMA_BARS_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_CINEMA_BARS, PP_CINEMA_BARS_COLOR);}))
+			.AddElement(new __ppf_ui_checkbox("Vertical Enable", 0, gui_ef_get_param_simple(FF_CINEMA_BARS, PP_CINEMA_BARS_VERT_ENABLE), function(checked) {return gui_ef_set_param_enable(checked, FF_CINEMA_BARS, PP_CINEMA_BARS_VERT_ENABLE);}))
+			.AddElement(new __ppf_ui_checkbox("Horizontal Enable", 0, gui_ef_get_param_simple(FF_CINEMA_BARS, PP_CINEMA_BARS_HOR_ENABLE), function(checked) {return gui_ef_set_param_enable(checked, FF_CINEMA_BARS, PP_CINEMA_BARS_HOR_ENABLE);}))
+			.AddElement(new __ppf_ui_checkbox("Can Distort", 0, gui_ef_get_param_simple(FF_CINEMA_BARS, PP_CINEMA_BARS_CAN_DISTORT), function(checked) {return gui_ef_set_param_enable(checked, FF_CINEMA_BARS, PP_CINEMA_BARS_CAN_DISTORT);}));
 		
 		// effect: DITHERING
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("DITHERING", false, 8))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.DITHERING), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.DITHERING);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_DITHERING), function(checked) {return gui_ef_set_enabled(checked, FF_DITHERING);}))
 			.AddElement(new __ppf_ui_button("Mode", function() {
 				gui_dithering_mode += 1;
 				if (gui_dithering_mode > 3) gui_dithering_mode = 0;
-				__inspected_class.SetEffectParameter(FX_EFFECT.DITHERING, PP_DITHERING_MODE, gui_dithering_mode);
+				__inspected_class.SetEffectParameter(FF_DITHERING, PP_DITHERING_MODE, gui_dithering_mode);
 			}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.DITHERING, PP_DITHERING_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DITHERING, PP_DITHERING_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Bit Levels", 32, false, gui_ef_get_param_simple(FX_EFFECT.DITHERING, PP_DITHERING_BIT_LEVELS), 0, 32, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DITHERING, PP_DITHERING_BIT_LEVELS);}))
-			.AddElement(new __ppf_ui_slider("Contrast", 0, false, gui_ef_get_param_simple(FX_EFFECT.DITHERING, PP_DITHERING_CONTRAST), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DITHERING, PP_DITHERING_CONTRAST);}))
-			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FX_EFFECT.DITHERING, PP_DITHERING_THRESHOLD), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DITHERING, PP_DITHERING_THRESHOLD);}))
-			.AddElement(new __ppf_ui_slider("Scale", 4, false, gui_ef_get_param_simple(FX_EFFECT.DITHERING, PP_DITHERING_SCALE), 1, 4, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.DITHERING, PP_DITHERING_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_DITHERING, PP_DITHERING_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DITHERING, PP_DITHERING_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Bit Levels", 32, false, gui_ef_get_param_simple(FF_DITHERING, PP_DITHERING_BIT_LEVELS), 0, 32, true, function(output) {gui_ef_set_param_simple(output, FF_DITHERING, PP_DITHERING_BIT_LEVELS);}))
+			.AddElement(new __ppf_ui_slider("Contrast", 0, false, gui_ef_get_param_simple(FF_DITHERING, PP_DITHERING_CONTRAST), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DITHERING, PP_DITHERING_CONTRAST);}))
+			.AddElement(new __ppf_ui_slider("Threshold", 0, false, gui_ef_get_param_simple(FF_DITHERING, PP_DITHERING_THRESHOLD), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_DITHERING, PP_DITHERING_THRESHOLD);}))
+			.AddElement(new __ppf_ui_slider("Scale", 4, false, gui_ef_get_param_simple(FF_DITHERING, PP_DITHERING_SCALE), 1, 4, true, function(output) {gui_ef_set_param_simple(output, FF_DITHERING, PP_DITHERING_SCALE);}))
 			.AddElement(new __ppf_ui_button("Bayer Matrix Texture", function() {
 				gui_dithering_index += 1; if (gui_dithering_index >= array_length(gui_dithering_bayers)) gui_dithering_index = 0;
-				gui_ef_set_param_simple(gui_dithering_bayers[gui_dithering_index][1], FX_EFFECT.DITHERING, PP_DITHERING_BAYER_SIZE);
-				gui_ef_set_param_simple(sprite_get_texture(gui_dithering_bayers[gui_dithering_index][0], 0), FX_EFFECT.DITHERING, PP_DITHERING_BAYER_TEXTURE);
-			}))
+				gui_ef_set_param_simple(gui_dithering_bayers[gui_dithering_index][1], FF_DITHERING, PP_DITHERING_BAYER_SIZE);
+				gui_ef_set_param_simple(sprite_get_texture(gui_dithering_bayers[gui_dithering_index][0], 0), FF_DITHERING, PP_DITHERING_BAYER_TEXTURE);
+			}));
 		
 		// effect: NOISE GRAIN
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("NOISE GRAIN", false, 7))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.NOISE_GRAIN), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.NOISE_GRAIN);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Luminosity", 0, false, gui_ef_get_param_simple(FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_LUMINOSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_LUMINOSITY);}))
-			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_SCALE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_SPEED);}))
-			.AddElement(new __ppf_ui_checkbox("Mix", 0, gui_ef_get_param_simple(FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_MIX), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_MIX);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_NOISE_GRAIN), function(checked) {return gui_ef_set_enabled(checked, FF_NOISE_GRAIN);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_NOISE_GRAIN, PP_NOISEGRAIN_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_NOISE_GRAIN, PP_NOISEGRAIN_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Luminosity", 0, false, gui_ef_get_param_simple(FF_NOISE_GRAIN, PP_NOISEGRAIN_LUMINOSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_NOISE_GRAIN, PP_NOISEGRAIN_LUMINOSITY);}))
+			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FF_NOISE_GRAIN, PP_NOISEGRAIN_SCALE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_NOISE_GRAIN, PP_NOISEGRAIN_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_NOISE_GRAIN, PP_NOISEGRAIN_SPEED), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_NOISE_GRAIN, PP_NOISEGRAIN_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Mix", 0, false, gui_ef_get_param_simple(FF_NOISE_GRAIN, PP_NOISEGRAIN_MIX), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_NOISE_GRAIN, PP_NOISEGRAIN_MIX);}))
 			.AddElement(new __ppf_ui_button("Noise Texture", function() {
 				gui_noisegrain_noise_type += 1;
 				if (gui_noisegrain_noise_type >= array_length(gui_noisegrain_noise_tex_list)) gui_noisegrain_noise_type = 0;
-				gui_ef_set_param_simple(sprite_get_texture(gui_noisegrain_noise_tex_list[gui_noisegrain_noise_type], 0), FX_EFFECT.NOISE_GRAIN, PP_NOISEGRAIN_NOISE_TEX);
-			}))
+				gui_ef_set_param_simple(sprite_get_texture(gui_noisegrain_noise_tex_list[gui_noisegrain_noise_type], 0), FF_NOISE_GRAIN, PP_NOISEGRAIN_NOISE_TEXTURE);
+			}));
 		
 		// effect: SCANLINES
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("SCANLINES", false, 12))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SCANLINES), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SCANLINES);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.SCANLINES, PP_SCANLINES_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SCANLINES, PP_SCANLINES_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Sharpness", 0, false, gui_ef_get_param_simple(FX_EFFECT.SCANLINES, PP_SCANLINES_SHARPNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SCANLINES, PP_SCANLINES_SHARPNESS);}))
-			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FX_EFFECT.SCANLINES, PP_SCANLINES_SPEED), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SCANLINES, PP_SCANLINES_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.SCANLINES, PP_SCANLINES_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SCANLINES, PP_SCANLINES_AMOUNT);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SCANLINES), function(checked) {return gui_ef_set_enabled(checked, FF_SCANLINES);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_SCANLINES, PP_SCANLINES_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SCANLINES, PP_SCANLINES_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Sharpness", 0, false, gui_ef_get_param_simple(FF_SCANLINES, PP_SCANLINES_SHARPNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SCANLINES, PP_SCANLINES_SHARPNESS);}))
+			.AddElement(new __ppf_ui_slider("Speed", 0, false, gui_ef_get_param_simple(FF_SCANLINES, PP_SCANLINES_SPEED), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FF_SCANLINES, PP_SCANLINES_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_SCANLINES, PP_SCANLINES_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SCANLINES, PP_SCANLINES_AMOUNT);}))
 				.AddElement(new __ppf_ui_folder("Color", false, 3))
-					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.SCANLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.SCANLINES, PP_SCANLINES_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.SCANLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.SCANLINES, PP_SCANLINES_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.SCANLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.SCANLINES, PP_SCANLINES_COLOR);}))
-			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FX_EFFECT.SCANLINES, PP_SCANLINES_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SCANLINES, PP_SCANLINES_MASK_POWER);}))
-			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.SCANLINES, PP_SCANLINES_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SCANLINES, PP_SCANLINES_MASK_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FX_EFFECT.SCANLINES, PP_SCANLINES_MASK_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SCANLINES, PP_SCANLINES_MASK_SMOOTHNESS);}))
+					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_SCANLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_SCANLINES, PP_SCANLINES_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_SCANLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_SCANLINES, PP_SCANLINES_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_SCANLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_SCANLINES, PP_SCANLINES_COLOR);}))
+			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FF_SCANLINES, PP_SCANLINES_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FF_SCANLINES, PP_SCANLINES_MASK_POWER);}))
+			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FF_SCANLINES, PP_SCANLINES_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_SCANLINES, PP_SCANLINES_MASK_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FF_SCANLINES, PP_SCANLINES_MASK_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SCANLINES, PP_SCANLINES_MASK_SMOOTHNESS);}));
 		
 		// effect: SPEEDLINES
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("SPEEDLINES", false, 16))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.SPEEDLINES), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.SPEEDLINES);}))
-			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_SCALE), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Tiling", 0, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_TILING), 0, 16, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_TILING);}))
-			.AddElement(new __ppf_ui_slider("Speed", 20, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_SPEED), -10, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Rot Speed", 20, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_ROT_SPEED), -10, 10, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_ROT_SPEED);}))
-			.AddElement(new __ppf_ui_slider("Contrast", 0, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_CONTRAST), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_CONTRAST);}))
-			.AddElement(new __ppf_ui_slider("Power", 0, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_POWER), 0, 4, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_POWER);}))
-			.AddElement(new __ppf_ui_slider("Remap", 0, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_REMAP), 0, 0.99, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_REMAP);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SPEEDLINES), function(checked) {return gui_ef_set_enabled(checked, FF_SPEEDLINES);}))
+			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_SCALE), 0, 20, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Tiling", 0, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_TILING), 0, 16, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_TILING);}))
+			.AddElement(new __ppf_ui_slider("Speed", 20, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_SPEED), -10, 10, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Rot Speed", 20, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_ROT_SPEED), -10, 10, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_ROT_SPEED);}))
+			.AddElement(new __ppf_ui_slider("Contrast", 0, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_CONTRAST), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_CONTRAST);}))
+			.AddElement(new __ppf_ui_slider("Power", 0, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_POWER), 0, 4, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_POWER);}))
+			.AddElement(new __ppf_ui_slider("Remap", 0, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_REMAP), 0, 0.99, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_REMAP);}))
 				.AddElement(new __ppf_ui_folder("Color", false, 3))
-					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.SPEEDLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.SPEEDLINES, PP_SCANLINES_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.SPEEDLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.SPEEDLINES, PP_SCANLINES_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.SPEEDLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.SPEEDLINES, PP_SCANLINES_COLOR);}))
-			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_MASK_POWER);}))
-			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_MASK_SCALE);}))
-			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_MASK_SMOOTHNESS), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_MASK_SMOOTHNESS);}))
+					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_SPEEDLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_SPEEDLINES, PP_SCANLINES_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_SPEEDLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_SPEEDLINES, PP_SCANLINES_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_SPEEDLINES, PP_SCANLINES_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_SPEEDLINES, PP_SCANLINES_COLOR);}))
+			.AddElement(new __ppf_ui_slider("Mask Power", 0, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_MASK_POWER), 0, 15, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_MASK_POWER);}))
+			.AddElement(new __ppf_ui_slider("Mask Scale", 0, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_MASK_SCALE), 0, 3, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_MASK_SCALE);}))
+			.AddElement(new __ppf_ui_slider("Mask Smoothness", 0, false, gui_ef_get_param_simple(FF_SPEEDLINES, PP_SPEEDLINES_MASK_SMOOTHNESS), 0, 2, true, function(output) {gui_ef_set_param_simple(output, FF_SPEEDLINES, PP_SPEEDLINES_MASK_SMOOTHNESS);}))
 			.AddElement(new __ppf_ui_button("Noise Texture", function() {
 				gui_speedlines_noise_type += 1;
 				if (gui_speedlines_noise_type >= array_length(gui_speedlines_noise_tex_list)) gui_speedlines_noise_type = 0;
-				gui_ef_set_param_simple(sprite_get_texture(gui_speedlines_noise_tex_list[gui_speedlines_noise_type], 0), FX_EFFECT.SPEEDLINES, PP_SPEEDLINES_NOISE_TEX);
-			}))
+				gui_ef_set_param_simple(sprite_get_texture(gui_speedlines_noise_tex_list[gui_speedlines_noise_type], 0), FF_SPEEDLINES, PP_SPEEDLINES_NOISE_TEXTURE);
+			}));
 		
 		// effect: FADE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("FADE", false, 6))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.FADE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.FADE);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.FADE, PP_FADE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.FADE, PP_FADE_AMOUNT);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_FADE), function(checked) {return gui_ef_set_enabled(checked, FF_FADE);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_FADE, PP_FADE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_FADE, PP_FADE_AMOUNT);}))
 			.AddElement(new __ppf_ui_folder("Color", false, 3))
-				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.FADE, PP_FADE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.FADE, PP_FADE_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.FADE, PP_FADE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.FADE, PP_FADE_COLOR);}))
-				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.FADE, PP_FADE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.FADE, PP_FADE_COLOR);}))
+				.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_FADE, PP_FADE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_FADE, PP_FADE_COLOR);}))
+				.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_FADE, PP_FADE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_FADE, PP_FADE_COLOR);}))
+				.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_FADE, PP_FADE_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_FADE, PP_FADE_COLOR);}));
 		
 		// effect: NES FADE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("NES FADE", false, 3))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.NES_FADE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.NES_FADE);}))
-			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FX_EFFECT.NES_FADE, PP_NES_FADE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.NES_FADE, PP_NES_FADE_AMOUNT);}))
-			.AddElement(new __ppf_ui_slider("Levels", 16, false, gui_ef_get_param_simple(FX_EFFECT.NES_FADE, PP_NES_FADE_LEVELS), 0, 16, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.NES_FADE, PP_NES_FADE_LEVELS);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_NES_FADE), function(checked) {return gui_ef_set_enabled(checked, FF_NES_FADE);}))
+			.AddElement(new __ppf_ui_slider("Amount", 0, false, gui_ef_get_param_simple(FF_NES_FADE, PP_NES_FADE_AMOUNT), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_NES_FADE, PP_NES_FADE_AMOUNT);}))
+			.AddElement(new __ppf_ui_slider("Levels", 16, false, gui_ef_get_param_simple(FF_NES_FADE, PP_NES_FADE_LEVELS), 0, 16, true, function(output) {gui_ef_set_param_simple(output, FF_NES_FADE, PP_NES_FADE_LEVELS);}));
 		
 		// effect: BORDER
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("BORDER", false, 7))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.BORDER), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.BORDER);}))
-			.AddElement(new __ppf_ui_slider("Curvature", 0, false, gui_ef_get_param_simple(FX_EFFECT.BORDER, PP_BORDER_CURVATURE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BORDER, PP_BORDER_CURVATURE);}))
-			.AddElement(new __ppf_ui_slider("Smooth", 0, false, gui_ef_get_param_simple(FX_EFFECT.BORDER, PP_BORDER_SMOOTH), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.BORDER, PP_BORDER_SMOOTH);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_BORDER), function(checked) {return gui_ef_set_enabled(checked, FF_BORDER);}))
+			.AddElement(new __ppf_ui_slider("Curvature", 0, false, gui_ef_get_param_simple(FF_BORDER, PP_BORDER_CURVATURE), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_BORDER, PP_BORDER_CURVATURE);}))
+			.AddElement(new __ppf_ui_slider("Smooth", 0, false, gui_ef_get_param_simple(FF_BORDER, PP_BORDER_SMOOTH), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_BORDER, PP_BORDER_SMOOTH);}))
 				.AddElement(new __ppf_ui_folder("Color", false, 3))
-					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FX_EFFECT.BORDER, PP_BORDER_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FX_EFFECT.BORDER, PP_BORDER_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FX_EFFECT.BORDER, PP_BORDER_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FX_EFFECT.BORDER, PP_BORDER_COLOR);}))
-					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FX_EFFECT.BORDER, PP_BORDER_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FX_EFFECT.BORDER, PP_BORDER_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Red", 0, false, gui_ef_get_param_color_red(FF_BORDER, PP_BORDER_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_red(output, FF_BORDER, PP_BORDER_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Green", 0, false, gui_ef_get_param_color_green(FF_BORDER, PP_BORDER_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_green(output, FF_BORDER, PP_BORDER_COLOR);}))
+					.AddElement(new __ppf_ui_slider("Blue", 0, false, gui_ef_get_param_color_blue(FF_BORDER, PP_BORDER_COLOR), 0, 255, true, function(output) {gui_ef_set_param_color_blue(output, FF_BORDER, PP_BORDER_COLOR);}));
 		
-		// effect: TONE MAPPING
-		.AddElement(new __ppf_ui_menu("TONE MAPPING", false, 6))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.TONE_MAPPING), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.TONE_MAPPING);}))
-			.AddElement(new __ppf_ui_folder("Type", false, 4))
-				.AddElement(new __ppf_ui_button("ACES Film", function() {gui_ef_set_param_simple(0, FX_EFFECT.TONE_MAPPING, PP_TONE_MAPPING_MODE);}))
-				.AddElement(new __ppf_ui_button("Uncharted 2", function() {gui_ef_set_param_simple(1, FX_EFFECT.TONE_MAPPING, PP_TONE_MAPPING_MODE);}))
-				.AddElement(new __ppf_ui_button("Lottes", function() {gui_ef_set_param_simple(2, FX_EFFECT.TONE_MAPPING, PP_TONE_MAPPING_MODE);}))
-				.AddElement(new __ppf_ui_button("Unreal 3", function() {gui_ef_set_param_simple(3, FX_EFFECT.TONE_MAPPING, PP_TONE_MAPPING_MODE);}))
-		
-		
-			
 		#endregion
 		
 		#region >> CATEGORY: IMAGE ENHANCEMENT
 		inspector_struct
-		.AddElement(new __ppf_ui_category("Enhancement & Others", false, 29))
+		.AddElement(new __ppf_ui_category("Enhancement & Others", false, 35));
 		
 		// effect: COMPARE
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("COMPARE (DEBUG)", false, 4))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.COMPARE), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.COMPARE);}))
-			.AddElement(new __ppf_ui_checkbox("Side-By-Side", 0, gui_ef_get_param_simple(FX_EFFECT.COMPARE, PP_COMPARE_SIDE_BY_SIDE), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.COMPARE, PP_COMPARE_SIDE_BY_SIDE);}))
-			.AddElement(new __ppf_ui_slider("X Offset", 0, false, gui_ef_get_param_simple(FX_EFFECT.COMPARE, PP_COMPARE_X_OFFSET), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.COMPARE, PP_COMPARE_X_OFFSET);}))
-			.AddElement(new __ppf_ui_slider("Stack Index", array_length(__inspected_class.__stack_surface), false, gui_ef_get_param_simple(FX_EFFECT.COMPARE, PP_COMPARE_STACK_INDEX), 0, array_length(__inspected_class.__stack_surface), true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.COMPARE, PP_COMPARE_STACK_INDEX);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_COMPARE), function(checked) {return gui_ef_set_enabled(checked, FF_COMPARE);}))
+			.AddElement(new __ppf_ui_checkbox("Side-By-Side", 0, gui_ef_get_param_simple(FF_COMPARE, PP_COMPARE_SIDE_BY_SIDE), function(checked) {return gui_ef_set_param_enable(checked, FF_COMPARE, PP_COMPARE_SIDE_BY_SIDE);}))
+			.AddElement(new __ppf_ui_slider("Offset", 0, false, gui_ef_get_param_simple(FF_COMPARE, PP_COMPARE_OFFSET), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_COMPARE, PP_COMPARE_OFFSET);}))
+			.AddElement(new __ppf_ui_slider("Stack Index", array_length(__inspected_class.__stackSurfaces), false, gui_ef_get_param_simple(FF_COMPARE, PP_COMPARE_STACK_INDEX), 0, array_length(__inspected_class.__stackSurfaces), true, function(output) {gui_ef_set_param_simple(output, FF_COMPARE, PP_COMPARE_STACK_INDEX);}));
+		
+		// effect: SHARPEN
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("SHARPEN", false, 4))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_SHARPEN), function(checked) {return gui_ef_set_enabled(checked, FF_SHARPEN);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_SHARPEN, PP_SHARPEN_INTENSITY), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_SHARPEN, PP_SHARPEN_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Radius", 0, false, gui_ef_get_param_simple(FF_SHARPEN, PP_SHARPEN_RADIUS), 0, 10, true, function(output) {gui_ef_set_param_simple(output, FF_SHARPEN, PP_SHARPEN_RADIUS);}))
+			.AddElement(new __ppf_ui_slider("Limiar", 5, false, gui_ef_get_param_simple(FF_SHARPEN, PP_SHARPEN_LIMIAR), 0, 5, true, function(output) {gui_ef_set_param_simple(output, FF_SHARPEN, PP_SHARPEN_LIMIAR);}));
 		
 		// effect: FXAA
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("FXAA", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.FXAA), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.FXAA);}))
-			.AddElement(new __ppf_ui_slider("Strength", 0, false, gui_ef_get_param_simple(FX_EFFECT.FXAA, PP_FXAA_STRENGTH), 0, 8, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.FXAA, PP_FXAA_STRENGTH);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_FXAA), function(checked) {return gui_ef_set_enabled(checked, FF_FXAA);}))
+			.AddElement(new __ppf_ui_slider("Strength", 0, false, gui_ef_get_param_simple(FF_FXAA, PP_FXAA_STRENGTH), 0, 8, true, function(output) {gui_ef_set_param_simple(output, FF_FXAA, PP_FXAA_STRENGTH);}));
 		
 		// effect: HQ4x
-		.AddElement(new __ppf_ui_menu("HQ4x", false, 4))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.HQ4X), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.HQ4X);}))
-			.AddElement(new __ppf_ui_slider("Smoothnes", 0, false, gui_ef_get_param_simple(FX_EFFECT.HQ4X, PP_HQ4X_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.HQ4X, PP_HQ4X_SMOOTHNESS);}))
-			.AddElement(new __ppf_ui_slider("Sharpness", 0, false, gui_ef_get_param_simple(FX_EFFECT.HQ4X, PP_HQ4X_SHARPNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.HQ4X, PP_HQ4X_SHARPNESS);}))
-			.AddElement(new __ppf_ui_slider("Downscale", 8, false, gui_ef_get_param_simple(FX_EFFECT.HQ4X, PP_HQ4X_DOWNSCALE), 0, 8, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.HQ4X, PP_HQ4X_DOWNSCALE);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("HQ4X", false, 4))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_HQ4X), function(checked) {return gui_ef_set_enabled(checked, FF_HQ4X);}))
+			.AddElement(new __ppf_ui_slider("Smoothnes", 0, false, gui_ef_get_param_simple(FF_HQ4X, PP_HQ4X_SMOOTHNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_HQ4X, PP_HQ4X_SMOOTHNESS);}))
+			.AddElement(new __ppf_ui_slider("Sharpness", 0, false, gui_ef_get_param_simple(FF_HQ4X, PP_HQ4X_SHARPNESS), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_HQ4X, PP_HQ4X_SHARPNESS);}))
+			.AddElement(new __ppf_ui_slider("Resolution", 0, false, gui_ef_get_param_simple(FF_HQ4X, PP_HQ4X_RESOLUTION), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_HQ4X, PP_HQ4X_RESOLUTION);}));
 		
 		// effect: COLOR BLINDNESS
+		inspector_struct
 		.AddElement(new __ppf_ui_menu("COLOR BLINDNESS CORRECTION", false, 2))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.COLOR_BLINDNESS), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.COLOR_BLINDNESS);}))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_COLOR_BLINDNESS), function(checked) {return gui_ef_set_enabled(checked, FF_COLOR_BLINDNESS);}))
 			.AddElement(new __ppf_ui_button("Mode (Protanopia, Deutanopia, Tritanopia)", function() {
 				gui_colorblind_cur_mode += 1;
 				if (gui_colorblind_cur_mode > 2) gui_colorblind_cur_mode = 0;
-				gui_ef_set_param_simple(gui_colorblind_cur_mode, FX_EFFECT.COLOR_BLINDNESS, PP_COLOR_BLINDNESS_MODE);
-			}))
+				gui_ef_set_param_simple(gui_colorblind_cur_mode, FF_COLOR_BLINDNESS, PP_COLOR_BLINDNESS_MODE);
+			}));
 		
 		// effect: TEXTURE OVERLAY
-		.AddElement(new __ppf_ui_menu("TEXTURE OVERLAY", false, 12))
-			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FX_EFFECT.TEXTURE_OVERLAY), function(checked) {return gui_ef_set_enabled(checked, FX_EFFECT.TEXTURE_OVERLAY);}))
-			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_INTENSITY);}))
-			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_SCALE), -2, 2, true, function(output) {gui_ef_set_param_simple(output, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_SCALE);}))
-			.AddElement(new __ppf_ui_checkbox("Can Distort", 0, gui_ef_get_param_simple(FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_CAN_DISTORT), function(checked) {return gui_ef_set_param_enable(checked, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_CAN_DISTORT);}))
+		inspector_struct
+		.AddElement(new __ppf_ui_menu("TEXTURE OVERLAY", false, 13))
+			.AddElement(new __ppf_ui_checkbox("Effect Enabled", 0, gui_ef_get_enabled(FF_TEXTURE_OVERLAY), function(checked) {return gui_ef_set_enabled(checked, FF_TEXTURE_OVERLAY);}))
+			.AddElement(new __ppf_ui_slider("Intensity", 0, false, gui_ef_get_param_simple(FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_INTENSITY), 0, 1, true, function(output) {gui_ef_set_param_simple(output, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_INTENSITY);}))
+			.AddElement(new __ppf_ui_slider("Scale", 0, false, gui_ef_get_param_simple(FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_SCALE), -8, 8, true, function(output) {gui_ef_set_param_simple(output, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_SCALE);}))
+			.AddElement(new __ppf_ui_checkbox("Can Distort", 0, gui_ef_get_param_simple(FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_CAN_DISTORT), function(checked) {return gui_ef_set_param_enable(checked, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_CAN_DISTORT);}))
+			.AddElement(new __ppf_ui_checkbox("Tiled", 0, gui_ef_get_param_simple(FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_TILED), function(checked) {return gui_ef_set_param_enable(checked, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_TILED);}))
 			.AddElement(new __ppf_ui_folder("Blend Modes", false, 6))
-				.AddElement(new __ppf_ui_button("Default", function() {gui_ef_set_param_simple(0, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
-				.AddElement(new __ppf_ui_button("Add", function() {gui_ef_set_param_simple(1, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
-				.AddElement(new __ppf_ui_button("Subtract", function() {gui_ef_set_param_simple(2, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
-				.AddElement(new __ppf_ui_button("Multiply", function() {gui_ef_set_param_simple(3, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
-				.AddElement(new __ppf_ui_button("Divide", function() {gui_ef_set_param_simple(4, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
-				.AddElement(new __ppf_ui_button("Color Burn", function() {gui_ef_set_param_simple(5, FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
+				.AddElement(new __ppf_ui_button("Default", function() {gui_ef_set_param_simple(0, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
+				.AddElement(new __ppf_ui_button("Add", function() {gui_ef_set_param_simple(1, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
+				.AddElement(new __ppf_ui_button("Subtract", function() {gui_ef_set_param_simple(2, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
+				.AddElement(new __ppf_ui_button("Multiply", function() {gui_ef_set_param_simple(3, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
+				.AddElement(new __ppf_ui_button("Divide", function() {gui_ef_set_param_simple(4, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
+				.AddElement(new __ppf_ui_button("Color Burn", function() {gui_ef_set_param_simple(5, FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_BLENDMODE);}))
 			.AddElement(new __ppf_ui_button("Texture", function() {
 				var _file = get_open_filename("PNG Image|*.png", "*.png");
 				if (_file != "") {
 					if (sprite_exists(gui_textureoverlay_spritetex_id)) sprite_delete(gui_textureoverlay_spritetex_id);
 					gui_textureoverlay_spritetex_id = sprite_add(_file, 0, 0, 0, 0, 0);
-					gui_ef_set_param_simple(sprite_get_texture(gui_textureoverlay_spritetex_id, 0), FX_EFFECT.TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_TEXTURE);
+					gui_ef_set_param_simple(sprite_get_texture(gui_textureoverlay_spritetex_id, 0), FF_TEXTURE_OVERLAY, PP_TEXTURE_OVERLAY_TEXTURE);
 				}
 			}));
-		
 		
 		#endregion
 		
 		#region >> CATEGORY: EXTERNAL EFFECTS
 		// Add External Effects (if any)
-		var _external_effects_len = array_length(global.__ppf_external_effects);
-		if (_external_effects_len > 0) {
-			// create a new category
-			var _category = new __ppf_ui_category("External Effects", false, 0);
-			inspector_struct.AddElement(_category);
-			
+		var _allEffectsArray = __inspected_class.__effectsOrdered;
+		var _allEffectsAmount = array_length(_allEffectsArray);
+		if (_allEffectsAmount > 0) {
+			var _canCreateMenu = true;
 			// add elements
-			var _effect_struct = undefined;
-			for (var i = 0; i < _external_effects_len; ++i) {
-				_effect_struct = global.__ppf_external_effects[i];
-				if (_effect_struct.GetEditorData != undefined) {
-					_category.amount_opened += _effect_struct.GetEditorData(self);
+			var _effectStruct = undefined;
+			for (var i = 0; i < _allEffectsAmount; ++i) {
+				_effectStruct = _allEffectsArray[i];
+				if (_effectStruct.isExternalEffect) {
+					// create a new category once
+					if (_canCreateMenu) {
+						_canCreateMenu = false;
+						var _category = new __ppf_ui_category("External Effects", false, 0);
+						inspector_struct.AddElement(_category);
+					}
+					// add external effect
+					if (_effectStruct.GetEditorData != undefined) {
+						_category.amount_opened += _effectStruct.GetEditorData(self);
+					}
 				}
 			}
 		}
@@ -1491,25 +1656,25 @@ function __PPFX_DebugInspectorGenerator() constructor {
 				.AddElement(new __ppf_ui_text_ext("Info", 0, function(element) {
 					var _width = element.parent.__panel_width-element.xx-element.parent.__element_xpadding;
 					element.width = _width;
-					var _text = "The profile is like a container, which contains the effects you want the system to render. They alone don't do anything, it's just a data structure.\nYou load them into the post-processing system. Each post-processing system can only have 1 profile loaded into it, at the same time (you can also merge profiles).";
+					var _text = "The profile is like a container, which contains the effects you want the system to render. They alone don't do anything, it's just a data structure.\nYou load them into the Post-processing renderer. Each Post-processing renderer can only have 1 profile loaded into it, at the same time (you can also merge profiles).";
 					return _text;
 				}))
 				.AddElement(new __ppf_ui_separator())
 				.AddElement(new __ppf_ui_text_ext("Name", 0, function(element) {
 					var _width = element.parent.__panel_width-element.xx-element.parent.__element_xpadding;
 					element.width = _width;
-					var _text = $"Profile Name: {__inspected_class.__profile_name}";
+					var _text = $"Profile Name: {__inspected_class.__profileName}";
 					return _text;
 				}))
 			
 			// Actions
 			.AddElement(new __ppf_ui_folder("Actions", true, 5))
 					.AddElement(new __ppf_ui_button("Load Default (Merge)", function() {
-						__inspected_class.Load(gui_preset_profiles.GetDefault("Game"), true);
+						__inspected_class.Load(gui_preset_profiles.GetDefault(), true);
 					}))
 					
 					.AddElement(new __ppf_ui_button("Load Default (Overwrite)", function() {
-						__inspected_class.Load(gui_preset_profiles.GetDefault("Game"), false);
+						__inspected_class.Load(gui_preset_profiles.GetDefault(), false);
 					}))
 					
 					.AddElement(new __ppf_ui_button("Export (only enabled effects)", function() {
@@ -1529,7 +1694,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 			// Effects
 			.AddElement(new __ppf_ui_folder("Effects", false, 2))
 				.AddElement(new __ppf_ui_text("Count", 0, function() {
-					return $"Count: {array_length(__inspected_class.__effects_array)} | [enabled] (order) name";
+					return $"Count: {array_length(__inspected_class.__effectsOrdered)} | [enabled] (order) name";
 				}))
 				.AddElement(new __ppf_ui_method("Effects Array", 0, undefined,
 					function(element) {
@@ -1537,7 +1702,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						//inspector_struct.__bake();
 						
 						// draw item list
-						var _array = __inspected_class.__effects_array, _rec = 0, _text = "", _text_height = 0, _effect = undefined,
+						var _array = __inspected_class.__effectsOrdered, _rec = 0, _text = "", _text_height = 0, _effect = undefined,
 						isize = array_length(_array), i = isize-1,
 						_xx = element.xx,
 						_yy = element.yy,
@@ -1549,7 +1714,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						repeat(isize) {
 							_rec = i / isize;
 							_effect = _array[i];
-							_text = $"[{_effect.settings.enabled ? "x" : " "}] ({_effect.stack_order}) {_effect.effect_name}" + "\n";
+							_text = $"[{_effect.enabled ? "x" : " "}] ({_effect.stackOrder}) {_effect.effectName}" + "\n";
 							_text_height = string_height(_text);
 							
 							// draw item
@@ -1560,8 +1725,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 							--i;
 						}
 						return _height + 16;
-					}))
-		
+					}));
 		
 		// callback [must have it]
 		return inspector_struct;
@@ -1617,8 +1781,8 @@ function __PPFX_DebugInspectorGenerator() constructor {
 					}
 					
 					if (!_exists) {
-						draw_sprite(__spr_ppf_debug_icon, 0, xx+parent.__panel_width/2-parent.__element_xpadding, yy+sprite_get_height(__spr_ppf_debug_icon)/2);
-						_height = sprite_get_height(__spr_ppf_debug_icon) + 16;
+						draw_sprite(__ppf_sprDebugIcon, 0, xx+parent.__panel_width/2-parent.__element_xpadding, yy+sprite_get_height(__ppf_sprDebugIcon)/2);
+						_height = sprite_get_height(__ppf_sprDebugIcon) + 16;
 					}
 				}
 				
@@ -1674,7 +1838,8 @@ function __PPFX_DebugInspectorGenerator() constructor {
 						sprite_save(__inspected_class.__output, 0, _file + ".png");
 					}
 				}
-			}))
+			}));
+		
 		// callback [must have it]
 		return inspector_struct;
 		#endregion
@@ -1685,7 +1850,7 @@ function __PPFX_DebugInspectorGenerator() constructor {
 
 #region DEBUG UI
 
-/// @func PPFX_DebugUI(class_instance)
+/// @method PPFX_DebugUI(class_instance)
 /// @param {Struct} class_instance The system struct returned from a constructor/class. Let it blank/undefined if you want the Debug UI to search it for you, in the current object/context.
 /// @param {Bool} right_side The UI will spawn in the right side.
 /// @param {Real} width The initial UI width.
@@ -1718,8 +1883,8 @@ function PPFX_DebugUI(class_instance=undefined, right_side=true, width=300, heig
 			idd : __inspector_generator.__PPFX_ClassSelector,
 		},
 		{
-			name : "PPFX_System",
-			idd : __inspector_generator.__PPFX_System,
+			name : "PPFX_Renderer",
+			idd : __inspector_generator.__PPFX_Renderer,
 		},
 		{
 			name : "PPFX_Profile",
@@ -1742,21 +1907,13 @@ function PPFX_DebugUI(class_instance=undefined, right_side=true, width=300, heig
 	__is_backing_home = false;
 	
 	__can_click = true; // prevents click throughs overlapping elements
-	
-	static __debug_func_start = function() {
-		__debug_time = get_timer();
-	}
-	static __debug_func_end = function() {
-		__debug_time = get_timer()-__debug_time;
-		return $"{__debug_time/1000}ms";
-	}
-	
+		
 	SetClass(class_instance);
 	
 	#region Public Methods
 	
 	/// @desc Choose a new class to debug.
-	/// @func SetClass()
+	/// @method SetClass()
 	static SetClass = function(class_instance=undefined) {
 		// reset class
 		__inspected_class = undefined; // we are not debugging any class...
@@ -1796,7 +1953,7 @@ function PPFX_DebugUI(class_instance=undefined, right_side=true, width=300, heig
 		UpdateUI();
 	}
 	
-	/// @func UpdateUI()
+	/// @method UpdateUI()
 	static UpdateUI = function() {
 		try {
 			// bind ui function to self and call it
@@ -1840,32 +1997,32 @@ function PPFX_DebugUI(class_instance=undefined, right_side=true, width=300, heig
 	}
 	
 	/// @desc Get UI system struct. Useful to manually add items to the UI later.
-	/// @func GetInspector()
+	/// @method GetInspector()
 	static GetInspector = function() {
 		return __current_inspector_struct;
 	}
 	
 	/// @desc Get current editing class struct.
-	/// @func GetClass()
+	/// @method GetClass()
 	static GetClass = function() {
 		return __inspected_class;
 	}
 	
 	/// @desc Get current editing class name.
-	/// @func GetClassName()
+	/// @method GetClassName()
 	static GetClassName = function() {
 		return __inspected_class_object_name;
 	}
 	
 	/// @desc This function is called after the UI is created.
-	/// @func AddItems()
+	/// @method AddItems()
 	static AddItems = function(func) {
 		__add_items_post_func = func;
 		__add_items_post_func(__current_inspector_struct);
 	}
 	
 	/// @desc Destroy debug UI.
-	/// @func Destroy()
+	/// @method Destroy()
 	static Destroy = function() {
 		// destroy Inspector UI
 		if (__current_inspector_struct != undefined) {
@@ -1881,7 +2038,7 @@ function PPFX_DebugUI(class_instance=undefined, right_side=true, width=300, heig
 	}
 	
 	/// @desc Define UI position and size.
-	/// @func SetRectangle()
+	/// @method SetRectangle()
 	static SetRectangle = function(xx=undefined, yy=undefined, width=undefined, height=undefined) {
 		__ui_x = xx ?? __ui_x;
 		__ui_y = yy ?? __ui_y;
@@ -1890,10 +2047,10 @@ function PPFX_DebugUI(class_instance=undefined, right_side=true, width=300, heig
 	}
 	
 	/// @desc Draw debug UI, to debug Post-Processing FX.
-	/// @func Draw(general_alpha, font)
+	/// @method Draw(general_alpha, font)
 	/// @param {real} general_alpha The drawing alpha.
 	/// @param {real} font The font to use, for drawing texts.
-	static Draw = function(general_alpha=1, font=__ppf_fnt_debug_ui) {
+	static Draw = function(general_alpha=1, font=__ppf_fntDebugUI) {
 		// check if it's in a wrong event
 		if (event_number != ev_draw_post && event_number != ev_gui && event_number != ev_gui_begin && event_number != ev_gui_end) {
 			__ppf_trace("Debug UI can only be drawn in Post-Draw or GUI events.", 1);
@@ -1984,7 +2141,7 @@ function PPFX_DebugUI(class_instance=undefined, right_side=true, width=300, heig
 		if (__destroyed || __current_inspector_struct == undefined) exit;
 		
 		// time
-		__ui_time += PPFX_CFG_SPEED;
+		__ui_time += 1 / game_get_speed(gamespeed_fps);
 		
 		// draw ui items
 		var _old_font = draw_get_font(),
@@ -2039,7 +2196,9 @@ function PPFX_DebugUI(class_instance=undefined, right_side=true, width=300, heig
 // It should only be used in the Debug UI, and is subject to change.
 /// @ignore
 function __PPFX_PresetProfile() constructor {
-	static GetDefault = function(name) {
+	__defaultName = "Default";
+	
+	static GetDefault = function() {
 		var _effects = [
 			new FX_ColorCurves(false),
 			new FX_ChannelMixer(false),
@@ -2053,14 +2212,14 @@ function __PPFX_PresetProfile() constructor {
 			new FX_DisplaceMap(false),
 			new FX_Shockwaves(false),
 			new FX_SineWave(false),
-			new FX_Glitch(false),
+			new FX_Interference(false),
 			new FX_WhiteBalance(false),
 			new FX_HQ4x(false),
 			new FX_FXAA(false),
 			new FX_SunShafts(false),
 			new FX_Bloom(false),
 			new FX_DepthOfField(false),
-			new FX_SlowMotion(false),
+			new FX_LongExposure(false),
 			new FX_MotionBlur(false),
 			new FX_RadialBlur(false),
 			new FX_LUT(false),
@@ -2081,6 +2240,8 @@ function __PPFX_PresetProfile() constructor {
 			new FX_KawaseBlur(false),
 			new FX_GaussianBlur(false),
 			new FX_VHS(false),
+			new FX_ASCII(false),
+			new FX_Glitch(false),
 			new FX_ChromaticAberration(false),
 			new FX_Mist(false),
 			new FX_SpeedLines(false),
@@ -2094,26 +2255,22 @@ function __PPFX_PresetProfile() constructor {
 			new FX_ColorBlindness(false),
 			new FX_Channels(false),
 			new FX_Border(false),
+			new FX_Sharpen(false),
 			new FX_Compare(false)
 		];
-		var i = 0, isize = array_length(global.__ppf_external_effects);
-		repeat(isize) {
-			array_push(_effects, global.__ppf_external_effects[i]);
-			++i;
-		}
-		return new PPFX_Profile(name, _effects);
+		return new PPFX_Profile(__defaultName, _effects);
 	}
 	
-	static GetHorror1 = function(name) {
-		return new PPFX_Profile(name, [
+	static GetHorror1 = function() {
+		return new PPFX_Profile(__defaultName, [
 			new FX_VHS(true),
 			new FX_Vignette(true, 0.5),
-			new FX_Glitch(true),
+			new FX_Interference(true),
 		]);
 	}
 	
-	static GetCRT1 = function(name) {
-		return new PPFX_Profile(name, [
+	static GetCRT1 = function() {
+		return new PPFX_Profile(__defaultName, [
 			new FX_VHS(true),
 			new FX_LensDistortion(true, 0.5),
 			new FX_ScanLines(true),

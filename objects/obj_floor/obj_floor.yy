@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_chao_a1",
-    "path":"sprites/spr_chao_a1/spr_chao_a1.yy",
+    "name":"spr_chao_1gif",
+    "path":"sprites/spr_chao_1gif/spr_chao_1gif.yy",
   },
   "spriteMaskId":null,
   "visible":true,

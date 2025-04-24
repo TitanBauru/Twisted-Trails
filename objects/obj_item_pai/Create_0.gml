@@ -99,5 +99,5 @@ function collect_item() {
     // Sua lógica de animação aqui
     
     // Destruir após um delay (se necessário)
-    alarm[0] = room_speed * 0.5;
+    alarm[0] = 1;
 }

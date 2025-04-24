@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shBlurTent9",
+  "name":"__ppf_shBlurTent9",
+  "parent":{
+    "name":"Upsampling",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Shaders/Upsampling.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__ppf_LUTGenerator",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__ppf_LUTGenerator",
+  "parent":{
+    "name":"LUTGenerator",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/LUTGenerator.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

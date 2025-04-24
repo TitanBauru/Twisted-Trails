@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shRenderBase",
+  "name":"__ppf_shRenderBase",
+  "parent":{
+    "name":"Shared",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Shaders/Render/Shared.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

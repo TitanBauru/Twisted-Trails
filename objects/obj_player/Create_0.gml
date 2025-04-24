@@ -2,10 +2,12 @@
 arma_atual = "Pistola"
 pode_dash_player = 0
 dano_armas = 1
+cadencia_armas = 1
 //instance_create_layer(x,y,"vacuo",obj_shadow_tile_controller)
 instance_create_layer(x,y,"vacuo",obj_weapon)
 if !(instance_exists(obj_camera)) instance_create_layer(x,y,layer,obj_camera)
 light = instance_create_layer(x,y,"vacuo",obj_player_luz)
+
 alarm[0] = 10
 bullet_number = 0;
 
@@ -93,7 +95,7 @@ function executar_dash() {
         can_dash = false;
         
         // Rodar SFX de dash
-        shockwave_instance_create(obj_player.x, obj_player.y, layer_get_id("Trail"), , 0.75); // Ajustado o quarto argumento para vazio
+        shockwave_instance_create(obj_player.x, obj_player.y, "Trail", 0, .75, 0.01, __ppf_objShockwave);
         
         on_dash = true;
         

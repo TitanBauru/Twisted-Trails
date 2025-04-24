@@ -13,6 +13,7 @@ function weapon(_nome, _desc, _damage, _atkspd, _sprite, _knock, _municao, _temp
     dano = _damage ;
 	dano_base = dano
     atk_speed = _atkspd;
+	atk_speed_base = _atkspd;
     sprite = _sprite; 
     knockback = _knock;
     ammo = _municao; // Quantidade de munição disponível

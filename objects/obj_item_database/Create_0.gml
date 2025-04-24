@@ -142,6 +142,14 @@ function ItemConstructor(_id, _name, _description, _sprite, _price, _rarity, _ef
 				
 				obj_weapon.arma_ativa.dano = (obj_weapon.arma_ativa.dano_base * obj_player.dano_armas)
 			}
+			
+			case "diminuir_cadencia":
+			{
+				obj_player.cadencia_armas *= 1 + power_fx_fx;	
+				
+				obj_weapon.arma_ativa.atk_speed = (obj_weapon.arma_ativa.atk_speed_base * obj_player.cadencia_armas)
+				
+			}
 		}
     }
 }
@@ -167,13 +175,13 @@ function initialize_item_database() {
     add_item(
         "Anel de Ferro Corroído", 
         "Aumenta o dano base em 10%, mas reduz a cadência em 5%.",
-        spr_dokrl, 
+        spr_dokrl, //Pode ser literalmente qlqr coisa aq, eu mudo no obj_item_pai dps
         50, // preço sugerido
         "Comum",
         {
             // Modificadores de stats permanentes (aplicados uma vez)
-            aumentar_dano: { active: true, is_continuous: false, power_fx: 1 },
-            //decrease_fire_rate: { active: true, is_continuous: false, power_fx: 0.05 }
+            aumentar_dano: { active: true, is_continuous: false, power_fx: .1 },
+            diminuir_cadencia: { active: true, is_continuous: false, power_fx: 0.05 }
         }
     );
     

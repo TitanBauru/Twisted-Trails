@@ -6,5 +6,5 @@ if (instance_exists(obj_crystal)) {
 	_sourceSurface = obj_crystal.renderer.GetRenderSurface();
 }
 
-ppfx_id.DrawInFullscreen(_sourceSurface);
+renderer.DrawInFullscreen(_sourceSurface);
 //debug.Draw();

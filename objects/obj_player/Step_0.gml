@@ -1,4 +1,5 @@
 /// STEP EVENT - Sistema de Movimentação Revisado
+if !(instance_exists(obj_camera)) instance_create_layer(x,y,layer,obj_camera)
 
 // Captura input do jogador
 var axis_h = keyboard_check(ord("D")) - keyboard_check(ord("A"));

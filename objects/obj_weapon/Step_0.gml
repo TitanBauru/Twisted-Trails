@@ -20,6 +20,7 @@ if (mouse_wheel_up())
     {
         arma_ativa = self[$ new_weapon_internal_name];
 		arma_ativa.dano = arma_ativa.dano_base*obj_player.dano_armas
+		arma_ativa.atk_speed = arma_ativa.atk_speed_base*obj_player.cadencia_armas
     }
 }
 
@@ -33,6 +34,7 @@ if (mouse_wheel_down())
     {
         arma_ativa = self[$ new_weapon_internal_name];
 		arma_ativa.dano = arma_ativa.dano_base*obj_player.dano_armas
+		arma_ativa.atk_speed = arma_ativa.atk_speed_base*obj_player.cadencia_armas
     }
 }
 

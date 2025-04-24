@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"__ppf_shBlurBox4",
+  "name":"__ppf_shBlurBox4",
+  "parent":{
+    "name":"Downsampling",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Shaders/Downsampling.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

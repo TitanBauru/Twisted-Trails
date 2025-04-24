@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__ppf_AreasMasks",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__ppf_AreasMasks",
+  "parent":{
+    "name":"AreasMasks",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/AreasMasks.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"__ppf_settings",
+  "%Name":"__ppf_Settings",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"__ppf_settings",
+  "name":"__ppf_Settings",
   "parent":{
     "name":"PostProcessingFX",
     "path":"folders/Libs/KazanGames/PostProcessingFX.yy",

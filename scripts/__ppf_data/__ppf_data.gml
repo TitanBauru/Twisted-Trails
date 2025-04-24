@@ -1,21 +1,33 @@
 
+// Feather ignore all
+
+#macro PPFX_VERSION "v5.0"
+#macro PPFX_RELEASE_DATE "March, 27, 2025"
+
+show_debug_message($"Post-Processing FX {PPFX_VERSION} | Copyright (C) 2025 FoxyOfJungle");
+
+// ========================================================================================
+
 /// @ignore
-global.__ppf_shader_textures = {
-	pixel_texture : sprite_get_texture(__spr_ppf_pixel, 0),
-	noise_point : sprite_get_texture(__spr_ppf_noise_point, 0),
-	noise_perlin : sprite_get_texture(__spr_ppf_noise_perlin, 0),
-	noise_simplex : sprite_get_texture(__spr_ppf_noise_simplex, 0),
-	default_normal : sprite_get_texture(__spr_ppf_normal, 0),
-	default_palette : sprite_get_texture(__spr_ppf_pal_default, 0),
-	default_lut : sprite_get_texture(__spr_ppf_lut_grid_default, 0),
-	default_dirt_lens : sprite_get_texture(__spr_ppf_dirt_lens, 0),
-	default_overlay_tex : sprite_get_texture(__spr_ppf_blood, 0),
-	default_chromaber_prisma_lut : sprite_get_texture(__spr_ppf_prism_lut_rb, 0),
-	default_shockwaves_prisma_lut : sprite_get_texture(__spr_ppf_prism_lut_cp, 0),
-	bayer_16x16 : sprite_get_texture(__spr_ppf_bayer16x16, 0),
-	bayer_8x8 : sprite_get_texture(__spr_ppf_bayer8x8, 0),
-	bayer_4x4 : sprite_get_texture(__spr_ppf_bayer4x4, 0),
-	bayer_2x2 : sprite_get_texture(__spr_ppf_bayer2x2, 0),
+function __ppfxGlobal() {
+	// Default textures
+	static textureWhitePixel = sprite_get_texture(__ppf_sprPixel, 0);
+	static textureNoisePoint = sprite_get_texture(__ppf_sprNoisePoint, 0);
+	static textureNoisePerlin = sprite_get_texture(__ppf_sprNoisePerlin, 0);
+	static textureNoiseSimplex = sprite_get_texture(__ppf_sprNoiseSimplex, 0);
+	static textureNormal = sprite_get_texture(__ppf_sprNormal, 0);
+	static texturePalette = sprite_get_texture(__ppf_sprPalDefault, 0);
+	static textureNeutralLUT = sprite_get_texture(__ppf_sprNeutralLUTGrid, 0);
+	static textureDirtLens = sprite_get_texture(__ppf_sprDirtLens, 0);
+	static textureChromaberPrismaLut = sprite_get_texture(__ppf_sprPrismLutRB, 0);
+	static textureShockwavesPrismaLut = sprite_get_texture(__ppf_sprPrismLutCP, 0);
+	static texturebayer16x16 = sprite_get_texture(__ppf_sprBayer16x16, 0);
+	static texturebayer8x8 = sprite_get_texture(__ppf_sprBayer8x8, 0);
+	static texturebayer4x4 = sprite_get_texture(__ppf_sprBayer4x4, 0);
+	static texturebayer2x2 = sprite_get_texture(__ppf_sprBayer2x2, 0);
+	static textureASCII = sprite_get_texture(__ppf_sprASCII, 0);
 }
 
-#macro __PPF_ST global.__ppf_shader_textures
+// Crystal init
+// at the time this is called, everything in scripts are available
+__ppfxGlobal();

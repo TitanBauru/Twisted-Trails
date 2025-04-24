@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__ppf_CurvesGenerator",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__ppf_CurvesGenerator",
+  "parent":{
+    "name":"Curves",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/Curves.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

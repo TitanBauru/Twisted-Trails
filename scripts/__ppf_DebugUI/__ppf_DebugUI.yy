@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__ppf_DebugUI",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__ppf_DebugUI",
+  "parent":{
+    "name":"Resources",
+    "path":"folders/Libs/KazanGames/PostProcessingFX/Core/Modules/Debug/Resources.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

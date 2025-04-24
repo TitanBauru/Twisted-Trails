@@ -16,6 +16,7 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"__cle_objPointLight","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"propertyId":{"name":"shadowPenumbra","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"40",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"__cle_objPointLight","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"propertyId":{"name":"radius","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"100",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"__cle_objPointLight","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"propertyId":{"name":"levels","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1394.5",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"__cle_objPointLight","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"propertyId":{"name":"litType","path":"objects/__cle_objPointLight/__cle_objPointLight.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"LIT_ALWAYS",},
   ],
   "parent":{
     "name":"Luzes",
