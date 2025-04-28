@@ -21,7 +21,6 @@ switch (os_type) {
         view_wport[0] = _w * 0.25;
         view_hport[0] = _h * 0.25;
         break;
-        
     default: // Para outros sistemas operacionais (PC, etc.):
         surface_resize(application_surface, 1920, 1080); // Redimensiona a surface da aplicação para 1920x1080.
         

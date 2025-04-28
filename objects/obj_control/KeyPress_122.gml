@@ -1,0 +1,2 @@
+
+omnicam_fullscreen()

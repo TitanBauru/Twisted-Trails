@@ -5,7 +5,7 @@ dano_armas = 1
 cadencia_armas = 1
 //instance_create_layer(x,y,"vacuo",obj_shadow_tile_controller)
 instance_create_layer(x,y,"vacuo",obj_weapon)
-if !(instance_exists(obj_camera)) instance_create_layer(x,y,layer,obj_camera)
+//if !(instance_exists(obj_camera)) instance_create_layer(x,y,layer,obj_camera)
 light = instance_create_layer(x,y,"vacuo",obj_player_luz)
 
 alarm[0] = 10

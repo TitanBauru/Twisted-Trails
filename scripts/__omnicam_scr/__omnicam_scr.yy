@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__omnicam_scr",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__omnicam_scr",
+  "parent":{
+    "name":"Omnicam",
+    "path":"folders/Omnicam.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

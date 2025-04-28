@@ -139,7 +139,8 @@ function deal_damage_to_player(_dmg, _knockback_strenght, _knockback_dir){
 				knockback_strenght = _knockback_strenght;
 				knockback_dir = _knockback_dir;
 				
-				obj_camera.camera.shake(4, .25);
+				//obj_camera.camera.shake(4, .25);
+				//omnicam_shake(15, 10)
 			}
 		}
 	}
@@ -154,7 +155,8 @@ function tomar_dano_inimigo(dano, chance_critico, multiplicador_critico, fonte,_
         if critico != true
 		{
 			critico = true
-			obj_camera.camera.shake(1.005,.05)
+			//obj_camera.camera.shake(1.005,.05)
+			//omnicam_shake(60, 3)
 		}
         dano_final *= multiplicador_critico; // Aplica o multiplicador de crítico ao dano
     }
@@ -209,7 +211,8 @@ function tomar_dano_inimigo(dano, chance_critico, multiplicador_critico, fonte,_
 			
 			obj_player.alarm[1] = 30;
 			global.aberracao_cromatica = 10
-			obj_camera.camera.zoom(obj_player.zoom_punch, .1);
+			//obj_camera.camera.zoom(obj_player.zoom_punch, .1);
+			omnicam_zoom(obj_player.zoom_punch, true)
 			obj_player.zoom_punch += .01;
 			sleep(20)	
 			if(obj_player.zoom_punch>= 1.2) obj_player.zoom_punch = 1.2

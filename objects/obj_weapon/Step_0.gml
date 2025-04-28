@@ -106,7 +106,8 @@ if (arma_ativa.ammo >= 0) { // Verifica se a arma ainda tem munição
 		spark(x + _projX,y + _projY,random(6),dir,80,12,.95,c_white,c_white,1,0)
 		
 		estado_da_arma = 1
-		obj_camera.camera.shake(1,.1);
+		//obj_camera.camera.shake(1,.1);
+		omnicam_shake(60, 10)
 		amp = random_range(.6, .9);
 		var _weapon_name = weapon_name[$ arma_ativa.nome];
 		var _weapon = self[$ _weapon_name];		

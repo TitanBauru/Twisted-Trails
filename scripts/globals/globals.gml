@@ -1,4 +1,4 @@
 global.game_speed = 1
-global.cmw = camera_get_view_width(view_camera[0]);
-global.cmh = camera_get_view_height(view_camera[0]);
+global.cmw = camera_get_view_width(omnicam_get_id());
+global.cmh = camera_get_view_height(omnicam_get_id());
 global.aim_mult = .4

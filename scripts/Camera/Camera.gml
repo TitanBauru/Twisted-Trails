@@ -202,12 +202,12 @@ function Camera(_x, _y, _view, _autoload) constructor {
 	/// @param {real} strength The strength of the camera shake.
 	/// @param {real} duration The duration of the effect (in seconds).
 	/// @param {callable} [callback=undefined] Callback function to be executed when finished.
-	static shake = function(_strength, _duration, _callback) {
-		var _task = __fetchTask(CameraShakeTask);
+	//static shake = function(_strength, _duration, _callback) {
+	//	var _task = __fetchTask(CameraShakeTask);
 		
-		_task.setup(_strength, _duration, _callback);
-		__registerTask(_task);
-	}
+	//	_task.setup(_strength, _duration, _callback);
+	//	__registerTask(_task);
+	//}
 	
 	/// @function flash(color, interval, duration, [callback=undefined])
 	/// @description Applies a flash effect during a certain amount of time.
