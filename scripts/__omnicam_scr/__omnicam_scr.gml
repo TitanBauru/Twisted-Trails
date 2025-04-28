@@ -144,6 +144,11 @@ function omnicam_set_move_amount(_amount) {
 	OMNICAM.cam_amount = _amount
 }
 
+///@desc Retorna o fator de movimento da câmera
+function omnicam_get_move_amount(_amount) {
+	return OMNICAM.cam_amount
+}
+
 ///@desc Faz a câmera se mover com efeito de interpolação linear, junto com o valor de 0 a 1 dessa interpolação
 function omnicam_move_lerp(_amount = 0.1) {
 	with (OMNICAM) {
