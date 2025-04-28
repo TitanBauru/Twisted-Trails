@@ -139,6 +139,11 @@ function omnicam_peek(_x, _y, _amount) {
 	}
 }
 
+///@desc Altera diretamente o fator de movimento da câmera, sem alterar o modo
+function omnicam_set_move_amount(_amount) {
+	OMNICAM.cam_amount = _amount
+}
+
 ///@desc Faz a câmera se mover com efeito de interpolação linear, junto com o valor de 0 a 1 dessa interpolação
 function omnicam_move_lerp(_amount = 0.1) {
 	with (OMNICAM) {
