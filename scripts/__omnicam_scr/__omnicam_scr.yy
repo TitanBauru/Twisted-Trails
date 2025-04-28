@@ -6,7 +6,7 @@
   "name":"__omnicam_scr",
   "parent":{
     "name":"Omnicam",
-    "path":"folders/Omnicam.yy",
+    "path":"folders/Libs/Omnicam.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

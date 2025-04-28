@@ -3,7 +3,7 @@
 if (instance_exists(obj_ppfx)) {
 	exit;
 }
-
+show_message("e")
 gpu_set_blendenable(false)
 var _scl = window_get_width()/ (cam_pixel ? cam_width : window_width)
 var _x = cam_smooth ? -(frac(cam_x) * _scl) : 0

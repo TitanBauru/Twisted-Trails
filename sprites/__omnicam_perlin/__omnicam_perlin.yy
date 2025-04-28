@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"Omnicam",
-    "path":"folders/Omnicam.yy",
+    "path":"folders/Libs/Omnicam.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

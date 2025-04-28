@@ -15,7 +15,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Omnicam",
-    "path":"folders/Omnicam.yy",
+    "path":"folders/Libs/Omnicam.yy",
   },
   "parentObjectId":null,
   "persistent":true,

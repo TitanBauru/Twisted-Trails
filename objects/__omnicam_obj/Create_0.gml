@@ -237,6 +237,7 @@ cam_move = function() {
 	if (cam_y < _cy_min || cam_y > _cy_max) {
 		cam_y = lerp(_cy_min, _cy_max, 0.5)
 	}
+	
 }
 
 view_update = function() {
